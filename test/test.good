@@ -1,0 +1,441 @@
+; module
+test:
+proc1:
+	ret
+func1:
+	ret
+; if
+	push.i	x
+	push.s	10
+	gtr.b
+	jz		ifnext_1
+; assign
+	push.s	0
+	toint
+	store	y
+	jmp		endif_0
+ifnext_1:
+endif_0:
+; assign
+	push.s	3
+	neg.s
+	push.s	2
+	sub.s
+	toint
+	store	x
+; assign
+	push.i	y
+	push.s	10
+	gtr.b
+	not.b
+	store	bool
+; assign
+	push.s	74
+	neg.s
+	push.s	10
+	sub.s
+	push.s	32
+	rdiv.r
+	push.s	23
+	push.s	17
+	add.s
+	toreal
+	mul.r
+	store	r
+; assign
+	push.s	74
+	neg.s
+	push.s	10
+	sub.s
+	push.s	32
+	mod.i
+	push.s	23
+	push.s	17
+	add.s
+	toint
+	mul.i
+	store	x
+; assign
+	push.s	69
+	toint
+	store	y
+; assign
+	push.i	b
+	store	a
+; assign
+	push.s	0
+	toint
+	store	x
+; assign
+	push.s	0
+	toint
+	store	y
+; assign
+	push.s	0
+	toint
+	store	z
+repeat_2:
+; assign
+	push.i	x
+	push.s	1
+	toint
+	add.i
+	store	x
+; assign
+	push.i	y
+	push.s	1
+	toint
+	add.i
+	store	y
+; assign
+	push.i	z
+	push.s	1
+	toint
+	add.i
+	store	z
+	push.i	y
+	push.s	10
+	eql.b
+	jz		repeat_2
+while_3:
+	push.i	x
+	push.s	10
+	leq.b
+	jz		endwhile_3
+; assign
+	push.i	x
+	push.s	1
+	toint
+	add.i
+	store	x
+; assign
+	push.i	y
+	push.s	1
+	toint
+	add.i
+	store	y
+; assign
+	push.i	z
+	push.s	1
+	toint
+	add.i
+	store	z
+	jmp		while_3
+endwhile_3:
+loop_4:
+; assign
+	push.i	x
+	push.s	1
+	toint
+	add.i
+	store	x
+; assign
+	push.i	y
+	push.s	1
+	toint
+	add.i
+	store	y
+; assign
+	push.i	z
+	push.s	1
+	toint
+	add.i
+	store	z
+; if
+	push.i	y
+	push.i	1000
+	gte.b
+	jz		ifnext_6
+	jmp		exit_7
+	jmp		endif_5
+ifnext_6:
+endif_5:
+	jmp		loop_4
+exit_7:
+; if
+	push.i	x
+	push.i	1000
+	les.b
+	jz		ifnext_9
+; assign
+	push.i	1000
+	store	y
+; assign
+	push.s	1
+	toint
+	store	z
+	jmp		endif_8
+ifnext_9:
+	push.i	x
+	push.s	100
+	les.b
+	jz		ifnext_10
+; assign
+	push.s	100
+	toint
+	store	y
+; assign
+	push.s	1
+	toint
+	store	z
+	jmp		endif_8
+ifnext_10:
+	push.i	x
+	push.s	10
+	les.b
+	jz		ifnext_11
+; assign
+	push.s	10
+	toint
+	store	y
+; assign
+	push.s	1
+	toint
+	store	z
+	jmp		endif_8
+ifnext_11:
+	push.i	x
+	push.s	109
+	les.b
+	jz		ifnext_12
+; assign
+	push.s	10
+	toint
+	store	y
+	jmp		endif_8
+ifnext_12:
+endif_8:
+; if
+	push.i	y
+	push.s	1
+	neq.b
+	jz		ifnext_14
+; assign
+	push.s	0
+	toint
+	store	x
+; assign
+	push.s	0
+	toint
+	store	z
+	jmp		endif_13
+ifnext_14:
+	push.i	y
+	push.s	10
+	gtr.b
+	jz		ifnext_15
+; assign
+	push.s	1
+	toint
+	store	x
+; assign
+	push.s	1
+	toint
+	store	z
+	jmp		endif_13
+ifnext_15:
+	push.i	y
+	push.s	100
+	gtr.b
+	jz		ifnext_16
+; assign
+	push.s	2
+	toint
+	store	x
+; assign
+	push.s	2
+	toint
+	store	z
+	jmp		endif_13
+ifnext_16:
+	push.i	y
+	push.i	1000
+	gtr.b
+	jz		ifnext_17
+; assign
+	push.s	3
+	toint
+	store	x
+; assign
+	push.s	3
+	toint
+	store	z
+	jmp		endif_13
+ifnext_17:
+endif_13:
+; for
+; assign
+	push.s	10
+	toint
+	store	x
+for_18:
+	push.s	0
+	push	x
+	eq
+	jnz		endfor_19
+	push	x
+	push	-3
+	add
+	store	x
+; assign
+	push.i	y
+	push.s	0
+	eql.b
+	not.b
+	store	bool
+; assign
+	push.i	z
+	push.s	1
+	toint
+	add.i
+	store	z
+	jmp		for_18
+endfor_19:
+; case
+	push.i	x
+	dup
+	push	1
+	eq
+	jnz		case_stmt_21
+	dup
+	push	2
+	eq
+	jnz		case_stmt_21
+	jmp		case_next_22
+case_stmt_21:
+; assign
+	push.s	1
+	toint
+	store	y
+; assign
+	push.s	2
+	toint
+	store	z
+	jmp		endcase_20
+case_next_22:
+	dup
+	push	3
+	eq
+	jnz		case_stmt_23
+	jmp		case_next_24
+case_stmt_23:
+; assign
+	push.s	3
+	toint
+	store	y
+; assign
+	push.s	4
+	toint
+	store	z
+	jmp		endcase_20
+case_next_24:
+	dup
+	push	5
+	eq
+	jnz		case_stmt_25
+	dup
+	push	6
+	eq
+	jnz		case_stmt_25
+	jmp		case_next_26
+case_stmt_25:
+; assign
+	push.s	5
+	toint
+	store	y
+; assign
+	push.s	6
+	toint
+	store	z
+	jmp		endcase_20
+case_next_26:
+	dup
+	push	-7
+	eq
+	jnz		case_stmt_27
+	dup
+	push	-8
+	eq
+	jnz		case_stmt_27
+	jmp		case_next_28
+case_stmt_27:
+; assign
+	push.s	7
+	neg.s
+	toint
+	store	y
+; assign
+	push.s	8
+	neg.s
+	toint
+	store	z
+	jmp		endcase_20
+case_next_28:
+; assign
+	push.s	0
+	toint
+	store	y
+; assign
+	push.s	0
+	toint
+	store	z
+case_next_30:
+endcase_20:
+	pop
+; call
+	call	proc1
+; assign
+	call	proc1
+	store	r
+; assign
+	push.s	1
+	push.s	2
+	push.s	3
+	add.s
+	add.s
+	toint
+	store	x
+; assign
+	call	proc1
+	push.s	3
+	push.s	1
+	sub.s
+	push.s	2
+	push.s	2
+	mul.s
+	push.s	1
+	push.s	4
+	add.s
+	call	func1
+	toreal
+	add.r
+	store	r
+; call
+	push.s	3
+	push.s	2
+	push.s	1
+	call	func1
+; assign
+	push.s	3
+	push.s	1
+	sub.s
+	push.s	2
+	push.s	2
+	mul.s
+	push.s	1
+	push.s	4
+	add.s
+	call	func1
+	store	x
+; assign
+	push.s	1
+	toint
+	push.s	1
+	push.s	2
+	push.s	3
+	call	func1
+	push.s	2
+	toint
+	add.i
+	add.i
+	store	x

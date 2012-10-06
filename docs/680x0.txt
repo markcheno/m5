@@ -1,0 +1,2755 @@
+ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
+บ                      CrossFire Assembler, By Mark Parry                      บ
+บ                                  680x0.DOC                                   บ
+ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+
+This document gives details of the Motorola 680x0 instruction set. You should 
+also look at the document "FILETYPE.DOC" to see how various output file formats 
+are supported, especially for types ".PRG" and ".ACC".
+
+
+ฺฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ
+ณ                                Document Guide                                ณ
+ภฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู
+
+Flags:	XNZVC
+
+	*  set according to operation		X = extend carry
+	U  undefined				N = negative
+	-  not affected				Z = zero
+	0  cleared				V = overflow
+	1  set					C = carry
+
+
+Examples for each instruction are given. If <ea> is used, the valid effective 
+addresses for the instruction are listed. ext(An) and ext(PC) means the extended 
+addressing modes of the 68020, 68030, 68040 and CPU32 can be used.
+
+If address register An is used, only word and long are allowed (however, byte 
+address register An is allowed for CHK2, CMP2 and MOVES).
+
+{68EC000}	๔
+{68010}		ณ
+{68020}		ณ
+{68030}		ณ Specifies which processors / coprocessor
+{68040}		ณ the instruction will work on.
+{68EC040}	ณ If none are specified, the instruction
+{68LC040}	ณ works on the whole 680x0 family of processors.
+{CPU32}		ณ
+{68881}		ณ
+{68882}		๕
+
+{!!!}		instruction has been added for the alternative syntax.
+{priv}		privileged instruction
+{priv?}		MOVE from SR is a privileged instruction unless on 68000, 68008
+
+
+Only instructions that work on the 68000 have been tested!!!
+
+
+ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
+บ                            680x0 Instruction Set                             บ
+ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+
+                        ABCD (add binary coded decimal)
+
+Syntax:	ABCD Dx,Dy
+	ABCD -(Ax),-(Ay)
+Flags:	*U*U*
+Size:	byte
+
+	Adds the source to the destination along with the extend bit, storing 
+	the result in the destination. Addition is performed using binary coded 
+	decimal (BCD) arithmetic.
+
+
+ABCD D4,D5
+
+ABCD -(A4),-(A5)
+
+--------------------------------------------------------------------------------
+
+                                   ADD (add)
+
+Syntax:	ADD.? <ea>,Dn
+	ADD.? Dn,<ea>
+Flags:	*****
+Size:	byte, word, long
+
+	ADDs the source to the destination, storing the result in the 
+	destination.
+
+
+ADD.B <ea>,D4   ADD.W <ea>,D4   ADD.L <ea>,D4
+	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+ADD.B D4,<ea>   ADD.W D4,<ea>   ADD.L D4,<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+
+see also: ADDA ADDI ADDQ
+
+--------------------------------------------------------------------------------
+
+                         ADDA (add to address register)
+
+Syntax:	ADDA.? <ea>,An
+	ADD.? <ea>,An
+Flags:	-----
+Size:	word, long
+
+	ADDs the source to the destination register, storing the result in the 
+	destination address register. Word length operands are sign-extended to 
+	32-bits for addition.
+
+
+ADDA.W <ea>,A4   ADDA.L <ea>,A4
+	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                              ADDI (add immediate)
+
+Syntax:	ADDI.? #imm,<ea>
+	ADD.? #imm,<ea>
+Flags:	*****
+Size:	byte, word, long
+
+	ADDs the immediate value to the destination, storing the result in the
+	destination.
+
+
+ADDI.B #imm,<ea>   ADDI.W #imm,<ea>   ADDI.L #imm,<ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                                ADDQ (add quick)
+
+Syntax:	ADDQ.? #imm,<ea>
+Flags:	***** (----- if the destination is an address register)
+Size:	byte, word, long (word, long if the destination is an address register)
+
+	ADDs the immediate value (from 1 to 8) to the destination, storing the
+	result in the destination. If the destination is an address register,
+	word length operands are sign-extended to 32-bits for addition.
+
+
+ADDQ.B #imm,<ea>   ADDQ.W #imm,<ea>   ADDQ.L #imm,<ea>
+	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                             ADDX (add with extend)
+
+Syntax:	ADDX.? Dx,Dy
+	ADDX.? -(Ax),-(Ay)
+Flags:	*****
+Size:	byte, word, long
+
+	ADDs the source to the destination along with the extend bit, storing
+	the result in the destination.
+
+
+ADDX.B D4,D5   ADDX.W D4,D5   ADDX.L D4,D5
+
+ADDX.B -(A4),-(A5)   ADDX.W -(A4),-(A5)   ADDX.L -(A4),-(A5)
+
+--------------------------------------------------------------------------------
+
+                               AND (logical AND)
+
+Syntax:	AND.? <ea>,Dn
+	AND.? Dn,<ea>
+Flags:	-**00
+Size:	byte, word, long
+
+	ANDs the source with the destination, storing the result in the 
+	destination.
+
+
+AND.B <ea>,D4   AND.W <ea>,D4   AND.L <ea>,D4
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+AND.B D4,<ea>   AND.W D4,<ea>   AND.L D4,<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                         ANDI (logical AND, immediate)
+
+Syntax:	ANDI.? #imm,<ea>
+	AND.? #imm,<ea>
+Flags:	-**00
+Size:	byte, word, long
+
+	ANDs the immediate value with the destination, storing the result in the 
+	destination.
+
+
+ANDI.B #imm,<ea>   ANDI.W #imm,<ea>   ANDI.L #imm,<ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+            ANDI to CCR (logical AND, immediate to condition codes)
+
+Syntax:	ANDI #imm,CCR
+	AND #imm,CCR
+Flags:	X cleared if bit 4 of #imm is zero, unchanged otherwise
+	N cleared if bit 3 of #imm is zero, unchanged otherwise
+	Z cleared if bit 2 of #imm is zero, unchanged otherwise
+	V cleared if bit 1 of #imm is zero, unchanged otherwise
+	C cleared if bit 0 of #imm is zero, unchanged otherwise
+Size:	byte
+
+	ANDs the immediate value with the condition codes, storing the result in
+	the condition code register.
+
+
+ANDI #imm,CCR
+
+--------------------------------------------------------------------------------
+
+         ANDI to SR (logical AND, immediate to status register) {priv}
+
+Syntax:	ANDI #imm,SR
+	AND #imm,SR
+Flags:	X cleared if bit 4 of #imm is zero, unchanged otherwise
+	N cleared if bit 3 of #imm is zero, unchanged otherwise
+	Z cleared if bit 2 of #imm is zero, unchanged otherwise
+	V cleared if bit 1 of #imm is zero, unchanged otherwise
+	C cleared if bit 0 of #imm is zero, unchanged otherwise
+Size:	word
+
+	ANDs the immediate value with the status register, storing the result in
+	the status register.
+
+
+ANDI #imm,SR
+
+--------------------------------------------------------------------------------
+
+                          ASL (arithmetic shift left)
+
+Syntax:	ASL.? Dx,Dy
+	ASL.? #count,Dy
+	ASL <ea>
+Flags:	*****	(-**00 if count=0)
+Size:	byte, word, long	(word if ASL <ea>)
+
+	Shift the destination by the specified count (Dx modulo 64, or #count 
+	from 1 to 8), or by 1 if using ASL <ea>. Bits shifted out of the high 
+	order bit go to both the carry and extend flags; zeros are shifted into 
+	the low order bit. The overflow bit indicates if any sign changes 
+	occurred.
+
+
+ASL.B D4,D5   ASL.W D4,D5   ASL.L D4,D5
+
+ASL.B #count,D5   ASL.W #count,D5   ASL.L #count,D5
+
+ASL <ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                          ASR (arithmetic shift right)
+
+Syntax:	ASR.? Dx,Dy
+	ASR.? #count,Dy
+	ASR <ea>
+Flags:	***0*	(-**00 if count=0)
+Size:	byte, word, long	(word if ASR <ea>)
+
+	Shift the destination by the specified count (Dx modulo 64, or #count 
+	from 1 to 8), or by 1 if using ASR <ea>. Bits shifted out of the low 
+	order bit go to both the carry and extend flags; the sign bit is shifted 
+	into the high order bit.
+
+
+ASR.B D4,D5   ASR.W D4,D5   ASR.L D4,D5
+
+ASR.B #count,D5   ASR.W #count,D5   ASR.L #count,D5
+
+ASR <ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                           Bcc (branch conditionally)
+
+Syntax:	Bcc <label>
+Flags:	-----
+Size:	short (or byte), word or long	(long is 68020, 68030, 68040 only)
+
+	If the specified condition is true, branch to the specified label.  
+	Short branch to the following instruction is not allowed (BEQ.S *+2). 
+	The default branch size is word.
+
+
+	conditions:-
+
+	BCC	BHS	branch if carry clear / higher or same (unsigned)
+	BCS	BLO	branch if carry set / lower (unsigned)
+	BEQ		branch if equal
+	BGE		branch if greater or equal (signed)
+	BGT		branch if greater than (signed)
+	BHI		branch if higher than (unsigned)
+	BLE		branch if less or equal (signed)
+	BLS		branch if lower or the same (unsigned)
+	BLT		branch if less than (signed)
+	BMI		branch if minus
+	BNE		branch if not equal
+	BPL		branch if plus
+	BVC		branch if overflow clear
+	BVS		branch if overflow set
+
+
+BEQ.S label   BEQ.B label   BEQ.W label   BEQ.L label
+
+--------------------------------------------------------------------------------
+
+                           BCHG (test bit and change)
+
+Syntax:	BCHG Dn,<ea>
+	BCHG #bit,<ea>
+Flags:	--*--
+Size:	byte, long
+
+	Test the specified bit (Dn or #bit) of the destination, setting the Z 
+	condition code. Then invert the specified bit. The bit number is modulo 
+	32 (from 0 to 31, long) if the destination is a data register, or modulo 
+	8 (from 0 to 7, byte) if the destination is not a data register.
+
+
+BCHG D4(modulo 32),D5   BCHG #bit(0-31),D5
+
+BCHG D4(modulo 8),<ea>   BCHG #bit(0-7),<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                           BCLR (test bit and clear)
+
+Syntax:	BCLR Dn,<ea>
+	BCLR #bit,<ea>
+Flags:	--*--
+Size:	byte, long
+
+	Test the specified bit (Dn or #bit) of the destination, setting the Z 
+	condition code. Then clear the specified bit. The bit number is modulo 
+	32 (from 0 to 31, long) if the destination is a data register, or modulo 
+	8 (from 0 to 7, byte) if the destination is not a data register.
+	
+
+BCLR D4(modulo 32),D5   BCLR #bit(0-31),D5
+
+BCLR D4(modulo 8),<ea>   BCLR #bit(0-7),<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+           BFCHG (test bit field and change) {68020} {68030} {68040}
+
+Syntax:	BFCHG <ea>{offset:width}
+Flags:	-**00
+Size:	unsized
+
+	Sets the condition codes according to the value in the bit field :-
+		N set the same as the most significant bit of the field.
+		Z set if all bits of the field are zero, cleared otherwise.
+	The bit field is then complemented (inverted).
+
+
+	{offset:	Dn: the range is -$80000000 to +$7FFFFFFF, which will
+			access memory -$10000000 to +$0FFFFFFF from <ea>.
+			#offset: the range is 0 to 31, which will access memory
+			+0 to +4 from <ea>.
+
+	:width}		:Dn the range is modulo 32, with 0=32 (width = 1 to 32).
+			:#width the range is 1 to 32.
+
+	Up to 5 bytes of memory can be modified by this instruction.
+
+
+BFCHG <ea>{D4:D5}  {D4:#width}  {#offset:D5}  {#offset:#width}
+	Dn (An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+            BFCLR (test bit field and clear) {68020} {68030} {68040}
+
+Syntax:	BFCLR <ea>{offset:width}
+Flags:	-**00
+Size:	unsized
+
+	Sets the condition codes according to the value in the bit field :-
+		N set the same as the most significant bit of the field.
+		Z set if all bits of the field are zero, cleared otherwise.
+	The bit field is then cleared.
+
+
+	{offset:	Dn: the range is -$80000000 to +$7FFFFFFF, which will
+			access memory -$10000000 to +$0FFFFFFF from <ea>.
+			#offset: the range is 0 to 31, which will access memory
+			+0 to +4 from <ea>.
+
+	:width}		:Dn the range is modulo 32, with 0=32 (width = 1 to 32).
+			:#width the range is 1 to 32.
+
+	Up to 5 bytes of memory can be modified by this instruction.
+
+
+BFCLR <ea>{D4:D5}  {D4:#width}  {#offset:D5}  {#offset:#width}
+	Dn (An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+           BFEXTS (extract bit field signed) {68020} {68030} {68040}
+
+Syntax:	BFEXTS <ea>{offset:width},Dn
+Flags:	-**00
+Size:	unsized
+
+	Sets the condition codes according to the value in the bit field :-
+		N set the same as the most significant bit of the field.
+		Z set if all bits of the field are zero, cleared otherwise.
+
+	Extracts a bit field from the specified extended address location, sign 
+	extends to 32-bits, and loads the result into the destination data 
+	register.
+
+
+	{offset:	Dn: the range is -$80000000 to +$7FFFFFFF, which will
+			access memory -$10000000 to +$0FFFFFFF from <ea>.
+			#offset: the range is 0 to 31, which will access memory
+			+0 to +4 from <ea>.
+
+	:width}		:Dn the range is modulo 32, with 0=32 (width = 1 to 32).
+			:#width the range is 1 to 32.
+
+	Up to 5 bytes of memory can be accessed by this instruction.
+
+
+BFEXTS <ea>{D4:D5},D6  {D4:#width},D6  {#offset:D5},D6  {#offset:#width},D6
+	Dn (An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+          BFEXTU (extract bit field unsigned) {68020} {68030} {68040}
+
+Syntax:	BFEXTU <ea>{offset:width},Dn
+Flags:	-**00
+Size:	unsized
+
+	Sets the condition codes according to the value in the bit field :-
+		N set the same as the most significant bit of the field.
+		Z set if all bits of the field are zero, cleared otherwise.
+
+	Extracts a bit field from the specified extended address location, zero 
+	extends to 32-bits, and loads the result into the destination data 
+	register.
+
+
+	{offset:	Dn: the range is -$80000000 to +$7FFFFFFF, which will
+			access memory -$10000000 to +$0FFFFFFF from <ea>.
+			#offset: the range is 0 to 31, which will access memory
+			+0 to +4 from <ea>.
+
+	:width}		:Dn the range is modulo 32, with 0=32 (width = 1 to 32).
+			:#width the range is 1 to 32.
+
+	Up to 5 bytes of memory can be accessed by this instruction.
+
+
+BFEXTU <ea>{D4:D5},D6  {D4:#width},D6  {#offset:D5},D6  {#offset:#width},D6
+	Dn (An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+          BFFFO (find first one in bit field) {68020} {68030} {68040}
+       BFFF1 {!!!} (find first one in bit field) {68020} {68030} {68040}
+
+Syntax:	BFFFO <ea>{offset:width},Dn
+Flags:	-**00
+Size:	unsized
+
+	Sets the condition codes according to the value in the bit field :-
+		N set the same as the most significant bit of the field.
+		Z set if all bits of the field are zero, cleared otherwise.
+
+	Finds the first set bit in the bit field, and places the bit number in 
+	destination data register Dn (the bit offset in the instruction plus the
+	offset of the first one bit). If all bits of the field are clear, Dn is 
+	set to field offset+width.
+
+
+	{offset:	Dn: the range is -$80000000 to +$7FFFFFFF, which will
+			access memory -$10000000 to +$0FFFFFFF from <ea>.
+			#offset: the range is 0 to 31, which will access memory
+			+0 to +4 from <ea>.
+
+	:width}		:Dn the range is modulo 32, with 0=32 (width = 1 to 32).
+			:#width the range is 1 to 32.
+
+	Up to 5 bytes of memory can be accessed by this instruction.
+
+
+BFFFO <ea>{D4:D5},D6  {D4:#width},D6  {#offset:D5},D6  {#offset:#width},D6
+	Dn (An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+             BFINS (insert into bit field) {68020} {68030} {68040}
+
+Syntax:	BFINS Dn,<ea>{offset:width}
+Flags:	-**00
+Size:	unsized
+
+	Inserts a bit field taken from the low order bits of the specified data 
+	register into a bit field at the effective address location. Then the 
+	instruction sets the condition codes according to the inserted value.
+		N set the same as the most significant bit of the field.
+		Z set if all bits of the field are zero, cleared otherwise.
+
+
+	{offset:	Dn: the range is -$80000000 to +$7FFFFFFF, which will
+			access memory -$10000000 to +$0FFFFFFF from <ea>.
+			#offset: the range is 0 to 31, which will access memory
+			+0 to +4 from <ea>.
+
+	:width}		:Dn the range is modulo 32, with 0=32 (width = 1 to 32).
+			:#width the range is 1 to 32.
+
+	Up to 5 bytes of memory can be modified by this instruction.
+
+
+BFINS D6,<ea>{D4:D5}  D6,{D4:#width}  D6,{#offset:D5}  D6,{#offset:#width}
+	Dn (An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+             BFSET (test bit field and set) {68020} {68030} {68040}
+
+Syntax:	BFSET <ea>{offset:width}
+Flags:	-**00
+Size:	unsized
+
+	Sets the condition codes according to the value in the bit field :-
+		N set the same as the most significant bit of the field.
+		Z set if all bits of the field are zero, cleared otherwise.
+	Each bit in the field is then set.
+
+
+	{offset:	Dn: the range is -$80000000 to +$7FFFFFFF, which will
+			access memory -$10000000 to +$0FFFFFFF from <ea>.
+			#offset: the range is 0 to 31, which will access memory
+			+0 to +4 from <ea>.
+
+	:width}		:Dn the range is modulo 32, with 0=32 (width = 1 to 32).
+			:#width the range is 1 to 32.
+
+	Up to 5 bytes of memory can be modified by this instruction.
+
+
+BFSET <ea>{D4:D5}  {D4:#width}  {#offset:D5}  {#offset:#width}
+	Dn (An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                 BFTST (test bit field) {68020} {68030} {68040}
+
+Syntax:	BFTST <ea>{offset:width}
+Flags:	-**00
+Size:	unsized
+
+	Sets the condition codes according to the value in the bit field :-
+		N set the same as the most significant bit of the field.
+		Z set if all bits of the field are zero, cleared otherwise.
+
+
+	{offset:	Dn: the range is -$80000000 to +$7FFFFFFF, which will
+			access memory -$10000000 to +$0FFFFFFF from <ea>.
+			#offset: the range is 0 to 31, which will access memory
+			+0 to +4 from <ea>.
+
+	:width}		:Dn the range is modulo 32, with 0=32 (width = 1 to 32).
+			:#width the range is 1 to 32.
+
+	Up to 5 bytes of memory can be accessed by this instruction.
+
+
+BFTST <ea>{D4:D5}  {D4:#width}  {#offset:D5}  {#offset:#width}
+	Dn (An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                      BGND (enter background mode) {CPU32}
+
+Syntax:	BGND
+Flags:	-----
+Size:	unsized
+
+	The processor suspends instruction execution and enters background mode
+	if background mode is enabled. The freeze output is asserted to
+	acknowledge entrance into background mode.
+
+	If background mode is not enabled, the processor initiates illegal
+	instruction exception processing.
+
+
+BGND
+	
+--------------------------------------------------------------------------------
+
+      BKPT (breakpoint) {68EC000} {68010} {68020} {68030} {68040} {CPU32}
+
+Syntax:	BKPT #data
+Flags:	-----
+Size:	unsized
+
+	Run breakpoint acknowledge cycle; Trap as illegal instruction.
+
+
+BKPT #data(0-7)
+
+--------------------------------------------------------------------------------
+
+                              BRA (branch always)
+
+Syntax:	BRA <label>
+Flags:	-----
+Size:	short (or byte), word or long	(long is 68020, 68030, 68040 only)
+
+	Branch to the specified label. Short branch to the following instruction 
+	is not allowed (BRA.S *+2). The default branch size is word.
+
+
+BRA.S label   BRA.B label   BRA.W label   BRA.L label
+
+--------------------------------------------------------------------------------
+
+                            BSET (test bit and set)
+
+Syntax:	BSET Dn,<ea>
+	BSET #bit,<ea>
+Flags:	--*--
+Size:	byte, long
+
+	Test the specified bit (Dn or #bit) of the destination, setting the Z 
+	condition code. Then set the specified bit. The bit number is modulo 32 
+	(from 0 to 31, long) if the destination is a data register, or modulo 8 
+	(from 0 to 7, byte) if the destination is not a data register.
+	
+
+BSET D4(modulo 32),D5   BSET #bit(0-31),D5
+
+BSET D4(modulo 8),<ea>   BSET #bit(0-7),<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                           BSR (branch to subroutine)
+
+Syntax:	BSR <label>
+Flags:	-----
+Size:	short (or byte), word or long	(long is 68020, 68030, 68040 only)
+
+	Store the long word address of the next instruction on the stack, then 
+	branch to the specified label. Short branch to the following instruction 
+	is not allowed (BSR.S *+2). The default branch size is word.
+
+
+BSR.S label   BSR.B label   BSR.W label   BSR.L label
+
+--------------------------------------------------------------------------------
+
+                                BTST (test bit)
+
+Syntax:	BTST Dn,<ea>
+	BTST #bit,<ea>
+Flags:	--*--
+Size:	byte, long
+
+	Test the specified bit (Dn or #bit) of the destination, setting the Z 
+	condition code. The bit number is modulo 32 (from 0 to 31, long) if the 
+	destination is a data register, or modulo 8 (from 0 to 7, byte) if the 
+	destination is not a data register.
+	
+
+BTST D4(modulo 32),D5   BTST #bit(0-31),D5
+
+BTST D4(modulo 8),<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+BTST #bit(0-7),<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                          CALLM (call module) {68020}
+
+Syntax:	CALLM #data,<ea>
+Flags:	-----
+Size:	unsized
+
+	The effective address of the instruction is the location of an external 
+	module descriptor. A module frame is created on the top of the stack, 
+	and the current module state is saved in the frame. The immediate 
+	operand specifies the number of bytes of arguments to be passed to the 
+	called module. A new module state is loaded from the descriptor 
+	addressed by the effective address.
+
+
+CALLM #data(0-255),<ea>
+	(An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+          CAS (compare and swap with operand) {68020} {68030} {68040}
+
+Syntax:	CAS.? Dc,Du,<ea>
+Flags:	-****
+Size:	byte, word, long
+
+	CAS compares the effective address operand to the compare operand (Dc).  
+	If the operands are equal, the instruction writes the update operand 
+	(Du) to the effective address operand; otherwise, the instruction writes 
+	the effective address operand to the compare operand (Dc).
+
+	Memory access uses locked or read-modify-write transfer sequences, 
+	providing a means of synchronizing several processors.
+
+
+CAS.B D4,D5,<ea>   CAS.W D4,D5,<ea>   CAS.L D4,D5,<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+          CAS2 (compare and swap with operand) {68020} {68030} {68040}
+
+Syntax:	CAS2.? Dc1:Dc2,Du1:Du2,(Rn1):(Rn2)
+Flags:	-****
+Size:	word, long
+
+	CAS2 compares memory operand 1 (Rn1) to compare operand 1 (Dc1). If the 
+	operands are equal, the instruction compares memory operand 2 (Rn2) to 
+	compare operand 2 (Dc2). If these are also equal, the instruction writes 
+	the update operands (Du1 and Du2) to the memory operands (Rn1 and Rn2).  
+	If either comparison fails, the instruction writes the memory operands 
+	(Rn1 and Rn2) to the compare operands (Dc1 and Dc2).
+
+	Memory access uses locked or read-modify-write transfer sequences, 
+	providing a means of synchronizing several processors.
+
+
+CAS2.W D4:D5,D6:D7,(A2):(A3)   CAS2.L D4:D5,D6:D7,(A2):(A3)
+
+--------------------------------------------------------------------------------
+
+                      CHK (check register against bounds)
+
+Syntax:	CHK <ea>,Dn
+Flags:	-*UUU
+Size:	word, long		(long is 68020, 68030, 68040 only)
+
+	Compares the value in the specified data register to zero and the upper 
+	bound (effective address operand). The upper bound is a twos complement 
+	integer. If the register value is less than zero or greater than the 
+	upper bound, a CHK instruction exception (vector number 6) occurs. The
+	default instruction size is word.
+
+
+CHK.W <ea>,D4   CHK.L <ea>,D4
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+      CHK2 (check register against bounds) {68020} {68030} {68040} {CPU32}
+
+Syntax:	CHK2.? <ea>,Rn
+Flags:	-U*U*
+Size:	byte, word, long
+
+	Compares the value in Rn to each bound. The effective address contains 
+	the bound pair; the upper bound following the lower bound. For signed 
+	comparisons, the arithmetically smaller value should be used as the 
+	lower bound. For unsigned comparisons, the logically smaller value 
+	should be the lower bound.
+
+	The size of the data and the bounds can be specified as byte, word or 
+	long. If Rn is a data register and the operation size is byte or word, 
+	only the byte or word part of Dn is checked. If Rn is an address 
+	register and the operation size is byte or word, the bounds operands are 
+	sign-extended to 32-bits, and the resultant operands are compared to the 
+	full 32-bits of An.
+
+	If the upper bound equals the lower bound, the valid range is a single 
+	value. If the register value is less than the lower bound or greater 
+	than the upper bound, a CHK instruction exception (vector number 6) 
+	occurs.
+
+
+CHK2.B <ea>,D4   CHK2.W <ea>,D4   CHK2.L <ea>,D4
+CHK2.B <ea>,A4   CHK2.W <ea>,A4   CHK2.L <ea>,A4
+	(An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+            CINV (invalidate cache entries) {68040} {68LC040} {priv}
+
+This instruction is not currently implemented because I am unsure of the correct
+syntax.
+
+--------------------------------------------------------------------------------
+
+                             CLR (clear an operand)
+
+Syntax:	CLR.? <ea>
+Flags:	-0100
+Size:	byte, word, long
+
+	Clears the destination effective address to zero.
+
+
+CLR.B <ea>   CLR.W <ea>   CLR.L <ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                                 CMP (compare)
+
+Syntax:	CMP.? <ea>,Dn
+Flags:	-****
+Size:	byte, word, long
+
+	Subtracts the source operand from the destination data register and sets 
+	the condition codes according to the result; the data register is not 
+	changed.
+
+
+CMP.B <ea>,D4   CMP.W <ea>,D4   CMP.L <ea>,D4
+	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                             CMPA (compare address)
+
+Syntax:	CMPA.? <ea>,An
+	CMP.? <ea>,An
+Flags:	-****
+Size:	word, long
+
+	Subtracts the source operand from the destination address register and 
+	sets the condition codes according to the result; the address register 
+	is not changed. Word length operands are sign-extended to 32-bits for 
+	comparison.
+
+
+CMPA.W <ea>,A4   CMPA.L <ea>,A4
+	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                            CMPI (compare immediate)
+
+Syntax:	CMPI.? #imm,<ea>
+	CMP.? #imm,<ea>
+Flags:	-****
+Size:	byte, word, long
+
+	Subtracts the immediate operand from the destination effective address 
+	and sets the condition codes according to the result; the effective 
+	address is not changed.
+
+
+CMPI.B #imm,<ea>   CMPI.W #imm,<ea>   CMPI.L #imm,<ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+	d16(PC) d8(PC,Ix) ext(PC)   {68020} {68030} {68040} {CPU32}
+
+--------------------------------------------------------------------------------
+
+                             CMPM (compare memory)
+
+Syntax:	CMPM.? (Ay)+,(Ax)+
+	CMP.? (Ay)+,(Ax)+
+Flags:	-****
+Size:	byte, word, long
+
+	Subtracts the source operand from the destination operand and sets the
+	condition code according to the result; the destination operand is not
+	changed.
+
+
+CMPM.B (A4)+,(A5)+   CMPM.W (A4)+,(A5)+   CMPM.L (A4)+,(A5)+
+
+--------------------------------------------------------------------------------
+
+     CMP2 (compare register against bounds) {68020} {68030} {68040} {CPU32}
+
+Syntax:	CMP2.? <ea>,Rn
+Flags:	-U*U*
+Size:	byte, word, long
+
+	Compares the value in Rn to each bound. The effective address contains 
+	the bound pair; the upper bound following the lower bound. For signed 
+	comparisons, the arithmetically smaller value should be used as the 
+	lower bound. For unsigned comparisons, the logically smaller value 
+	should be the lower bound.
+
+	The size of the data and the bounds can be specified as byte, word or 
+	long. If Rn is a data register and the operation size is byte or word, 
+	only the byte or word part of Dn is checked. If Rn is an address 
+	register and the operation size is byte or word, the bounds operands are 
+	sign-extended to 32-bits, and the resultant operands are compared to the 
+	full 32-bits of An.
+
+	If the upper bound equals the lower bound, the valid range is a single 
+	value.
+
+
+CMP2.B <ea>,D4   CMP2.W <ea>,D4   CMP2.L <ea>,D4
+CMP2.B <ea>,A4   CMP2.W <ea>,A4   CMP2.L <ea>,A4
+	(An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+            cpBcc (branch on coprocessor condition) {68020} {68030}
+   cpDBcc (test coprocessor condition, decrement and branch) {68020} {68030}
+              cpGEN (coprocessor general function) {68020} {68030}
+              cpScc (set on coprocessor condition) {68020} {68030}
+            cpTRAPcc (trap on coprocessor condition) {68020} {68030}
+        cpRESTORE (coprocessor restore functions) {68020} {68030} {priv}
+           cpSAVE (coprocessor save function) {68020} {68030} {priv}
+
+These instructions are not currently implemented because I am unsure of the 
+correct syntax.
+
+--------------------------------------------------------------------------------
+
+       CPUSH (push and invalidate cache entries) {68040} {68LC040} {priv}
+
+This instruction is not currently implemented because I am unsure of the correct
+syntax.
+
+--------------------------------------------------------------------------------
+
+                  DBcc (test condition, decrement and branch)
+
+Syntax:	DBcc Dn,label
+Flags:	-----
+Size:	word
+
+	This instruction first tests the condition for termination; if it is 
+	true, no operation is performed. If the termination condition is not 
+	true, the low order 16-bits of the counter data register are decremented 
+	by one. If the result is -1, execution continues with the next 
+	instruction. If the result is not -1, execution continues at label.
+
+
+	conditions:-
+
+	DBRA	DBF	always (unconditionally)
+	DBT		never (no operation)
+	DBCC	DBHS	until carry clear / higher or same (unsigned)
+	DBCS	DBLO	until carry set / lower (unsigned)
+	DBEQ		until equal
+	DBGE		until greater or equal (signed)
+	DBGT		until greater than (signed)
+	DBHI		until higher than (unsigned)
+	DBLE		until less or equal (signed)
+	DBLS		until lower or the same (unsigned)
+	DBLT		until less than (signed)
+	DBMI		until minus
+	DBNE		until not equal
+	DBPL		until plus
+	DBVC		until overflow clear
+	DBVS		until overflow set
+
+
+DBRA D4,label
+
+--------------------------------------------------------------------------------
+
+                           DIVS DIVSL (signed divide)
+
+Syntax:	DIVS.W <ea>,Dn
+	DIVS.L <ea>,Dq	    1	๔
+	DIVS.L <ea>,Dr:Dq   2	ณ {68020} {68030} {68040} {CPU32}
+	DIVSL.L <ea>,Dr:Dq  3	๕
+Flags:	-***0
+Size:	word, long		(long is 68020, 68030, 68040, CPU32 only)
+
+	Divides the signed destination operand by the signed source operand and
+	stores the signed result in the destination. The instruction uses one of
+	four forms:
+
+
+	word	divides a long by a word. The result is a quotient in the lower
+		word, and a remainder in the upper word. The sign of the
+		remainder is the same as the sign of the dividend.
+
+	long 1	divides a long by a long. The result is a long quotient, the
+		remainder is discarded.
+
+	long 2	divides a quad word (in any two different data registers) by a 
+		long word. The result is a long quotient and a long remainder.
+
+	long 3	divides a long word by a long word. The result is a long
+		quotient and a long remainder.
+
+	Dr:Dq cannot be the same register. Division by zero causes a trap. The 
+	operands are unaffected if an overflow occurs.
+
+
+DIVS.W <ea>,D4
+DIVS.L <ea>,D4
+DIVS.L <ea>,D4:D5
+DIVSL.L <ea>,D4:D5
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                          DIVU DIVUL (unsigned divide)
+
+Syntax:	DIVU.W <ea>,Dn
+	DIVU.L <ea>,Dq	    1	๔
+	DIVU.L <ea>,Dr:Dq   2	ณ {68020} {68030} {68040} {CPU32}
+	DIVUL.L <ea>,Dr:Dq  3	๕
+Flags:	-***0
+Size:	word, long		(long is 68020, 68030, 68040, CPU32 only)
+
+	Divides the unsigned destination operand by the unsigned source operand
+	and stores the unsigned result in the destination. The instruction uses
+	one of four forms:
+
+
+	word	divides a long by a word. The result is a quotient in the lower
+		word, and a remainder in the upper word.
+
+	long 1	divides a long by a long. The result is a long quotient, the
+		remainder is discarded.
+
+	long 2	divides a quad word (in any two different data registers) by a 
+		long word. The result is a long quotient and a long remainder.
+
+	long 3	divides a long word by a long word. The result is a long
+		quotient and a long remainder.
+
+	Dr:Dq cannot be the same register. Division by zero causes a trap. The 
+	operands are unaffected if an overflow occurs.
+
+
+DIVU.W <ea>,D4
+DIVU.L <ea>,D4
+DIVU.L <ea>,D4:D5
+DIVUL.L <ea>,D4:D5
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                           EOR (logical exclusive OR)
+
+Syntax:	EOR.? Dn,<ea>
+Flags:	-**00
+Size:	byte, word, long
+
+	EORs the source with the destination, storing the result in the 
+	destination.
+
+
+EOR.B D4,<ea>   EOR.W D4,<ea>   EOR.L D4,<ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                     EORI (logical exclusive OR, immediate)
+
+Syntax:	EORI.? #imm,<ea>
+	EOR.? #imm,<ea>
+Flags:	-**00
+Size:	byte, word, long
+
+	EORs the immediate value with the destination, storing the result in the 
+	destination.
+
+
+EORI.B #imm,<ea>   EORI.W #imm,<ea>   EORI.L #imm,<ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+        EORI to CCR (logical exclusive OR, immediate to condition codes)
+
+Syntax:	EORI #imm,CCR
+	EOR #imm,CCR
+Flags:	X changed if bit 4 of #imm is one, unchanged otherwise
+	N changed if bit 3 of #imm is one, unchanged otherwise
+	Z changed if bit 2 of #imm is one, unchanged otherwise
+	V changed if bit 1 of #imm is one, unchanged otherwise
+	C changed if bit 0 of #imm is one, unchanged otherwise
+Size:	byte
+
+	EORs the immediate value with the condition codes, storing the result in
+	the condition code register.
+
+
+EORI #imm,CCR
+
+--------------------------------------------------------------------------------
+
+     EORI to SR (logical exclusive OR, immediate to status register) {priv}
+
+Syntax:	EORI #imm,SR
+	EOR #imm,SR
+Flags:	X changed if bit 4 of #imm is one, unchanged otherwise
+	N changed if bit 3 of #imm is one, unchanged otherwise
+	Z changed if bit 2 of #imm is one, unchanged otherwise
+	V changed if bit 1 of #imm is one, unchanged otherwise
+	C changed if bit 0 of #imm is one, unchanged otherwise
+Size:	word
+
+	EORs the immediate value with the status register, storing the result in
+	the status register.
+
+
+EORI #imm,SR
+
+--------------------------------------------------------------------------------
+
+                            EXG (exchange registers)
+
+Syntax:	EXG Rn,Rn
+Flags:	-----
+Size:	long
+
+	Exchanges the contents of two 32-bit registers.
+
+
+EXG D4,D5   EXG D4,A5   EXG A4,D5   EXG A4,A5
+
+--------------------------------------------------------------------------------
+
+                               EXT (sign extend)
+        EXTB (sign extend byte to long) {68020} {68030} {68040} {CPU32}
+
+Syntax:	EXT.W Dn	extend byte to word
+	EXT.L Dn	extend word to long
+	EXTB.L Dn	extend byte to long {68020} {68030} {68040} {CPU32}
+Flags:	-**00
+Size:	word, long
+
+	Sign extends a byte in a data register to word, a word in a data
+	register to long, or (EXTB) extends a byte in a data register to long.
+
+
+EXT.W D4   EXT.L D4   EXTB.L D4
+
+--------------------------------------------------------------------------------
+
+                FRESTORE (restore internal floating point state)
+                         {68881} {68882} {68040} {priv}
+
+                   FSAVE (save internal floating point state)
+                         {68881} {68882} {68040} {priv}
+
+These instructions are not currently implemented because I am unsure of the 
+correct syntax.
+
+--------------------------------------------------------------------------------
+
+                    ILLEGAL (take illegal instruction trap)
+
+Syntax:	ILLEGAL
+Flags:	-----
+Size:	unsized
+
+	Forces an illegal instruction exception, vector number 4. All other 
+	illegal instruction bit patterns are reserved for future extension of 
+	the instruction set, and should not be used to force an exception.
+
+
+ILLEGAL
+
+--------------------------------------------------------------------------------
+
+                        JMP (jump to effective address)
+
+Syntax:	JMP <ea>
+Flags:	-----
+Size:	unsized
+
+	Program continues execution at the specified effective address.
+
+
+JMP <ea>
+	(An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                            JSR (jump to subroutine)
+
+Syntax:	JSR <ea>
+Flags:	-----
+Size:	unsized
+
+	Store the long word address of the next instruction onto the stack, then 
+	program continues execution at the specified effective address.
+
+
+JSR <ea>
+	(An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                          LEA (load effective address)
+
+Syntax:	LEA <ea>,An
+Flags:	-----
+Size:	long
+
+	Loads the effective address into the address register. All 32-bits of
+	the address register are affected.
+
+
+LEA <ea>,A4
+	(An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                            LINK (link and allocate)
+
+Syntax:	LINK An,#displacement
+Flags:	-----
+Size:	word, long		(long is 68020, 68030, 68040, CPU32 only)
+
+	Stores the contents of the specified address register on the stack, then 
+	loads the updated stack pointer into the address register. Finally, adds 
+	the displacement value to the stack pointer. The displacement is sign 
+	extended for word size operation. The displacement should be a negative 
+	value in order to allocate stack area.  LINK and UNLINK can be used to 
+	keep local data and parameter areas on the stack for nested subroutines.
+
+
+LINK.W A4,#displacement   LINK.L A4,#displacement
+
+--------------------------------------------------------------------------------
+
+                     LPSTOP (low power stop) {CPU32} {priv}
+
+Syntax:	LPSTOP #data
+Flags:	set according to the immediate word
+Size:	unsized
+
+	Moves the immediate word into the status register, advances the program 
+	counter to the next instruction, and stops the fetching and executing of 
+	instructions. A CPU LPSTOP broadcast cycle is executed to CPU space $3 
+	to copy the updated interrupt mask to the external bus interface (EBI).  
+	The internal clocks are stopped.
+
+	Instruction execution resumes when a trace, interrupt, or reset 
+	exception occurs. A trace exception will occur if the trace state is on 
+	when the LPSTOP instruction is executed. If an interrupt request is 
+	asserted with a priority higher than the priority level set by the new 
+	status register, an interrupt exception occurs; otherwise, the interrupt 
+	request is ignored. An external reset always initiates reset exception 
+	processing.
+
+
+LPSTOP #word
+
+--------------------------------------------------------------------------------
+
+                            LSL (logical shift left)
+
+Syntax:	LSL.? Dx,Dy
+	LSL.? #count,Dy
+	LSL <ea>
+Flags:	***0*	(-**00 if count=0)
+Size:	byte, word, long	(word if LSL <ea>)
+
+	Shift the destination by the specified count (Dx modulo 64, or #count 
+	from 1 to 8), or by 1 if using LSL <ea>. Bits shifted out of the high 
+	order bit go to both the carry and extend flags; zeros are shifted into 
+	the low order bit.
+
+
+LSL.B D4,D5   LSL.W D4,D5   LSL.L D4,D5
+
+LSL.B #count,D5   LSL.W #count,D5   LSL.L #count,D5
+
+LSL <ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                            LSR (logical shift right)
+
+Syntax:	LSR.? Dx,Dy
+	LSR.? #count,Dy
+	LSR <ea>
+Flags:	***0*	(-**00 if count=0)
+Size:	byte, word, long	(word if LSR <ea>)
+
+	Shift the destination by the specified count (Dx modulo 64, or #count 
+	from 1 to 8), or by 1 if using LSR <ea>. Bits shifted out of the low 
+	order bit go to both the carry and extend flags; zeros are shifted into 
+	the high order bit.
+
+
+LSR.B D4,D5   LSR.W D4,D5   LSR.L D4,D5
+
+LSR.B #count,D5   LSR.W #count,D5   LSR.L #count,D5
+
+LSR <ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                  MOVE (move data from source to destination)
+
+Syntax:	MOVE.? source <ea>,destination <ea>
+Flags:	-**00
+Size:	byte, word, long
+
+	MOVEs the data from the source operand to the destination operand,
+	setting the condition codes accordingly.
+
+
+MOVE.B <ea1>,<ea2>   MOVE.W <ea1>,<ea2>   MOVE.L <ea1>,<ea2>
+ <ea1>:	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+ <ea2>:	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                     MOVEA (move data to address register)
+
+Syntax:	MOVEA.? <ea>,An
+	MOVE.? <ea>,An
+Flags:	-----
+Size:	word, long
+
+	MOVEs the data from the source operand to the destination address
+	register.
+
+
+MOVE.W <ea>,A4   MOVE.L <ea>,A4
+	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix) 
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+             MOVE from CCR (move from the condition code register)
+                    {68010} {68020} {68030} {68040} {CPU32}
+
+Syntax:	MOVE CCR,<ea>
+Flags:	-----
+Size:	word
+
+	MOVEs the condition code register to the destination effective address 
+	(unimplemented bits are read as zero). MOVE from CCR is a word 
+	operation; ANDI, ORI and EORI to CCR are byte operations.
+
+
+MOVE CCR,<ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+               MOVE to CCR (move to the condition code register)
+
+Syntax:	MOVE <ea>,CCR
+Flags:	X set to bit 4 of #imm
+	N set to bit 3 of #imm
+	Z set to bit 2 of #imm
+	V set to bit 1 of #imm
+	C set to bit 0 of #imm
+Size:	word
+
+	MOVEs the source operand to the condition code register. MOVE to CCR is 
+	a word operation; ANDI, ORI and EORI to CCR are byte operations.
+	Unimplemented bits of the condition code register are unaffected.
+
+
+MOVE <ea>,CCR
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+              MOVE from SR (move from the status register) {priv?}
+
+Syntax:	MOVE SR,<ea>
+Flags:	-----
+Size:	word
+
+	MOVEs the status register to the destination effective address 
+	(unimplemented bits are read as zero). MOVE from SR is not a privileged 
+	instruction on the 68000 and 68008; it is a privileged instruction on
+	the 68EC000, 68010, 68020, 68030, 68040 and CPU32.
+
+
+MOVE SR,<ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                MOVE to SR (move to the status register) {priv}
+
+Syntax:	MOVE <ea>,SR
+Flags:	X set to bit 4 of #imm
+	N set to bit 3 of #imm
+	Z set to bit 2 of #imm
+	V set to bit 1 of #imm
+	C set to bit 0 of #imm
+Size:	word
+
+	MOVEs the data from the source to the status register. Unimplemented 
+	bits of the status register are unaffected.
+
+
+MOVE <ea>,SR
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                   MOVE USP (move user stack pointer) {priv}
+
+Syntax:	MOVE USP,An
+	MOVE An,USP
+Flags:	-----
+Size:	long
+
+	MOVEs the contents of the user stack pointer to or from the specified
+	address register.
+
+
+MOVE USP,A5
+MOVE A4,USP
+
+--------------------------------------------------------------------------------
+
+                      MOVE16 (move 16 byte block) {68040}
+
+Syntax:	MOVE16 (Ax)+,(Ay)+
+	MOVE16 mem.l,(An)
+	MOVE16 mem.l,(An)+
+	MOVE16 (An),mem.l
+	MOVE16 (An)+,mem.l
+Flags:	-----
+Size:	line (16 bytes)
+
+	MOVEs the source line to the destination line. The lines are aligned
+	to 16 byte boundaries. Applications for this instruction include
+	coprocessor communications, memory initialization and fast copying.
+
+
+MOVE16 (A4)+,(A5)+
+MOVE16 mem.l,(A5)
+MOVE16 mem.l,(A5)+
+MOVE16 (A4),mem.l
+MOVE16 (A4)+,mem.l
+
+--------------------------------------------------------------------------------
+
+                         MOVEC (move control register)
+                 {68010} {68020} {68030} {68040} {CPU32} {priv}
+
+Syntax:	MOVEC Rc,Rn
+	MOVEC Rn,Rc
+Flags:	-----
+Size:	long
+
+	MOVEs the contents of the specified control register (Rc) to or from the
+	specified general register (Rn). This is always a 32-bit transfer, even
+	though the control register may be implemented with fewer bits, with
+	unimplemented bits read as zero.
+
+	This is a list of the control registers :-
+
+		SFC	source function code
+		DFC	destination function code
+		USP	user stack pointer		{68010} {68020} {68030}
+		VBR	vector base register		{68040} {CPU32}
+
+		CACR	cache control register
+		CAAR	cache address register
+		MSP	master stack pointer
+		ISP	interrupt stack pointer		{68020} {68030}
+
+		CACR	cache control register
+		MSP	master stack pointer
+		ISP	interrupt stack pointer		{68040}
+
+		TC	MMU translation control register
+		ITT0	instruction transparent translation register 0
+		ITT1	instruction transparent translation register 1
+		DTT0	data transparent translation register 0
+		DTT1	data transparent translation register 1
+		MMUSR	MMU status register
+		URP	user root pointer
+		SRP	supervisor root pointer		{68040} {68LC040}
+
+		IACR0	instruction access control register 0
+		IACR1	instruction access control register 1
+		DACR0	data access control register 0
+		DACR1	data access control register 1	{68EC040}
+
+
+MOVEC SFC,D5   MOVEC SFC,A5
+
+MOVEC D4,DFC   MOVEC A4,DFC
+
+--------------------------------------------------------------------------------
+
+                        MOVEM (move multiple registers)
+
+Syntax:	MOVEM.? register list,<ea>
+	MOVEM.? <ea>,register list
+Flags:	-----
+Size:	word, long
+
+	MOVEs the selected registers to or from consecutive memory locations 
+	starting at the location specified by the effective address. When 
+	transferring words from memory, each word is sign-extended to 32-bits 
+	before being loaded into the data or address registers.
+
+	Registers are transferred to or from memory in the order of D0-D7, then 
+	A0-A7; UNLESS using the predecrement address mode -(An), where the 
+	registers are transferred in the order of A7-A0, then D7-D0.
+
+	Any data register or address register can be included in the register 
+	list. Examples of register lists are given :-
+
+D0/A0/A4/D6					mixed registers D0 A0 A4 D6
+D0/D1/D2/D3/D4/D5/D6/D7   D0-D7   D0-7		all data registers
+D1-D2/D4-D6/A1-2/A4-6				D1 D2 D4 D5 D6 A1 A2 A4 A5 A6
+
+
+MOVEM.W register list,<ea>   MOVEM.L register list,<ea>
+	(An) -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+MOVEM.W <ea>,register list   MOVEM.L <ea>,register list
+	(An) (An)+ d16(An) d8(An,Ix) mem.w mem.l
+	d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                          MOVEP (move peripheral data)
+
+Syntax:	MOVEP.? Dx,d16(Ay)
+	MOVEP.? d16(Ay),Dx
+Flags:	-----
+Size:	word, long
+
+	MOVEs data between a data register and alternate bytes within the 
+	address space starting at the location specified and incrementing by 
+	two. The high order byte of the data register is transferred first, and 
+	the low order byte is transferred last.
+
+	This instruction was designed for interfacing 8-bit peripherals on a 
+	16-bit data bus. Although still supported by the 68020, 68030 and 68040, 
+	you can not interface 8-bit peripherals on a 32-bit data bus.
+
+
+MOVEP.W D4,d16(A5)   MOVEP.L D4,d16(A5)
+
+MOVEP.W d16(A4),D5   MOVEP.L d16(A4),D5
+
+--------------------------------------------------------------------------------
+
+                               MOVEQ (move quick)
+
+Syntax:	MOVEQ #data,Dn
+Flags:	-**00
+Size:	long
+
+	MOVEs a sign-extended byte to the 32-bit data register.
+	
+	MOVEQ #-128 to #127 is the proper data range.
+	MOVEQ #-256 to #255 will give a 'sign-extended data' warning
+	MOVEQ.L #-256 to #255 will suppress the 'sign-extended data' warning
+
+
+MOVEQ #data (-256 to 255),Dn
+
+--------------------------------------------------------------------------------
+
+                           MOVES (move address space)
+                 {68010} {68020} {68030} {68040} {CPU32} {priv}
+
+Syntax:	MOVES.? Rn,<ea>
+	MOVES.? <ea>,Rn
+Flags:	-----
+Size:	byte, word, long
+
+	This instruction moves the byte, word or long from the specified general 
+	register to a location within the address space specified by the 
+	destination function code (DFC) register, or it moves the byte, word or 
+	long from a location within the address space specified by the source 
+	function code (SFC) register to the general register.
+
+	If the destination is a data register, the source operand replaces the 
+	low-order bits of that data register, depending on the size of the 
+	operation. If the destination is a address register, the source operand
+	is sign-extended to 32-bits and then loaded into that register.
+
+
+MOVES.B <ea>,D5   MOVES.W <ea>,D5   MOVES.L <ea>,D5
+MOVES.B <ea>,A5   MOVES.W <ea>,A5   MOVES.L <ea>,A5
+MOVES.B	D4,<ea>   MOVES.W D4,<ea>   MOVES.L D4,<ea>
+MOVES.B A4,<ea>   MOVES.W A4,<ea>   MOVES.L A4,<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l
+
+--------------------------------------------------------------------------------
+
+                          MULS (signed multiplication)
+
+Syntax:	MULS.W <ea>,Dn
+	MULS.L <ea>,Dl	    1	๔
+	MULS.L <ea>,Dh:Dl   2	๕ {68020} {68030} {68040} {CPU32}
+Flags:	-***0
+Size:	word, long		(long is 68020, 68030, 68040, CPU32 only)
+
+	Multiplies two signed operands yielding a signed result. The instruction 
+	uses one of three forms:
+
+
+	word	multiplies a word with a word. The result is a long word stored
+		in register Dn.
+
+	long 1	multiplies a long with a long. The result is a long word stored 
+		in register Dl, the upper 32-bits of the result are discarded.
+
+	long 2	multiplies a long (register Dl) with a long. The result is 
+		stored in Dh:Dl (in any two different data registers).
+
+	Dh:Dl cannot be the same register. Overflow can only occur if 
+	multiplying two 32-bit operands to yield a 32-bit result.
+
+
+MULS.W <ea>,D4
+MULS.L <ea>,D4
+MULS.L <ea>,D4:D5
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                         MULU (unsigned multiplication)
+
+Syntax:	MULU.W <ea>,Dn
+	MULU.L <ea>,Dl	    1	๔
+	MULU.L <ea>,Dh:Dl   2	๕ {68020} {68030} {68040} {CPU32}
+Flags:	-***0
+Size:	word, long		(long is 68020, 68030, 68040, CPU32 only)
+
+	Multiplies two unsigned operands yielding an unsigned result. The 
+	instruction uses one of three forms:
+
+
+	word	multiplies a word with a word. The result is a long word stored
+		in register Dn.
+
+	long 1	multiplies a long with a long. The result is a long word stored 
+		in register Dl, the upper 32-bits of the result are discarded.
+
+	long 2	multiplies a long (register Dl) with a long. The result is 
+		stored in Dh:Dl (in any two different data registers).
+
+	Dh:Dl cannot be the same register. Overflow can only occur if 
+	multiplying two 32-bit operands to yield a 32-bit result.
+
+
+MULU.W <ea>,D4
+MULU.L <ea>,D4
+MULU.L <ea>,D4:D5
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                       NBCD (negate binary coded decimal)
+
+Syntax:	NBCD <ea>
+Flags:	*U*U*
+Size:	byte
+
+	Subtracts the destination operand and the extend bit from zero, storing 
+	the result at the destination. The operation is performed using binary 
+	coded decimal arithmetic.
+
+
+NBCD <ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                                  NEG (negate)
+
+Syntax:	NEG.? <ea>
+Flags:	*****
+Size:	byte, word, long
+
+	Subtracts the destination from zero, storing the result at the 
+	destination.
+
+
+NEG.B <ea>   NEG.W <ea>   NEG.L <ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                           NEGX (negate with extend)
+
+Syntax:	NEGX.? <ea>
+Flags:	*****
+Size:	byte, word, long
+
+	Subtracts the destination and the extend bit from zero, storing the 
+	result at the destination.
+
+
+NEGX.B <ea>   NEGX.W <ea>   NEGX.L <ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                               NOP (no operation)
+
+Syntax:	NOP
+Flags:	-----
+Size:	unsized
+
+	Performs no operation. The NOP instruction does not begin execution 
+	until all pending bus cycles have completed. This synchronizes the 
+	pipeline and prevents instruction overlap.
+
+
+NOP
+
+--------------------------------------------------------------------------------
+
+                            NOT (logical complement)
+
+Syntax:	NOT.? <ea>
+Flags:	-**00
+Size:	byte, word, long
+
+	Calculates the ones complement of the destination, storing the result at 
+	the destination.
+
+
+NOT.B <ea>   NOT.W <ea>   NOT.L <ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                           OR (logical inclusive OR)
+
+Syntax:	OR.? <ea>,Dn
+	OR.? Dn,<ea>
+Flags:	-**00
+Size:	byte, word, long
+
+	ORs the source with the destination, storing the result in the 
+	destination.
+
+
+OR.B <ea>,D4   OR.W <ea>,D4   OR.L <ea>,D4
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+OR.B D4,<ea>   OR.W D4,<ea>   OR.L D4,<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                     ORI (logical inclusive OR, immediate)
+
+Syntax:	ORI.? #imm,<ea>
+	OR.? #imm,<ea>
+Flags:	-**00
+Size:	byte, word, long
+
+	ORs the immediate value with the destination, storing the result in the 
+	destination.
+
+
+ORI.B #imm,<ea>   ORI.W #imm,<ea>   ORI.L #imm,<ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+        ORI to CCR (logical inclusive OR, immediate to condition codes)
+
+Syntax:	ORI #imm,CCR
+	OR #imm,CCR
+Flags:	X set if bit 4 of #imm is one, unchanged otherwise
+	N set if bit 3 of #imm is one, unchanged otherwise
+	Z set if bit 2 of #imm is one, unchanged otherwise
+	V set if bit 1 of #imm is one, unchanged otherwise
+	C set if bit 0 of #imm is one, unchanged otherwise
+Size:	byte
+
+	ORs the immediate value with the condition codes, storing the result in
+	the condition code register.
+
+
+ORI #imm,CCR
+
+--------------------------------------------------------------------------------
+
+     ORI to SR (logical inclusive OR, immediate to status register) {priv}
+
+Syntax:	ORI #imm,SR
+	OR #imm,SR
+Flags:	X set if bit 4 of #imm is one, unchanged otherwise
+	N set if bit 3 of #imm is one, unchanged otherwise
+	Z set if bit 2 of #imm is one, unchanged otherwise
+	V set if bit 1 of #imm is one, unchanged otherwise
+	C set if bit 0 of #imm is one, unchanged otherwise
+Size:	word
+
+	ORs the immediate value with the status register, storing the result in
+	the status register.
+
+
+ORI #imm,SR
+
+--------------------------------------------------------------------------------
+
+                      PACK (pack) {68020} {68030} {68040}
+
+Syntax:	PACK Dx,Dy,#adjustment
+	PACK -(Ax),-(Ay),#adjustment
+Flags:	-----
+Size:	unsized
+
+	Adjusts and packs the lower four bits of each of two bytes into a single 
+	byte.
+
+	When both operands are data registers, the adjustment is added to the 
+	value contained in the source register. Bits 11-8 and 3-0 of the 
+	intermediate result are concatenated and placed in bits 7-0  of the 
+	destination register. The remainder of the destination register is 
+	unaffected.
+
+	When the predecrement addressing mode is specified, two bytes from the
+	source are fetched and concatenated. The adjustment word is added to the 
+	concatenated bytes. Bits 0-3 of each byte are extracted. These eight 
+	bits are concatenated to form a new byte, which is written to the 
+	destination.
+
+
+PACK D4,D5,#adjustment word
+
+PACK -(A4),-(A5),#adjustment word
+
+--------------------------------------------------------------------------------
+
+                 PBcc (branch on PMMU condition) {68851} {priv}
+      PDBcc (test, decrement and branch on PMMU condition) {68851} {priv}
+           PFLUSH (flush ATC entries) {68030} {68040} {68551} {priv}
+           PLOAD (load an entry into the ATC) {68030} {68551} {priv}
+           PMOVE (move to/from MMU registers) {68030} {68551} {priv}
+                PRESTORE (PMMU restore function) {68551} {priv}
+                   PSAVE (PMMU save function) {68551} {priv}
+                  PScc (set on PMMU condition) {68551} {priv}
+         PTEST (test a logical address) {68030} {68040} {68551} {priv}
+                PTRAPcc (trap on PMMU condition) {68551} {priv}
+                   PVALID (validate a pointer) {68551} {priv}
+
+These instructions are not currently implemented because I am unsure of the 
+correct syntax.
+
+--------------------------------------------------------------------------------
+
+                          PEA (push effective address)
+
+Syntax:	PEA <ea>
+Flags:	-----
+Size:	long
+
+	Computes the effective address and pushes it onto the stack. The
+	effective address is a long address.
+
+
+PEA <ea>
+	(An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                     RESET (reset external devices) {priv}
+
+Syntax:	RESET
+Flags:	-----
+Size:	unsized
+
+	Asserts the RSTO signal for 512 (124 for MC68000, MC68EC000, MC68HC000,
+	MC68HC001, MC68008, MC68010 and MC68302) clock periods, resetting all
+	external devices.
+
+
+RESET
+
+--------------------------------------------------------------------------------
+
+                               ROL (rotate left)
+
+Syntax:	ROL.? Dx,Dy
+	ROL.? #count,Dy
+	ROL <ea>
+Flags:	-**0*	(-**00 if count=0)
+Size:	byte, word, long	(word if ROL <ea>)
+
+	Rotate the destination by the specified count (Dx modulo 64, or #count 
+	from 1 to 8), or by 1 if using ROL <ea>. Bits rotated out of the high 
+	order bit go to the carry and also back into the low order bit.
+
+
+ROL.B D4,D5   ROL.W D4,D5   ROL.L D4,D5
+
+ROL.B #count,D5   ROL.W #count,D5   ROL.L #count,D5
+
+ROL <ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                               ROR (rotate right)
+
+Syntax:	ROR.? Dx,Dy
+	ROR.? #count,Dy
+	ROR <ea>
+Flags:	-**0*	(-**00 if count=0)
+Size:	byte, word, long	(word if ROR <ea>)
+
+	Rotate the destination by the specified count (Dx modulo 64, or #count 
+	from 1 to 8), or by 1 if using ROR <ea>. Bits rotated out of the low 
+	order bit go to the carry and also back into the high order bit.
+
+
+ROR.B D4,D5   ROR.W D4,D5   ROR.L D4,D5
+
+ROR.B #count,D5   ROR.W #count,D5   ROR.L #count,D5
+
+ROR <ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                        ROXL (rotate with extend, left)
+
+Syntax:	ROXL.? Dx,Dy
+	ROXL.? #count,Dy
+	ROXL <ea>
+Flags:	***0*
+Size:	byte, word, long	(word if ROXL <ea>)
+
+	Rotate the destination by the specified count (Dx modulo 64, or #count 
+	from 1 to 8), or by 1 if using ROXL <ea>. Bits rotated out of the high 
+	order bit go to the carry and the extend; the previous value of the
+	extend rotates into the low order bit.
+
+
+ROXL.B D4,D5   ROXL.W D4,D5   ROXL.L D4,D5
+
+ROXL.B #count,D5   ROXL.W #count,D5   ROXL.L #count,D5
+
+ROXL <ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                        ROXR (rotate with extend, right)
+
+Syntax:	ROXR.? Dx,Dy
+	ROXR.? #count,Dy
+	ROXR <ea>
+Flags:	***0*
+Size:	byte, word, long	(word if ROXR <ea>)
+
+	Rotate the destination by the specified count (Dx modulo 64, or #count 
+	from 1 to 8), or by 1 if using ROXR <ea>. Bits rotated out of the low 
+	order bit go to the carry and the extend; the previous value of the 
+	extend rotates into the high order bit.
+
+
+ROXR.B D4,D5   ROXR.W D4,D5   ROXR.L D4,D5
+
+ROXR.B #count,D5   ROXR.W #count,D5   ROXR.L #count,D5
+
+ROXR <ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+      RTD (return and deallocate) {68010} {68020} {68030} {68040} {CPU32}
+
+Syntax:	RTD #displacement
+Flags:	-----
+Size:	unsized
+
+	Pulls the program counter value from the stack and adds the sign 
+	extended 16-bit displacement value to the stack pointer. The previous
+	value of the program counter is lost.
+
+
+RTD #displacement word
+
+--------------------------------------------------------------------------------
+
+                       RTE (return from exception) {priv}
+
+Syntax:	RTE
+Flags:	set according to the status register from the stack
+Size:	unsized
+
+
+	{68000} {68008}
+
+	Pulls the status register and program counter values from the stack. The
+	previous values are lost.
+	
+
+	{68010} {68020} {68030} {68040} {CPU32}
+
+	Loads the processor state information stored in the exception stack
+	frame located at the top of the stack into the processor. The
+	instruction examines the stack format field in the format/offset word
+	to determine how much information must be restored.
+
+
+RTE
+
+--------------------------------------------------------------------------------
+
+                        RTM (return from module) {68020}
+
+Syntax:	RTM Rn
+Flags:	set according to the content of the word on the stack
+Size:	unsized
+
+	A previously saved module state is reloaded from the top of stack. After 
+	the module state is retrieved from the top of the stack, the caller's 
+	stack pointer is incremented by the argument count value in the module 
+	stack.
+
+
+RTM Dn   RTM An
+
+--------------------------------------------------------------------------------
+
+                    RTR (return and restore condition codes)
+
+Syntax:	RTR
+Flags:	set to the condition codes from the stack
+Size:	unsized
+
+	Pulls the condition code and program counter values from the stack. The
+	previous values are lost. The supervisor portion of the status register 
+	is unaffected.
+
+
+RTR
+
+--------------------------------------------------------------------------------
+
+                          RTS (return from subroutine)
+
+Syntax:	RTS
+Flags:	-----
+Size:	unsized
+
+	Pulls the program counter from the stack. The previous program counter
+	value is lost.
+
+
+RTS
+
+--------------------------------------------------------------------------------
+
+                      SBCD (subtract binary coded decimal)
+
+Syntax:	SBCD Dx,Dy
+	SBCD -(Ax),-(Ay)
+Flags:	*U*U*
+Size:	byte
+
+	Subtracts the source and the extend bit from the destination, storing 
+	the result in the destination. Subtraction is performed using binary 
+	coded decimal (BCD) arithmetic.
+
+
+SBCD D4,D5
+
+SBCD -(A4),-(A5)
+
+--------------------------------------------------------------------------------
+
+                            Scc (set conditionally)
+
+Syntax:	Scc <ea>
+Flags:	-----
+Size:	byte
+
+	If the specified condition is true, the byte at the effective address is
+	set to $FF. If false, the byte is cleared to $00.
+
+
+	conditions:-
+
+	SF		flase, clear to $00
+	ST		true, set to $FF
+	SCC	SHS	set if carry clear / higher or same (unsigned)
+	SCS	SLO	set if carry set / lower (unsigned)
+	SEQ		set if equal
+	SGE		set if greater or equal (signed)
+	SGT		set if greater than (signed)
+	SHI		set if higher than (unsigned)
+	SLE		set if less or equal (signed)
+	SLS		set if lower or the same (unsigned)
+	SLT		set if less than (signed)
+	SMI		set if minus
+	SNE		set if not equal
+	SPL		set if plus
+	SVC		set if overflow clear
+	SVS		set if overflow set
+
+
+Scc <ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+               STOP (load status register and stop) {priv}	
+
+Syntax:	STOP #data
+Flags:	set according to the immediate word
+Size:	unsized
+
+	Moves the immediate word into the status register, advances the program 
+	counter to the next instruction, and stops the fetching and executing of 
+	instructions. A trace, interrupt, or reset exception causes the 
+	processor to resume instruction execution. A trace exception occurs if 
+	instruction tracing is enabled (T0=1, T1=0) when the STOP instruction 
+	begins execution. If an interrupt request is asserted with a priority 
+	higher than the priority level set by the new status register, an 
+	interrupt exception occurs; otherwise, the interrupt request is ignored.  
+	An external reset always initiates reset exception processing.
+
+
+STOP #word
+
+--------------------------------------------------------------------------------
+
+                                 SUB (subtract)
+
+Syntax:	SUB.? <ea>,Dn
+	SUB.? Dn,<ea>
+Flags:	*****
+Size:	byte, word, long
+
+	SUBtracts the source from the destination, storing the result in the 
+	destination.
+
+
+SUB.B <ea>,D4   SUB.W <ea>,D4   SUB.L <ea>,D4
+	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+SUB.B D4,<ea>   SUB.W D4,<ea>   SUB.L D4,<ea>
+	(An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+
+see also: SUBA SUBI SUBQ
+
+--------------------------------------------------------------------------------
+
+                     SUBA (subtract from address register)
+
+Syntax:	SUBA.? <ea>,An
+	SUB.? <ea>,An
+Flags:	-----
+Size:	word, long
+
+	SUBtracts the source from the destination register, storing the result 
+	in the destination address register. Word length operands are 
+	sign-extended to 32-bits for subtraction.
+
+
+SUBA.W <ea>,A4   SUBA.L <ea>,A4
+	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix)
+	mem.w mem.l #data d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+--------------------------------------------------------------------------------
+
+                           SUBI (subtract immediate)
+
+Syntax:	SUBI.? #imm,<ea>
+	SUB.? #imm,<ea>
+Flags:	*****
+Size:	byte, word, long
+
+	SUBtracts the immediate value from the destination, storing the result 
+	in the destination.
+
+
+SUBI.B #imm,<ea>   SUBI.W #imm,<ea>   SUBI.L #imm,<ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                             SUBQ (subtract quick)
+
+Syntax:	SUBQ.? #imm,<ea>
+Flags:	***** (----- if the destination is an address register)
+Size:	byte, word, long (word, long if the destination is an address register)
+
+	SUBtracts the immediate value (from 1 to 8) from the destination, 
+	storing the result in the destination. If the destination is an address 
+	register, word length operands are sign-extended to 32-bits for 
+	subtraction.
+
+
+SUBQ.B #imm,<ea>   SUBQ.W #imm,<ea>   SUBQ.L #imm,<ea>
+	Dn An (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+                          SUBX (subtract with extend)
+
+Syntax:	SUBX.? Dx,Dy
+	SUBX.? -(Ax),-(Ay)
+Flags:	*****
+Size:	byte, word, long
+
+	SUBs the source and the extend from the destination, storing the result 
+	in the destination.
+
+
+SUBX.B D4,D5   SUBX.W D4,D5   SUBX.L D4,D5
+
+SUBX.B -(A4),-(A5)   SUBX.W -(A4),-(A5)   SUBX.L -(A4),-(A5)
+
+--------------------------------------------------------------------------------
+
+                          SWAP (swap register halves)
+
+Syntax:	SWAP Dn
+Flags:	-**00
+Size:	word
+
+	Exchange the 16-bit words (halves) of a data register.
+
+
+SWAP D4
+
+--------------------------------------------------------------------------------
+
+                         TAS (test and set an operand)
+
+Syntax:	TAS <ea>
+Flags:	-**00
+Size:	byte
+
+	Tests and sets the byte operand addressed by the effective address. The 
+	instruction tests the current value of the operand and sets the N and Z 
+	condition codes appropriately. TAS then sets the high order bit of
+	the operand. The operation uses a locked or read-modify-write transfer
+	sequence. This instruction supports use of a flag or semaphore to 
+	coordinate several processors.
+
+
+TAS <ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+--------------------------------------------------------------------------------
+
+      TBLS (table lookup and interpolate, signed, result rounded) {CPU32}
+    TBLSN (table lookup and interpolate, signed, result not rounded) {CPU32}
+
+Syntax:	TBLS.? <ea>,Dx		result rounded
+	TBLS.? Dym:Dyn,Dx	result rounded
+	TBLSN.? <ea>,Dx		result not rounded
+	TBLSN.? Dym:Dyn,Dx	result not rounded
+
+	The TBLS and TBLSN instructions allow the efficient use of piecewise
+	linear compressed data tables to model complex functions. There are two
+	modes of operation; table lookup and interpolate mode and data register
+	interpolate mode.
+
+
+TBLS.B <ea>,D5   TBLS.W <ea>,D5   TBLS.L <ea>,D5
+TBLSN.B <ea>,D5   TBLSN.W <ea>,D5   TBLSN.L <ea>,D5
+	(An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+TBLS.B D4:D5,D6   TBLS.W D4:D5,D6   TBLS.L D4:D5,D6
+TBLSN.B D4:D5,D6   TBLSN.W D4:D5,D6   TBLSN.L D4:D5,D6
+
+--------------------------------------------------------------------------------
+
+     TBLU (table lookup and interpolate, unsigned, result rounded) {CPU32}
+   TBLUN (table lookup and interpolate, unsigned, result not rounded) {CPU32}
+
+Syntax:	TBLU.? <ea>,Dx		result rounded
+	TBLU.? Dym:Dyn,Dx	result rounded
+	TBLUN.? <ea>,Dx		result not rounded
+	TBLUN.? Dym:Dyn,Dx	result not rounded
+
+	The TBLU and TBLUN instructions allow the efficient use of piecewise
+	linear compressed data tables to model complex functions. There are two
+	modes of operation; table lookup and interpolate mode and data register
+	interpolate mode.
+
+
+TBLU.B <ea>,D5   TBLU.W <ea>,D5   TBLU.L <ea>,D5
+TBLUN.B <ea>,D5   TBLUN.W <ea>,D5   TBLUN.L <ea>,D5
+	(An) d16(An) d8(An,Ix) mem.w mem.l d16(PC) d8(PC,Ix) ext(An) ext(PC)
+
+TBLU.B D4:D5,D6   TBLU.W D4:D5,D6   TBLU.L D4:D5,D6
+TBLUN.B D4:D5,D6   TBLUN.W D4:D5,D6   TBLUN.L D4:D5,D6
+
+--------------------------------------------------------------------------------
+
+                                  TRAP (trap)
+
+Syntax:	TRAP #vector
+Flags:	-----
+Size:	unsized
+
+	Causes a TRAP #vector exception. The instruction adds the immediate 
+	operand (vector, 0-15) of the instruction to 32 to obtain the vector 
+	number.
+
+
+TRAP #vector (0-15)
+
+--------------------------------------------------------------------------------
+
+           TRAPcc (trap on condition) {68020} {68030} {68040} {CPU32}
+        TRPcc (trap on condition) {68020} {68030} {68040} {CPU32} {!!!}
+
+Syntax:	TRAPcc			TRPcc {!!!}
+	TRAPcc.W #data		TRPcc.W #data {!!!}
+	TRAPcc.L #data		TRPcc.L #data {!!!}
+Flags:	-----
+Size:	unsized, word, long
+
+	If the specified condition is true, causes a TRAPcc exception with a 
+	vector number 7. The immediate data (word or long) is available to the
+	trap handler.
+
+
+	conditions:-
+
+	TRAPF		false, never trap
+	TRAPT		true, always trap
+	TRAPCC	TRAPHS	trap if carry clear / higher or same (unsigned)
+	TRAPCS	TRAPLO	trap if carry set / lower (unsigned)
+	TRAPEQ		trap if equal
+	TRAPGE		trap if greater or equal (signed)
+	TRAPGT		trap if greater than (signed)
+	TRAPHI		trap if higher than (unsigned)
+	TRAPLE		trap if less or equal (signed)
+	TRAPLS		trap if lower or the same (unsigned)
+	TRAPLT		trap if less than (signed)
+	TRAPMI		trap if minus
+	TRAPNE		trap if not equal
+	TRAPPL		trap if plus
+	TRAPVC		trap if overflow clear
+	TRAPVS		trap if overflow set
+
+
+TRAPEQ
+TRAPEQ.W #word
+TRAPEQ.L #long
+
+--------------------------------------------------------------------------------
+
+                            TRAPV (trap if overflow)
+
+Syntax:	TRAPV
+Flags:	-----
+Size:	unsized
+
+	If the overflow condition code is set, a TRAPV exception with a vector
+	number 7 occurs.
+
+
+TRAPV
+
+--------------------------------------------------------------------------------
+
+                             TST (test an operand)
+
+Syntax:	TST.? <ea>
+Flags:	-**00
+Size:	byte, word, long
+
+	Compares the operand with zero and sets the condition codes accordingly.
+
+
+TST.B <ea>   TST.W <ea>   TST.L <ea>
+	Dn (An) (An)+ -(An) d16(An) d8(An,Ix) mem.w mem.l ext(An)
+
+	An #data d16(PC) d8(PC,Ix) ext(PC)   {68020} {68030} {68040} {CPU32}
+
+--------------------------------------------------------------------------------
+
+                                 UNLK (unlink)
+
+Syntax:	UNLK An
+Flags:	-----
+Size:	unsized
+
+	Loads the stack pointer from the specified address register, the loads
+	the address register with the long word pulled from the top of the 
+	stack.
+
+
+UNLK A4
+
+--------------------------------------------------------------------------------
+
+                   UNPK (unpack BCD) {68020} {68030} {68040}
+                  UNPACK (unpack BCD) {68020} {68030} {68040}
+
+Syntax:	UNPK Dx,Dy,#adjustment
+	UNPK -(Ax),-(Ay),#adjustment
+Flags:	-----
+Size:	unsized
+
+	Places the two binary-coded decimal digits in the source operand byte 
+	into the lower four bits of two bytes and places zero bits in the upper 
+	four bits. Adds the adjustment word to this unpacked value.
+
+	When both operands are data registers, the instruction unpacks the 
+	source register contents, adds the adjustment word, and places the 
+	result in the destination register. The high word of the destination is 
+	not affected.
+
+	When the addressing mode is predecrement, the instruction extracts two 
+	binary-coded decimal digits from a byte at the source address. After 
+	unpacking the digits and adding the adjustment word, the instruction 
+	writes the two bytes to the destination address.
+
+
+UNPK D4,D5,#adjustment word
+
+UNPK -(A4),-(A5),#adjustment word
+
+
+ฺฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ 
+ณ                          Unimplemented Instructions                          ณ 
+ภฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู
+
+The following instructions are not currently implemented, because I am unsure of
+the correct syntax :-
+
+
+            cpBcc (branch on coprocessor condition) {68020} {68030}
+   cpDBcc (test coprocessor condition, decrement and branch) {68020} {68030}
+              cpGEN (coprocessor general function) {68020} {68030}
+              cpScc (set on coprocessor condition) {68020} {68030}
+            cpTRAPcc (trap on coprocessor condition) {68020} {68030}
+        cpRESTORE (coprocessor restore functions) {68020} {68030} {priv}
+           cpSAVE (coprocessor save function) {68020} {68030} {priv}
+
+            CINV (invalidate cache entries) {68040} {68LC040} {priv}
+       CPUSH (push and invalidate cache entries) {68040} {68LC040} {priv}
+
+                FRESTORE (restore internal floating point state)
+                         {68881} {68882} {68040} {priv}
+                   FSAVE (save internal floating point state)
+                         {68881} {68882} {68040} {priv}
+
+                 PBcc (branch on PMMU condition) {68851} {priv}
+      PDBcc (test, decrement and branch on PMMU condition) {68851} {priv}
+           PFLUSH (flush ATC entries) {68030} {68040} {68551} {priv}
+           PLOAD (load an entry into the ATC) {68030} {68551} {priv}
+           PMOVE (move to/from MMU registers) {68030} {68551} {priv}
+                PRESTORE (PMMU restore function) {68551} {priv}
+                   PSAVE (PMMU save function) {68551} {priv}
+                  PScc (set on PMMU condition) {68551} {priv}
+         PTEST (test a logical address) {68030} {68040} {68551} {priv}
+                PTRAPcc (trap on PMMU condition) {68551} {priv}
+                   PVALID (validate a pointer) {68551} {priv}
+
+
+Also, floating point coprocessor instructions are not currently implemented.
+
+
+ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
+บ                                Address Modes                                 บ
+ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+
+                             68000 Addressing Modes
+
+Dn	D0-D7	data register direct
+An	A0-A7	address register direct
+(An)		address register indirect
+(An)+		address register indirect, with postincrement
+-(An)		address register indirect, with predecrement
+d16(An)		address register indirect, with word displacement
+d8(An,Ix)	address register indirect, with index and byte displacement
+d16(PC)		program counter indirect, with word displacement
+d8(PC,Ix)	program counter indirect, with index and byte displacement
+mem.w		absolute data addressing short
+mem.l		absolute data addressing long
+#imm		immediate data
+
+			Ix :- the index register must have a size (.W or .L)
+
+
+ฺฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ
+ณ             Extended Addressing Modes (68020,68030,68040,CPU32)              ณ
+ภฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู
+
+The 68020, 68030, 68040 and CPU32 have an extended address mode capacity.
+Here follows a list of all the new address modes. There are some duplicates with
+the original address modes, with the original used instead of the new in these
+cases. Examples of unique new address modes are given.
+
+
+{offset:width}	specify bit field (not CPU32)
+
+bd	base displacement	๔ default to word if no size
+od	outer displacement	๕ is given (.w or .l)
+
+Ix	index register D0-D7/A0-A7, size must be given (.w or .l),
+	scale is optional (*1 *2 *4 *8)
+
+An	๔
+PC	ณ base register
+zPC	๕
+
+zPC (zero program counter, or suppress program counter) example :- (zPC,100) and
+(100) are assembled differently, but operate in exactly the same way.
+
+using PC without a base displacement will generate a warning.
+
+--------------------------------------------------------------------------------
+
+                         No Memory Indirect Action Mode
+
+
+(base displacement, base register, index register)
+
+	(bd)		(An)		(Ix)
+			(PC)				
+			(zPC)
+
+	(bd,An)		(bd,Ix)		(An,Ix)
+	(bd,PC)				(PC,Ix)
+	(bd,zPC)			(zPC,Ix)
+
+	(bd,An,Ix)
+	(bd,PC,Ix)
+	(bd,zPC,Ix)
+
+
+examples:-
+	(PC)		(PC)					no offset
+	(zPC)		(zPC)
+	(Ix)		(D0.w)  (D0.l)  (A0.l*4)
+	(bd,An)		100.l(A0)  (100.l,A0)  (A0,100.l)	long offset
+	(bd,PC)		mem.l(PC)  (mem.l,PC)			long offset
+	(bd,zPC)	100(zPC)  (100,zPC)
+	(bd,Ix)		100(D0.w)  (100,D0.l)  (A0.l*4,100)
+	(PC,Ix)		(PC,D0.w)  (D0.l,PC)  (PC,A0.l*4)	no offset
+	(zPC,Ix)	(zPC,D0.w)  (D0.l,zPC)  (zPC,A0.l*4)
+	(bd,An,Ix)	100.w(An,D0.w)  (100.l,A0,D0.l)		word/long offset
+	(bd,PC,Ix)	mem.w(PC,D0.w)  (mem.l,PC,D0.l)		word/long offset
+	(bd,zPC,Ix)	100.w(zPC,D0.w)  (100.l,zPC,D0.l)
+
+--------------------------------------------------------------------------------
+
+          Memory Indirect With Preindex / Index Suppressed (not CPU32)
+
+
+([base displacement, base register, index register], outer displacement)
+
+	([bd])		([An])		([Ix])		([],od) ***
+			([PC])
+			([zPC])
+
+	([bd,An])	([bd,Ix])	([bd],od)
+	([bd,PC])
+	([bd,zPC])
+
+	([An,Ix])	([An],od)	([Ix],od)
+	([PC,Ix])	([PC],od)
+	([zPC,Ix])	([zPC],od)
+
+	([bd,An,Ix])	([bd,An],od])	([bd,ix],od)	([An,ix],od)
+	([bd,PC,Ix])	([bd,PC],od])			([PC,ix],od)
+	([bd,zPC,Ix])	([bd,zPC],od])			([zPC,ix],od)
+
+	([bd,An,Ix],od)
+	([bd,PC,Ix],od)
+	([bd,zPC,Ix],od)
+
+
+examples:-
+	([bd])		([100.w])  ([100.l])
+	([An])		([A0])
+	([PC])		([PC])
+	([zPC])		([zPC])
+	([Ix])		([D0.w])  ([D0.l])  ([A0.l*4])
+
+	([bd,An])	([100,A0])  ([100.w,A0])  ([100.l,A0])
+	([bd,PC])	([mem,PC])  ([mem.w,PC])  ([mem.l,PC])
+	([bd,zPC])	([100,zPC])  ([100.w,zPC])  ([100.l,zPC])
+	([bd,Ix])	([100,D0.w])  ([100.w,D0.l])  ([100.l,A1.w*4])
+	([bd],od)	([100],200)  ([100.w],200.l)  ([100.l],200.w)
+
+	([An,Ix])	([A0,D0.w])  ([A0,D0.l])  ([A0,A1.w*4]) 
+	([PC,Ix])	([PC,D0.w])  ([PC,D0.l])  ([PC,A1.w*4]) 
+	([zPC,Ix])	([zPC,D0.w])  ([zPC,D0.l])  ([zPC,A1.w*4]) 
+	([An],od)	([A0],200)  ([A0],200.w)  ([A0],200.l)
+	([PC],od)	([A0],200)  ([A0],200.w)  ([A0],200.l)
+	([zPC],od)	([zPC],200)  ([zPC],200.w)  ([zPC],200.l)
+	([Ix],od)	([D0.w],200)  ([D0.l],200.w)  ([A1.w*4],200.l)
+
+	([bd,An,Ix])	([100,A0,D0.w])  ([100.w,A0,D0.l])  ([100.l,A0,A1.w*4])
+	([bd,PC,Ix])	([mem,PC,D0.w])  ([mem.w,PC,D0.l])  ([mem.l,PC,A1.w*4])
+	([bd,zPC,Ix])	([100,zPC,D0.w])  ([100.w,zPC,D0.l])
+			  ([100.l,zPC,A1.w*4])
+
+	([bd,An],od)	([100,A0],200)  ([100.w,A0],200.l)  ([100.l,A0],200.w)
+	([bd,PC],od)	([mem,PC],200)  ([mem.w,PC],200.l)  ([mem.l,PC],200.w)
+	([bd,zPC],od)	([100,zPC],200)  ([100.w,zPC],200.l)
+			  ([100.l,zPC],200.w)
+	([bd,Ix],od)	([100,D0.w],200)  ([100.w,D0.l],200.l)
+			  ([100.l,A1.w*4],200.w)
+
+	([An,Ix],od)	([A0,D0.w],200)  ([A0,D0.l],200.w)  ([A0,A1.w*4],200.l)
+	([PC,Ix],od)	([PC,D0.w],200)  ([PC,D0.l],200.w)  ([PC,A1.w*4],200.l)
+	([zPC,Ix],od)	([zPC,D0.w],200)  ([zPC,D0.l],200.w)
+			  ([zPC,A1.w*4],200.l)
+
+	([bd,An,Ix],od)	([100,A0,D0.w],200)  ([100.l,A0,D0.l],200.w)
+			  ([100.w,A0,A1.w*4],200.l)
+	([bd,PC,Ix],od)	([mem,PC,D0.w],200)  ([mem.l,PC,D0.l],200.w)
+			  ([mem.w,PC,A1.w*4],200.l)
+	([bd,zPC,Ix],od) ([100,zPC,D0.w],200)  ([100.l,zPC,D0.l],200.w)
+			   ([100.w,zPC,A1.w*4],200.l)
+
+--------------------------------------------------------------------------------
+
+                   Memory Indirect With Postindex (not CPU32)
+
+
+([base displacement, base register], index register, outer displacement)
+
+					([],Ix) ***
+			
+	([bd],Ix)	([An],Ix)	([],Ix,od) ***
+			([PC],Ix)	
+			([zPC],Ix)	
+
+
+	([bd,An],Ix)	([bd],Ix,od)	([An],Ix,od)
+	([bd,PC],Ix)	  		([PC],Ix,od)
+	([bd,zPC],Ix)			([zPC],Ix,od)
+
+
+	([bd,An],Ix,od)
+	([bd,PC],Ix,od)
+	([bd,zPC],Ix,od)
+
+
+examples:-
+	([bd],Ix)	([100],D0.w)  ([100.w],D0.l)  ([100.l],A1.w*4) 
+	([An],Ix)	([A0],D0.w)  ([A0],D0.l)  ([A0],A1.w*4) 
+	([PC],Ix)	([PC],D0.w)  ([PC],D0.l)  ([PC],A1.w*4) 
+	([zPC],Ix)	([zPC],D0.w)  ([zPC],D0.l)  ([zPC],A1.w*4) 
+
+	([bd,An],Ix)	([100,A0],D0.w)  ([100.w,A0],D0.l)  ([100.l,A0],A1.w*4)
+	([bd,PC],Ix)	([100,PC],D0.w)  ([100.w,PC],D0.l)  ([100.l,PC],A1.w*4)
+	([bd,zPC],Ix)	([100,zPC],D0.w)  ([100.w,zPC],D0.l)
+			  ([100.l,zPC],A1.w*4)
+
+	([bd],Ix,od)	([100],D0.w,200)  ([100.w],D0.l,200.l)
+			  ([100.l],A1.w*4,200.w)
+	([An],Ix,od)	([A0],D0.w,200)  ([A0],D0.l,200.l)  ([A0],A1.w*4,200.w)
+	([PC],Ix,od)	([PC],D0.w,200)  ([PC],D0.l,200.l)  ([PC],A1.w*4,200.w)
+	([zPC],Ix,od)	([zPC],D0.w,200)  ([zPC],D0.l,200.l)
+			  ([zPC],A1.w*4,200.w)
+
+	([bd,An],Ix,od)	([100,A0],D0.w,200)  ([100.l,A0],D0.l,200.w)
+	        	  ([100.w,A0],A1.w*4,200.l)
+	([bd,PC],Ix,od)	([mem,PC],D0.w,200)  ([mem.l,PC],D0.l,200.w)
+			  ([mem.w,PC],A1.w*4,200.l)
+	([bd,zPC],Ix,od) ([100,zPC],D0.w,200)  ([100.l,zPC],D0.l,200.w)
+			   ([100.w,zPC],A1.w*4,200.l)
+
+--------------------------------------------------------------------------------
+
+             How Indirect Addressing Modes ('[]') Work (not CPU32)
+
+the expression between [] is evaluated, a long from that memory address is read,
+and the rest of the expression is added (I assume this is how it works, I have
+never been able to test it).
+
+		example:	A0 = 1000, D0 = 2000
+				memory address at 9100 contains 25000
+				memory address at 1100 contains 75000
+
+
+preindex :- ([100.w,A0,D0.l*4],200.l)
+
+		100.w + A0 + D0.l*4 = 100 + 1000 + 8000 (2000*4) = 9100
+
+		[9100] = 25000, + 200 = 25200
+
+		memory address = 25200
+
+
+postindex :- ([100.w,A0],D0.l*4,200.l)
+
+		100.w + A0 = 100 + 1000 = 1100
+
+		[1100] = 75000, + 8000 (D0.l*4, 2000*4) + 200 = 83200
+
+		memory address = 83200
+
+
+
+ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
+บ                         Acknowledgments, Disclaimer                          บ
+ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+
+The Motorola M68000 Family Programmer's Reference Manual is highly recommended
+for detailed information about the instruction sets.
+
+                        All copyrights are acknowledged.
+
+
+This file is part of the CrossFire package. Feel free to modify this file for
+your own use, but if you distribute it, please distribute the whole unmodified
+demonstration package (do NOT distribute the registered version). Add files if
+you like, but try to keep them in the 'EXTRA' directory.
+
+
+                                   Disclaimer
+
+To the best of my knowledge the information contained in this file is accurate.
+However, the user takes full liability for any damage caused by the use or
+misuse of software, documentation and information in the CrossFire package.
