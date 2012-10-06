@@ -1,0 +1,4423 @@
+%!
+%%BoundingBox: (atend)
+%%Pages: (atend)
+%%DocumentFonts: (atend)
+%%EndComments
+%
+% FrameMaker PostScript Prolog 3.0, for use with FrameMaker 3.0
+% Copyright (c) 1986,87,89,90,91 by Frame Technology Corporation.
+% All rights reserved.
+%
+% Known Problems:
+%	Due to bugs in Transcript, the 'PS-Adobe-' is omitted from line 1
+/FMversion (3.0) def 
+% Set up Color vs. Black-and-White
+	/FMPrintInColor systemdict /colorimage known
+		systemdict /currentcolortransfer known or def
+% Uncomment this line to force b&w on color printer
+%   /FMPrintInColor false def
+/FrameDict 195 dict def 
+systemdict /errordict known not {/errordict 10 dict def
+		errordict /rangecheck {stop} put} if
+% The readline in 23.0 doesn't recognize cr's as nl's on AppleTalk
+FrameDict /tmprangecheck errordict /rangecheck get put 
+errordict /rangecheck {FrameDict /bug true put} put 
+FrameDict /bug false put 
+mark 
+% Some PS machines read past the CR, so keep the following 3 lines together!
+currentfile 5 string readline
+00
+0000000000
+cleartomark 
+errordict /rangecheck FrameDict /tmprangecheck get put 
+FrameDict /bug get { 
+	/readline {
+		/gstring exch def
+		/gfile exch def
+		/gindex 0 def
+		{
+			gfile read pop 
+			dup 10 eq {exit} if 
+			dup 13 eq {exit} if 
+			gstring exch gindex exch put 
+			/gindex gindex 1 add def 
+		} loop
+		pop 
+		gstring 0 gindex getinterval true 
+		} def
+	} if
+/FMVERSION {
+	FMversion ne {
+		/Times-Roman findfont 18 scalefont setfont
+		100 100 moveto
+		(FrameMaker version does not match postscript_prolog!)
+		dup =
+		show showpage
+		} if
+	} def 
+/FMLOCAL {
+	FrameDict begin
+	0 def 
+	end 
+	} def 
+	/gstring FMLOCAL
+	/gfile FMLOCAL
+	/gindex FMLOCAL
+	/orgxfer FMLOCAL
+	/orgproc FMLOCAL
+	/organgle FMLOCAL
+	/orgfreq FMLOCAL
+	/yscale FMLOCAL
+	/xscale FMLOCAL
+	/manualfeed FMLOCAL
+	/paperheight FMLOCAL
+	/paperwidth FMLOCAL
+/FMDOCUMENT { 
+	array /FMfonts exch def 
+	/#copies exch def
+	FrameDict begin
+	0 ne dup {setmanualfeed} if
+	/manualfeed exch def
+	/paperheight exch def
+	/paperwidth exch def
+	/yscale exch def
+	/xscale exch def
+	currenttransfer cvlit /orgxfer exch def
+	currentscreen cvlit /orgproc exch def
+	/organgle exch def /orgfreq exch def
+	setpapername 
+	manualfeed {true} {papersize} ifelse 
+	{manualpapersize} {false} ifelse 
+	{desperatepapersize} if
+	end 
+	} def 
+	/pagesave FMLOCAL
+	/orgmatrix FMLOCAL
+	/landscape FMLOCAL
+/FMBEGINPAGE { 
+	FrameDict begin 
+	/pagesave save def
+	3.86 setmiterlimit
+	/landscape exch 0 ne def
+	landscape { 
+		90 rotate 0 exch neg translate pop 
+		}
+		{pop pop}
+		ifelse
+	xscale yscale scale
+	/orgmatrix matrix def
+	gsave 
+	} def 
+/FMENDPAGE {
+	grestore 
+	pagesave restore
+	end 
+	showpage
+	} def 
+/FMFONTDEFINE { 
+	FrameDict begin
+	findfont 
+	ReEncode 
+	1 index exch 
+	definefont 
+	FMfonts 3 1 roll 
+	put
+	end 
+	} def 
+/FMFILLS {
+	FrameDict begin
+	array /fillvals exch def
+	end 
+	} def 
+/FMFILL {
+	FrameDict begin
+	 fillvals 3 1 roll put
+	end 
+	} def 
+/FMNORMALIZEGRAPHICS { 
+	newpath
+	0.0 0.0 moveto
+	1 setlinewidth
+	0 setlinecap
+	0 0 0 sethsbcolor
+	0 setgray 
+	} bind def
+	/fx FMLOCAL
+	/fy FMLOCAL
+	/fh FMLOCAL
+	/fw FMLOCAL
+	/llx FMLOCAL
+	/lly FMLOCAL
+	/urx FMLOCAL
+	/ury FMLOCAL
+/FMBEGINEPSF { 
+	end 
+	/FMEPSF save def 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	[/fy /fx /fh /fw /ury /urx /lly /llx] {exch def} forall 
+	fx fy translate 
+	rotate
+	fw urx llx sub div fh ury lly sub div scale 
+	llx neg lly neg translate 
+	} bind def
+/FMENDEPSF {
+	FMEPSF restore
+	FrameDict begin 
+	} bind def
+FrameDict begin 
+/setmanualfeed {
+%%BeginFeature *ManualFeed True
+	 statusdict /manualfeed true put
+%%EndFeature
+	} def
+/max {2 copy lt {exch} if pop} bind def
+/min {2 copy gt {exch} if pop} bind def
+/inch {72 mul} def
+/pagedimen { 
+	paperheight sub abs 16 lt exch 
+	paperwidth sub abs 16 lt and
+	{/papername exch def} {pop} ifelse
+	} def
+	/papersizedict FMLOCAL
+/setpapername { 
+	/papersizedict 14 dict def 
+	papersizedict begin
+	/papername /unknown def 
+		/Letter 8.5 inch 11.0 inch pagedimen
+		/LetterSmall 7.68 inch 10.16 inch pagedimen
+		/Tabloid 11.0 inch 17.0 inch pagedimen
+		/Ledger 17.0 inch 11.0 inch pagedimen
+		/Legal 8.5 inch 14.0 inch pagedimen
+		/Statement 5.5 inch 8.5 inch pagedimen
+		/Executive 7.5 inch 10.0 inch pagedimen
+		/A3 11.69 inch 16.5 inch pagedimen
+		/A4 8.26 inch 11.69 inch pagedimen
+		/A4Small 7.47 inch 10.85 inch pagedimen
+		/B4 10.125 inch 14.33 inch pagedimen
+		/B5 7.16 inch 10.125 inch pagedimen
+	end
+	} def
+/papersize {
+	papersizedict begin
+		/Letter {lettertray letter} def
+		/LetterSmall {lettertray lettersmall} def
+		/Tabloid {11x17tray 11x17} def
+		/Ledger {ledgertray ledger} def
+		/Legal {legaltray legal} def
+		/Statement {statementtray statement} def
+		/Executive {executivetray executive} def
+		/A3 {a3tray a3} def
+		/A4 {a4tray a4} def
+		/A4Small {a4tray a4small} def
+		/B4 {b4tray b4} def
+		/B5 {b5tray b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	/FMdicttop countdictstack 1 add def 
+	statusdict begin stopped end 
+	countdictstack -1 FMdicttop {pop end} for 
+	} def
+/manualpapersize {
+	papersizedict begin
+		/Letter {letter} def
+		/LetterSmall {lettersmall} def
+		/Tabloid {11x17} def
+		/Ledger {ledger} def
+		/Legal {legal} def
+		/Statement {statement} def
+		/Executive {executive} def
+		/A3 {a3} def
+		/A4 {a4} def
+		/A4Small {a4small} def
+		/B4 {b4} def
+		/B5 {b5} def
+		/unknown {unknown} def
+	papersizedict dup papername known {papername} {/unknown} ifelse get
+	end
+	stopped 
+	} def
+/desperatepapersize {
+	statusdict /setpageparams known
+		{
+		paperwidth paperheight 0 1 
+		statusdict begin
+		{setpageparams} stopped pop 
+		end
+		} if
+	} def
+/savematrix {
+	orgmatrix currentmatrix pop
+	} bind def
+/restorematrix {
+	orgmatrix setmatrix
+	} bind def
+/dmatrix matrix def
+/dpi    72 0 dmatrix defaultmatrix dtransform
+    dup mul exch   dup mul add   sqrt def
+/freq dpi 18.75 div 8 div round dup 0 eq {pop 1} if 8 mul dpi exch div def
+/sangle 1 0 dmatrix defaultmatrix dtransform exch atan def
+/DiacriticEncoding [
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/.notdef /.notdef /.notdef /.notdef /space /exclam /quotedbl
+/numbersign /dollar /percent /ampersand /quotesingle /parenleft
+/parenright /asterisk /plus /comma /hyphen /period /slash /zero /one
+/two /three /four /five /six /seven /eight /nine /colon /semicolon
+/less /equal /greater /question /at /A /B /C /D /E /F /G /H /I /J /K
+/L /M /N /O /P /Q /R /S /T /U /V /W /X /Y /Z /bracketleft /backslash
+/bracketright /asciicircum /underscore /grave /a /b /c /d /e /f /g /h
+/i /j /k /l /m /n /o /p /q /r /s /t /u /v /w /x /y /z /braceleft /bar
+/braceright /asciitilde /.notdef /Adieresis /Aring /Ccedilla /Eacute
+/Ntilde /Odieresis /Udieresis /aacute /agrave /acircumflex /adieresis
+/atilde /aring /ccedilla /eacute /egrave /ecircumflex /edieresis
+/iacute /igrave /icircumflex /idieresis /ntilde /oacute /ograve
+/ocircumflex /odieresis /otilde /uacute /ugrave /ucircumflex
+/udieresis /dagger /.notdef /cent /sterling /section /bullet
+/paragraph /germandbls /registered /copyright /trademark /acute
+/dieresis /.notdef /AE /Oslash /.notdef /.notdef /.notdef /.notdef
+/yen /.notdef /.notdef /.notdef /.notdef /.notdef /.notdef
+/ordfeminine /ordmasculine /.notdef /ae /oslash /questiondown
+/exclamdown /logicalnot /.notdef /florin /.notdef /.notdef
+/guillemotleft /guillemotright /ellipsis /.notdef /Agrave /Atilde
+/Otilde /OE /oe /endash /emdash /quotedblleft /quotedblright
+/quoteleft /quoteright /.notdef /.notdef /ydieresis /Ydieresis
+/fraction /currency /guilsinglleft /guilsinglright /fi /fl /daggerdbl
+/periodcentered /quotesinglbase /quotedblbase /perthousand
+/Acircumflex /Ecircumflex /Aacute /Edieresis /Egrave /Iacute
+/Icircumflex /Idieresis /Igrave /Oacute /Ocircumflex /.notdef /Ograve
+/Uacute /Ucircumflex /Ugrave /dotlessi /circumflex /tilde /macron
+/breve /dotaccent /ring /cedilla /hungarumlaut /ogonek /caron
+] def
+/ReEncode { 
+	dup 
+	length 
+	dict begin 
+	{
+	1 index /FID ne 
+		{def} 
+		{pop pop} ifelse 
+	} forall 
+	0 eq {/Encoding DiacriticEncoding def} if 
+	currentdict 
+	end 
+	} bind def
+/graymode true def
+	/bwidth FMLOCAL
+	/bpside FMLOCAL
+	/bstring FMLOCAL
+	/onbits FMLOCAL
+	/offbits FMLOCAL
+	/xindex FMLOCAL
+	/yindex FMLOCAL
+	/x FMLOCAL
+	/y FMLOCAL
+/setpattern {
+	 /bwidth  exch def
+	 /bpside  exch def
+	 /bstring exch def
+	 /onbits 0 def  /offbits 0 def
+	 freq sangle landscape {90 add} if 
+		{/y exch def
+		 /x exch def
+		 /xindex x 1 add 2 div bpside mul cvi def
+		 /yindex y 1 add 2 div bpside mul cvi def
+		 bstring yindex bwidth mul xindex 8 idiv add get
+		 1 7 xindex 8 mod sub bitshift and 0 ne
+		 {/onbits  onbits  1 add def 1}
+		 {/offbits offbits 1 add def 0}
+		 ifelse
+		}
+		setscreen
+	 {} settransfer
+	 offbits offbits onbits add div FMsetgray
+	/graymode false def
+	} bind def
+/grayness {
+	FMsetgray
+	graymode not {
+		/graymode true def
+		orgxfer cvx settransfer
+		orgfreq organgle orgproc cvx setscreen
+		} if
+	} bind def
+	/HUE FMLOCAL
+	/SAT FMLOCAL
+	/BRIGHT FMLOCAL
+	/Colors FMLOCAL
+FMPrintInColor 
+	
+	{
+	/HUE 0 def
+	/SAT 0 def
+	/BRIGHT 0 def
+	% array of arrays Hue and Sat values for the separations [HUE BRIGHT]
+	/Colors   
+	[[0    0  ]    % black
+	 [0    0  ]    % white
+	 [0.00 1.0]    % red
+	 [0.37 1.0]    % green
+	 [0.60 1.0]    % blue
+	 [0.50 1.0]    % cyan
+	 [0.83 1.0]    % magenta
+	 [0.16 1.0]    % comment / yellow
+	 ] def
+      
+	/BEGINBITMAPCOLOR { 
+		BITMAPCOLOR} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPCOLORc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUECOLOR } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUECOLORc } def
+	/K { 
+		Colors exch get dup
+		0 get /HUE exch store 
+		1 get /BRIGHT exch store
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray}
+			{HUE SAT BRIGHT sethsbcolor} 
+		  ifelse
+		} def
+	/FMsetgray { 
+		/SAT exch 1.0 exch sub store 
+		  HUE 0 eq BRIGHT 0 eq and
+			{1.0 SAT sub setgray}
+			{HUE SAT BRIGHT sethsbcolor} 
+		  ifelse
+		} bind def
+	}
+	
+	{
+	/BEGINBITMAPCOLOR { 
+		BITMAPGRAY} def
+	/BEGINBITMAPCOLORc { 
+		BITMAPGRAYc} def
+	/BEGINBITMAPTRUECOLOR { 
+		BITMAPTRUEGRAY } def
+	/BEGINBITMAPTRUECOLORc { 
+		BITMAPTRUEGRAYc } def
+	/FMsetgray {setgray} bind def
+	/K { 
+		pop
+		} def
+	}
+ifelse
+/normalize {
+	transform round exch round exch itransform
+	} bind def
+/dnormalize {
+	dtransform round exch round exch idtransform
+	} bind def
+/lnormalize { 
+	0 dtransform exch cvi 2 idiv 2 mul 1 add exch idtransform pop
+	} bind def
+/H { 
+	lnormalize setlinewidth
+	} bind def
+/Z {
+	setlinecap
+	} bind def
+	/fillvals FMLOCAL
+/X { 
+	fillvals exch get
+	dup type /stringtype eq
+	{8 1 setpattern} 
+	{grayness}
+	ifelse
+	} bind def
+/V { 
+	gsave eofill grestore
+	} bind def
+/N { 
+	stroke
+	} bind def
+/M {newpath moveto} bind def
+/E {lineto} bind def
+/D {curveto} bind def
+/O {closepath} bind def
+	/n FMLOCAL
+/L { 
+ 	/n exch def
+	newpath
+	normalize
+	moveto 
+	2 1 n {pop normalize lineto} for
+	} bind def
+/Y { 
+	L 
+	closepath
+	} bind def
+	/x1 FMLOCAL
+	/x2 FMLOCAL
+	/y1 FMLOCAL
+	/y2 FMLOCAL
+	/rad FMLOCAL
+/R { 
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	x1 y1
+	x2 y1
+	x2 y2
+	x1 y2
+	4 Y 
+	} bind def
+/RR { 
+	/rad exch def
+	normalize
+	/y2 exch def
+	/x2 exch def
+	normalize
+	/y1 exch def
+	/x1 exch def
+	newpath
+	x1 y1 rad add moveto
+	x1 y2 x2 y2 rad arcto
+	x2 y2 x2 y1 rad arcto
+	x2 y1 x1 y1 rad arcto
+	x1 y1 x1 y2 rad arcto
+	closepath
+	16 {pop} repeat
+	} bind def
+/C { 
+	grestore
+	gsave
+	R 
+	clip
+	} bind def
+	/FMpointsize FMLOCAL
+/F { 
+	FMfonts exch get
+	FMpointsize scalefont
+	setfont
+	} bind def
+/Q { 
+	/FMpointsize exch def
+	F 
+	} bind def
+/T { 
+	moveto show
+	} bind def
+/RF { 
+	rotate
+	0 ne {-1 1 scale} if
+	} bind def
+/TF { 
+	gsave
+	moveto 
+	RF
+	show
+	grestore
+	} bind def
+/P { 
+	moveto
+	0 32 3 2 roll widthshow
+	} bind def
+/PF { 
+	gsave
+	moveto 
+	RF
+	0 32 3 2 roll widthshow
+	grestore
+	} bind def
+/S { 
+	moveto
+	0 exch ashow
+	} bind def
+/SF { 
+	gsave
+	moveto
+	RF
+	0 exch ashow
+	grestore
+	} bind def
+/B { 
+	moveto
+	0 32 4 2 roll 0 exch awidthshow
+	} bind def
+/BF { 
+	gsave
+	moveto
+	RF
+	0 32 4 2 roll 0 exch awidthshow
+	grestore
+	} bind def
+/G { 
+	gsave
+	newpath
+	normalize translate 0.0 0.0 moveto 
+	dnormalize scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	closepath fill
+	grestore
+	} bind def
+/A { 
+	gsave
+	savematrix
+	newpath
+	2 index 2 div add exch 3 index 2 div sub exch 
+	normalize 2 index 2 div sub exch 3 index 2 div add exch 
+	translate 
+	scale 
+	0.0 0.0 1.0 5 3 roll arc 
+	restorematrix
+	stroke
+	grestore
+	} bind def
+	/x FMLOCAL
+	/y FMLOCAL
+	/w FMLOCAL
+	/h FMLOCAL
+	/xx FMLOCAL
+	/yy FMLOCAL
+	/ww FMLOCAL
+	/hh FMLOCAL
+	/FMsaveobject FMLOCAL
+	/FMoptop FMLOCAL
+	/FMdicttop FMLOCAL
+/BEGINPRINTCODE { 
+	/FMdicttop countdictstack 1 add def 
+	/FMoptop count 4 sub def 
+	/FMsaveobject save def
+	userdict begin 
+	/showpage {} def 
+	FMNORMALIZEGRAPHICS 
+	3 index neg 3 index neg translate
+	} bind def
+/ENDPRINTCODE {
+	count -1 FMoptop {pop pop} for 
+	countdictstack -1 FMdicttop {pop end} for 
+	FMsaveobject restore 
+	} bind def
+/gn { 
+	0 
+	{	46 mul 
+		cf read pop 
+		32 sub 
+		dup 46 lt {exit} if 
+		46 sub add 
+		} loop
+	add 
+	} bind def
+	/str FMLOCAL
+/cfs { 
+	/str sl string def 
+	0 1 sl 1 sub {str exch val put} for 
+	str def 
+	} bind def
+/ic [ 
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0223
+	0
+	{0 hx} {1 hx} {2 hx} {3 hx} {4 hx} {5 hx} {6 hx} {7 hx} {8 hx} {9 hx}
+	{10 hx} {11 hx} {12 hx} {13 hx} {14 hx} {15 hx} {16 hx} {17 hx} {18 hx}
+	{19 hx} {gn hx} {0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10} {11} {12}
+	{13} {14} {15} {16} {17} {18} {19} {gn} {0 wh} {1 wh} {2 wh} {3 wh}
+	{4 wh} {5 wh} {6 wh} {7 wh} {8 wh} {9 wh} {10 wh} {11 wh} {12 wh}
+	{13 wh} {14 wh} {gn wh} {0 bl} {1 bl} {2 bl} {3 bl} {4 bl} {5 bl} {6 bl}
+	{7 bl} {8 bl} {9 bl} {10 bl} {11 bl} {12 bl} {13 bl} {14 bl} {gn bl}
+	{0 fl} {1 fl} {2 fl} {3 fl} {4 fl} {5 fl} {6 fl} {7 fl} {8 fl} {9 fl}
+	{10 fl} {11 fl} {12 fl} {13 fl} {14 fl} {gn fl}
+	] def
+	/sl FMLOCAL
+	/val FMLOCAL
+	/ws FMLOCAL
+	/im FMLOCAL
+	/bs FMLOCAL
+	/cs FMLOCAL
+	/len FMLOCAL
+	/pos FMLOCAL
+/ms { 
+	/sl exch def 
+	/val 255 def 
+	/ws cfs 
+	/im cfs 
+	/val 0 def 
+	/bs cfs 
+	/cs cfs 
+	} bind def
+400 ms 
+/ip { 
+	is 
+	0 
+	cf cs readline pop 
+	{	ic exch get exec 
+		add 
+		} forall 
+	pop 
+	
+	} bind def
+/wh { 
+	/len exch def 
+	/pos exch def 
+	ws 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/bl { 
+	/len exch def 
+	/pos exch def 
+	bs 0 len getinterval im pos len getinterval copy pop
+	pos len 
+	} bind def
+/s1 1 string def
+/fl { 
+	/len exch def 
+	/pos exch def 
+	/val cf s1 readhexstring pop 0 get def
+	pos 1 pos len add 1 sub {im exch val put} for
+	pos len 
+	} bind def
+/hx { 
+	3 copy getinterval 
+	cf exch readhexstring pop pop 
+	} bind def
+	/h FMLOCAL
+	/w FMLOCAL
+	/d FMLOCAL
+	/lb FMLOCAL
+	/bitmapsave FMLOCAL
+	/is FMLOCAL
+	/cf FMLOCAL
+/wbytes { 
+	dup 
+	8 eq {pop} {1 eq {7 add 8 idiv} {3 add 4 idiv} ifelse} ifelse
+	} bind def
+/BEGINBITMAPBWc { 
+	1 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAPGRAYc { 
+	8 {} COMMONBITMAPc
+	} bind def
+/BEGINBITMAP2BITc { 
+	2 {} COMMONBITMAPc
+	} bind def
+/COMMONBITMAPc { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	r                    
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} image 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BEGINBITMAPBW { 
+	1 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAPGRAY { 
+	8 {} COMMONBITMAP
+	} bind def
+/BEGINBITMAP2BIT { 
+	2 {} COMMONBITMAP
+	} bind def
+/COMMONBITMAP { 
+	/r exch def
+	/d exch def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	r                    
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{cf is readhexstring pop} image
+	bitmapsave restore 
+	grestore
+	} bind def
+	/proc1 FMLOCAL
+	/proc2 FMLOCAL
+	/newproc FMLOCAL
+/Fmcc {
+    /proc2 exch cvlit def
+    /proc1 exch cvlit def
+    /newproc proc1 length proc2 length add array def
+    newproc 0 proc1 putinterval
+    newproc proc1 length proc2 putinterval
+    newproc cvx
+} bind def
+/ngrayt 256 array def
+/nredt 256 array def
+/nbluet 256 array def
+/ngreent 256 array def
+	/gryt FMLOCAL
+	/blut FMLOCAL
+	/grnt FMLOCAL
+	/redt FMLOCAL
+	/indx FMLOCAL
+	/cynu FMLOCAL
+	/magu FMLOCAL
+	/yelu FMLOCAL
+	/k FMLOCAL
+	/u FMLOCAL
+/colorsetup {
+	currentcolortransfer
+	/gryt exch def
+	/blut exch def
+	/grnt exch def
+	/redt exch def
+	0 1 255 {
+		/indx exch def
+		/cynu 1 red indx get 255 div sub def
+		/magu 1 green indx get 255 div sub def
+		/yelu 1 blue indx get 255 div sub def
+		/k cynu magu min yelu min def
+		/u k currentundercolorremoval exec def
+		nredt indx 1 0 cynu u sub max sub redt exec put
+		ngreent indx 1 0 magu u sub max sub grnt exec put
+		nbluet indx 1 0 yelu u sub max sub blut exec put
+		ngrayt indx 1 k currentblackgeneration exec sub gryt exec put
+	} for
+	{255 mul cvi nredt exch get}
+	{255 mul cvi ngreent exch get}
+	{255 mul cvi nbluet exch get}
+	{255 mul cvi ngrayt exch get}
+	setcolortransfer
+	{pop 0} setundercolorremoval
+	{} setblackgeneration
+	} bind def
+	/tran FMLOCAL
+/fakecolorsetup {
+	/tran 256 string def
+	0 1 255 {/indx exch def 
+		tran indx
+		red indx get 77 mul
+		green indx get 151 mul
+		blue indx get 28 mul
+		add add 256 idiv put} for
+	currenttransfer
+	{255 mul cvi tran exch get 255.0 div}
+	exch Fmcc settransfer
+} bind def
+/BITMAPCOLOR { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/bitmapsave save def 
+	colorsetup
+	/is w d wbytes string def
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{cf is readhexstring pop} {is} {is} true 3 colorimage 
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPCOLORc { 
+	/d 8 def
+	gsave
+	translate rotate scale /h exch def /w exch def
+	/lb w d wbytes def 
+	sl lb lt {lb ms} if 
+	/bitmapsave save def 
+	colorsetup
+	/is im 0 lb getinterval def 
+	ws 0 lb getinterval is copy pop 
+	/cf currentfile def 
+	w h d [w 0 0 h neg 0 h] 
+	{ip} {is} {is} true 3 colorimage
+	bitmapsave restore 
+	grestore
+	} bind def
+/BITMAPTRUECOLORc { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        
+        /is w string def
+        
+        ws 0 w getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {ip} {gip} {bip} true 3 colorimage
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUECOLOR { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop } 
+        { cf gis readhexstring pop } 
+        { cf bis readhexstring pop } 
+        true 3 colorimage 
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPTRUEGRAYc { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        
+        /is w string def
+        
+        ws 0 w getinterval is copy pop 
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        {ip gip bip w gray} image
+        bitmapsave restore 
+        grestore
+        } bind def
+/ww FMLOCAL
+/r FMLOCAL
+/g FMLOCAL
+/b FMLOCAL
+/i FMLOCAL
+/gray { 
+        /ww exch def
+        /b exch def
+        /g exch def
+        /r exch def
+        0 1 ww 1 sub { /i exch def r i get .299 mul g i get .587 mul
+			b i get .114 mul add add r i 3 -1 roll floor cvi put } for
+        r
+        } bind def
+/BITMAPTRUEGRAY { 
+        gsave
+        translate rotate scale /h exch def /w exch def
+        /bitmapsave save def 
+        /is w string def
+        /gis w string def
+        /bis w string def
+        /cf currentfile def 
+        w h 8 [w 0 0 h neg 0 h] 
+        { cf is readhexstring pop 
+          cf gis readhexstring pop 
+          cf bis readhexstring pop w gray}  image
+        bitmapsave restore 
+        grestore
+        } bind def
+/BITMAPGRAY { 
+	8 {fakecolorsetup} COMMONBITMAP
+	} bind def
+/BITMAPGRAYc { 
+	8 {fakecolorsetup} COMMONBITMAPc
+	} bind def
+/ENDBITMAP {
+	} bind def
+end 
+	/ALDsave FMLOCAL
+	/ALDmatrix matrix def ALDmatrix currentmatrix pop
+/StartALD {
+	/ALDsave save def
+	 savematrix
+	 ALDmatrix setmatrix
+	} bind def
+/InALD {
+	 restorematrix
+	} bind def
+/DoneALD {
+	 ALDsave restore
+	} bind def
+%%EndProlog
+%%BeginSetup
+(3.0) FMVERSION
+1 1 612 792 0 1 10 FMDOCUMENT
+0 0 /Times-Roman FMFONTDEFINE
+1 0 /Times-Bold FMFONTDEFINE
+2 0 /Courier FMFONTDEFINE
+3 1 /Symbol FMFONTDEFINE
+4 0 /Courier-Bold FMFONTDEFINE
+32 FMFILLS
+0 0 FMFILL
+1 .1 FMFILL
+2 .3 FMFILL
+3 .5 FMFILL
+4 .7 FMFILL
+5 .9 FMFILL
+6 .97 FMFILL
+7 1 FMFILL
+8 <0f1e3c78f0e1c387> FMFILL
+9 <0f87c3e1f0783c1e> FMFILL
+10 <cccccccccccccccc> FMFILL
+11 <ffff0000ffff0000> FMFILL
+12 <8142241818244281> FMFILL
+13 <03060c183060c081> FMFILL
+14 <8040201008040201> FMFILL
+16 1 FMFILL
+17 .9 FMFILL
+18 .7 FMFILL
+19 .5 FMFILL
+20 .3 FMFILL
+21 .1 FMFILL
+22 0.03 FMFILL
+23 0 FMFILL
+24 <f0e1c3870f1e3c78> FMFILL
+25 <f0783c1e0f87c3e1> FMFILL
+26 <3333333333333333> FMFILL
+27 <0000ffff0000ffff> FMFILL
+28 <7ebddbe7e7dbbd7e> FMFILL
+29 <fcf9f3e7cf9f3f7e> FMFILL
+30 <7fbfdfeff7fbfdfe> FMFILL
+%%EndSetup
+%%Page: "1" 1
+%%BeginPaperSize: Letter
+%%EndPaperSize
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(1) 536 42.62 T
+0 24 Q
+(The Oakwood Guidelines for Oberon-2) 134.82 704 T
+(Compiler Developers) 221.07 674 T
+1 12 Q
+(Scope) 309.01 618 T
+0 F
+0.15 (This document is a companion document to the ETH Oberon-2 Report and contains clari-) 108 590 P
+(\336cations, extensions, implementation recommendations and a basic library de\336nition.) 108 576 T
+1 F
+(Purpose) 303.01 556 T
+0 F
+1.24 (T) 108 528 P
+1.24 (o document the discussions held at the Oakwood Conference in Croydon 1993 and to) 114.49 528 P
+1.11 (provide practical guidance for compiler writers. The objective being to have a common) 108 514 P
+0.69 (approach to Oberon-2 compiler implementations over a wide variety of platforms and to) 108 500 P
+(encourage consistency wherever practical.) 108 486 T
+1 F
+(Authors) 303.01 466 T
+0 F
+(See Appendix 2) 285.69 438 T
+1 F
+(Revision:) 262.87 402 T
+(1A First Issue) 313.84 402 T
+(Edited by:) 213.55 386 T
+(Brian Kirk, Robinson Associates) 267.19 386 T
+(Dedication) 296.35 354 T
+0 F
+(This document is dedicated to the memory of Nick W) 184.24 326 T
+(alsh.) 441.44 326 T
+(His sound advice and subtle wit combined with) 210.24 300 T
+(intellectual clarity will be sorely missed by) 220.73 274 T
+(friends, colleagues and students.) 246.22 248 T
+FMENDPAGE
+%%EndPage: "1" 2
+%%Page: "2" 2
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(Preface) 108 42.62 T
+(October 20, 1995) 296.13 42.62 T
+(2) 536 42.62 T
+0 24 Q
+(Preface) 288.04 704 T
+0 12 Q
+-0.05 (The Oberon language - together with the Oberon System - was designed and implemented) 108 664 P
+0.87 (by Prof. Niklaus W) 108 650 P
+0.87 (irth and Prof. Jr) 203.39 650 P
+0.87 (g Gutknecht at ETH Zrich from 1985 to 1987. Since) 281.05 650 P
+0.33 (then it has been used intensively for teaching but also for projects at ETH and elsewhere.) 108 636 P
+(After some minor changes - which also led to Oberon-2 - the language \336nally became sta-) 108 622 T
+1.41 (ble and mature. Currently) 108 608 P
+1.41 (, it is available on practically all modern platforms. All these) 234.71 608 P
+1.44 (implementations support the same language and even the same interfaces to \336les, win-) 108 594 P
+(dows and other operating system resources. One could thus speak of a de facto standard.) 108 580 T
+0.44 (This was the situation when a group of about 30 compiler developers and vendors met at) 108 554 P
+0.6 (the Oakwood Hotel in Croydon in June 1993 to agree on a common set of language fea-) 108 540 P
+(tures and library modules that should be provided by every Oberon-2 system.) 108 526 T
+1.29 (This group worked in a very ef) 108 500 P
+1.29 (\336cient way avoiding bureaucracy and lengthy meetings.) 264.1 500 P
+0.72 (W) 108 486 P
+0.72 (ithin a few months they produced a document which subsumes the results of the Oak-) 118.84 486 P
+(wood meeting and establishes a set of guidelines to compiler developers.) 108 472 T
+0.28 (Beside some clari\336cations to the language report and a modest set of possible extensions,) 108 446 P
+1.12 (the central part of this document gives hints to compiler developers and de\336nes a basic) 108 432 P
+(module library that should come with every Oberon-2 implementation.) 108 418 T
+1.21 (I hope that future developers of Oberon-2 systems will stick to these guidelines for the) 108 392 P
+-0.04 (bene\336t of uniformity and portability) 108 378 P
+-0.04 (. Oberon-2 will only be successful if it does not repeat) 280.28 378 P
+-0.08 (the mistakes of Modula-2 implementations where a lack of agreement between early com-) 108 364 P
+(piler developers led to incompatibilities and an all too lengthy standardisation process.) 108 350 T
+-0.23 (My special thanks go to Brian Kirk and Euan Hill who acted as conveners of the Oakwood) 108 324 P
+1.19 (meeting and later undertook the dif) 108 310 P
+1.19 (\336cult task of collecting and assembling all the com-) 282.62 310 P
+0.96 (ments, suggestions and wishes into a consistent and reasonably short document. Thanks) 108 296 P
+1.51 (also to all individuals listed at the end of this document who contributed in a spirit of) 108 282 P
+(cooperation.) 108 268 T
+(Hanspeter M) 108 216 T
+(\232) 170.28 216 T
+(ssenb) 176.28 216 T
+(\232) 202.93 216 T
+(ck) 208.93 216 T
+(ETH, Z\237rich) 108 190 T
+(November) 108 164 T
+(, 1993) 158.14 164 T
+FMENDPAGE
+%%EndPage: "2" 3
+%%Page: "3" 3
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(Notes from the Editor) 108 42.62 T
+(October 20, 1995) 296.13 42.62 T
+(3) 536 42.62 T
+0 24 Q
+(Notes from the Editor) 219.07 704 T
+0 12 Q
+1.12 (Here is the \336rst issue of the Oakwood Guidelines. It is based on the draft circulated by) 108 664 P
+0.08 (Email which has been amended based on your feedback and reviewed with Prof. M\232ssen-) 108 650 P
+0.39 (b\232ck and Josef T) 108 636 P
+0.39 (empl at ETH. I am aware that possibly all the contributors may possibly) 189.92 636 P
+-0.21 (be disappointed ! The reason is simple, there have been many ideas put forward and I have) 108 622 P
+0.64 (tried to include only items which were discussed at the Oakwood meeting or have really) 108 608 P
+0.06 (strong support. Items in brackets << like this >> highlight topics that require further clari-) 108 594 P
+(\336cation. Any errors in the draft are likely to be mine.) 108 580 T
+1.11 (What next ? My feeling is that the compiler developers \050see Appendix B\051 should try to) 108 554 P
+0.98 (re\336ne and agree the contents of this document, and not add any more to it, maybe even) 108 540 P
+-0.05 (remove items from it. Above all we should avoid a repeat of the Modula-2 standardisation) 108 526 P
+(story as probably nothing useful would be achieved in practice.) 108 512 T
+0.79 (Y) 108 486 P
+0.79 (our feedback on the content of the draft and possibility for a further meeting would be) 115.46 486 P
+(most welcome.) 108 472 T
+(Brian Kirk) 108 446 T
+(Robinson Associates) 108 426 T
+(Red Lion House) 108 410 T
+(St Mary\325) 108 394 T
+(s Street) 150.31 394 T
+( Painswick) 185.96 394 T
+(GLOS) 241.26 394 T
+(GL6 6QR) 108 378 T
+(V) 108 362 T
+(oice \050+ 44\051 \0500\051452 813 699) 115.11 362 T
+(Fax \050+ 44\051 \0500\051452 812 912) 108 346 T
+(e-Mail : robinsons@cix.compulink.co.uk.) 108 330 T
+FMENDPAGE
+%%EndPage: "3" 4
+%%Page: "4" 4
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(CONTENTS) 108 42.62 T
+(October 20, 1995) 296.13 42.62 T
+(4) 536 42.62 T
+0 24 Q
+(CONTENTS) 261.37 704 T
+0 12 Q
+(1.0) 108 664 T
+(Introduction) 144 664 T
+(..............................................................................................................) 203.89 664 T
+(7) 534 664 T
+0 10 Q
+(1.1) 144 649.33 T
+(The Oakwood Guidelines) 180 649.33 T
+(....................................................................................................) 284.84 649.33 T
+(7) 535 649.33 T
+(1.2) 144 635.33 T
+(Oberon-2 Language Standard) 180 635.33 T
+(..............................................................................................) 299.83 635.33 T
+(7) 535 635.33 T
+(1.3) 144 621.33 T
+(Use of the name Oberon) 180 621.33 T
+(......................................................................................................) 279.85 621.33 T
+(8) 535 621.33 T
+0 12 Q
+(2.0) 108 602 T
+(Language Clari\336cations) 144 602 T
+(...........................................................................................) 260.86 602 T
+(9) 534 602 T
+0 10 Q
+(2.1) 144 587.33 T
+(Introduction) 180 587.33 T
+(..........................................................................................................................) 229.87 587.33 T
+(9) 535 587.33 T
+(2.2) 144 573.33 T
+(Status of NIL) 180 573.33 T
+(........................................................................................................................) 234.87 573.33 T
+(9) 535 573.33 T
+(2.3) 144 559.33 T
+(Illegal Operations) 180 559.33 T
+(.................................................................................................................) 252.36 559.33 T
+(9) 535 559.33 T
+(2.4) 144 545.33 T
+(WITH and guarded variables) 180 545.33 T
+(...............................................................................................) 297.34 545.33 T
+(9) 535 545.33 T
+(2.5) 144 531.33 T
+(String Comparison) 180 531.33 T
+(.............................................................................................................) 257.36 531.33 T
+(10) 530.01 531.33 T
+(2.6) 144 517.33 T
+(Recursive declarations and imports) 180 517.33 T
+(...................................................................................) 322.32 517.33 T
+(10) 530.01 517.33 T
+(2.7) 144 503.33 T
+(String and Character Compatibility) 180 503.33 T
+(...................................................................................) 322.32 503.33 T
+(1) 530.38 503.33 T
+(1) 535 503.33 T
+(2.8) 144 489.33 T
+(Redeclaration of predeclared identi\336ers) 180 489.33 T
+(............................................................................) 339.81 489.33 T
+(1) 530.38 489.33 T
+(1) 535 489.33 T
+(2.9) 144 475.33 T
+(T) 180 475.33 T
+(runcation of precision) 185.76 475.33 T
+(......................................................................................................) 274.85 475.33 T
+(1) 530.38 475.33 T
+(1) 535 475.33 T
+0 12 Q
+(3.0) 108 456 T
+(Language Extensions) 144 456 T
+(.............................................................................................) 248.86 456 T
+(12) 528.01 456 T
+0 10 Q
+(3.1) 144 441.33 T
+(Introduction) 180 441.33 T
+(........................................................................................................................) 229.87 441.33 T
+(12) 530.01 441.33 T
+(3.2) 144 427.33 T
+(Additional Datatypes) 180 427.33 T
+(.........................................................................................................) 267.35 427.33 T
+(12) 530.01 427.33 T
+(3.3) 144 413.33 T
+(T) 180 413.33 T
+(ype COMPLEX and LONGCOMPLEX) 185.41 413.33 T
+(.........................................................................) 347.31 413.33 T
+(13) 530.01 413.33 T
+(3.4) 144 399.33 T
+(Interrupt and Code Procedures) 180 399.33 T
+(..........................................................................................) 304.83 399.33 T
+(15) 530.01 399.33 T
+(3.5) 144 385.33 T
+(Interfacing to External Libraries) 180 385.33 T
+(........................................................................................) 309.83 385.33 T
+(16) 530.01 385.33 T
+(3.6) 144 371.33 T
+(Underscores in Identi\336ers) 180 371.33 T
+(..................................................................................................) 284.84 371.33 T
+(17) 530.01 371.33 T
+(3.7) 144 357.33 T
+(In-line Exponentiation) 180 357.33 T
+(.......................................................................................................) 272.35 357.33 T
+(17) 530.01 357.33 T
+0 12 Q
+(4.0) 108 338 T
+(Compilation Control) 144 338 T
+(..............................................................................................) 245.87 338 T
+(19) 528.01 338 T
+0 10 Q
+(4.1) 144 323.33 T
+(Introduction) 180 323.33 T
+(........................................................................................................................) 229.87 323.33 T
+(19) 530.01 323.33 T
+(4.2) 144 309.33 T
+(Runtime checks) 180 309.33 T
+(..................................................................................................................) 244.87 309.33 T
+(19) 530.01 309.33 T
+(4.3) 144 295.33 T
+(Compiler option control) 180 295.33 T
+(.....................................................................................................) 277.35 295.33 T
+(20) 530.01 295.33 T
+(4.4) 144 281.33 T
+(Compiler source control) 180 281.33 T
+(.....................................................................................................) 277.35 281.33 T
+(21) 530.01 281.33 T
+0 12 Q
+(5.0) 108 262 T
+(Implementation Recommendations) 144 262 T
+(.......................................................................) 314.83 262 T
+(22) 528.01 262 T
+0 10 Q
+(5.1) 144 247.33 T
+(Introduction) 180 247.33 T
+(........................................................................................................................) 229.87 247.33 T
+(22) 530.01 247.33 T
+(5.2) 144 233.33 T
+(T) 180 233.33 T
+(ype ranges) 185.41 233.33 T
+(........................................................................................................................) 229.87 233.33 T
+(22) 530.01 233.33 T
+(5.3) 144 219.33 T
+(T) 180 219.33 T
+(ype Extension Levels) 185.41 219.33 T
+(.......................................................................................................) 272.35 219.33 T
+(22) 530.01 219.33 T
+(5.4) 144 205.33 T
+(The module SYSTEM) 180 205.33 T
+(.......................................................................................................) 272.35 205.33 T
+(22) 530.01 205.33 T
+(5.5) 144 191.33 T
+(The procedure SYSTEM.MOVE) 180 191.33 T
+(.......................................................................................) 312.33 191.33 T
+(22) 530.01 191.33 T
+(5.6) 144 177.33 T
+(Garbage collection) 180 177.33 T
+(.............................................................................................................) 257.36 177.33 T
+(22) 530.01 177.33 T
+(5.7) 144 163.33 T
+(Implementation characteristics) 180 163.33 T
+(..........................................................................................) 304.83 163.33 T
+(23) 530.01 163.33 T
+(5.8) 144 149.33 T
+(Initialisation of Pointers) 180 149.33 T
+(.....................................................................................................) 277.35 149.33 T
+(23) 530.01 149.33 T
+(5.9) 144 135.33 T
+(Handling unde\336ned semanics) 180 135.33 T
+(............................................................................................) 299.83 135.33 T
+(24) 530.01 135.33 T
+(5.10) 144 121.33 T
+(Monadic \324-\325) 180 121.33 T
+(........................................................................................................................) 229.87 121.33 T
+(24) 530.01 121.33 T
+(5.1) 144 107.33 T
+(1) 156.12 107.33 T
+(Conversion from Integer to Real) 180 107.33 T
+(.......................................................................................) 312.33 107.33 T
+(24) 530.01 107.33 T
+(5.12) 144 93.33 T
+(Exported Comments) 180 93.33 T
+(..........................................................................................................) 264.85 93.33 T
+(24) 530.01 93.33 T
+(5.13) 144 79.33 T
+(Read only V) 180 79.33 T
+(AR Parameters) 229.23 79.33 T
+(...............................................................................................) 292.34 79.33 T
+(24) 530.01 79.33 T
+FMENDPAGE
+%%EndPage: "4" 5
+%%Page: "5" 5
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(CONTENTS) 108 42.62 T
+(October 20, 1995) 296.13 42.62 T
+(5) 536 42.62 T
+0 10 Q
+(5.14) 144 713.33 T
+(T) 180 713.33 T
+(ype Guards with RECORD parameters) 185.41 713.33 T
+(...........................................................................) 342.31 713.33 T
+(25) 530.01 713.33 T
+0 12 Q
+(6.0) 108 694 T
+(Library Modules) 144 694 T
+(....................................................................................................) 227.88 694 T
+(26) 528.01 694 T
+0 10 Q
+(6.1) 144 675.33 T
+(Introduction) 180 675.33 T
+(........................................................................................................................) 229.87 675.33 T
+(26) 530.01 675.33 T
+(6.2) 144 661.33 T
+(Basic Modules) 180 661.33 T
+(....................................................................................................................) 239.87 661.33 T
+(26) 530.01 661.33 T
+(6.3) 144 647.33 T
+(Additional Modules) 180 647.33 T
+(...........................................................................................................) 262.36 647.33 T
+(26) 530.01 647.33 T
+0 12 Q
+(Library modules 28) 108 620 T
+0 10 Q
+(1.1) 144 605.33 T
+(Basic Library Modules) 180 605.33 T
+(.......................................................................................................) 272.35 605.33 T
+(28) 530.01 605.33 T
+(1.2) 144 591.33 T
+(Additional Modules) 180 591.33 T
+(...........................................................................................................) 262.36 591.33 T
+(28) 530.01 591.33 T
+0 12 Q
+(List of Contributors 46) 108 564 T
+(Oakwood Conference 47) 108 536 T
+0 10 Q
+(3.1) 144 521.33 T
+(List of Contributors and Participants) 180 521.33 T
+(.................................................................................) 327.32 521.33 T
+(47) 530.01 521.33 T
+(3.2) 144 507.33 T
+(Document Modi\336cation Record) 180 507.33 T
+(.........................................................................................) 307.33 507.33 T
+(48) 530.01 507.33 T
+(3.3) 144 493.33 T
+(Document Feedback) 180 493.33 T
+(..........................................................................................................) 264.85 493.33 T
+(49) 530.01 493.33 T
+(3.4) 144 479.33 T
+(Document Distribution Record) 180 479.33 T
+(..........................................................................................) 304.83 479.33 T
+(50) 530.01 479.33 T
+FMENDPAGE
+%%EndPage: "5" 6
+%%Page: "6" 6
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(CONTENTS) 108 42.62 T
+(October 20, 1995) 296.13 42.62 T
+(6) 536 42.62 T
+0 12 Q
+([THIS P) 202.91 556 T
+(AGE INTENTIONALL) 242.12 556 T
+(Y LEFT BLANK]) 356.48 556 T
+FMENDPAGE
+%%EndPage: "6" 7
+%%Page: "7" 7
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(7) 536 42.62 T
+0 24 Q
+(The Oakwood Guidelines for Oberon-2) 134.82 704 T
+(Compiler Developers) 221.07 674 T
+1 16 Q
+(1.0  Intr) 108 625.33 T
+(oduction) 163.23 625.33 T
+1 14 Q
+(1.1  The Oakwood Guidelines) 108 590.67 T
+0 12 Q
+2.94 (These guidelines have been produced by a group of Oberon-2 compiler developers,) 108 564 P
+0.07 (including ETH developers, after a meeting at the Oakwood Hotel in Croydon, UK in June) 108 550 P
+-0.29 (1993. The purpose of that meeting was to agree on a standard speci\336cation for the Oberon-) 108 536 P
+-0.25 (2 Language, some minimal extensions and a standard portable library) 108 522 P
+-0.25 (. The intention is that) 438.72 522 P
+0.17 (all implementors should of) 108 508 P
+0.17 (fer support for Oberon-2 to at least the ETH speci\336cation stan-) 237.22 508 P
+0.61 (dard and also of) 108 494 P
+0.61 (fer an implementation of the basic library modules. The aim is to ensure) 186.56 494 P
+1.02 (that Oberon-2 programs using the library will be consistent and portable across all con-) 108 480 P
+(forming implementations.) 108 466 T
+1.33 (The initial motivation behind the Oakwood meeting was to avoid the fate of Modula-2) 108 440 P
+1.16 (being repeated with commercial implementations of Oberon-2. Unfortunately Modula-2) 108 426 P
+0.83 (implementations introduced many dialects of the language and many incompatible basic) 108 412 P
+0.18 (libraries. The standardisation process for Modula-2 took far too long and opened the door) 108 398 P
+0.69 (to a pandoras box of extensions. The objective of this report is to acknowledge the ETH) 108 384 P
+0.05 (Oberon-2 language report as the base standard and to provide information useful for com-) 108 370 P
+-0.17 (piler developers so that compilers and their basic libraries provide a basic level of compat-) 108 356 P
+(ibility) 108 342 T
+(.) 135.88 342 T
+1 14 Q
+(1.2  Ober) 108 308.67 T
+(on-2 Language Standard) 163.33 308.67 T
+0 12 Q
+-0.17 (The standard speci\336cation of the language ETH Oberon-2 is contained in a report which is) 108 282 P
+0.62 (controlled and published by ETH Zrich. The current version of the report is available by) 108 268 P
+(anonymous FTP transfer over INTERNET from the directory :) 108 254 T
+(neptune.inf.ethz.ch:~ ftp/Oberon/Docu) 108 228 T
+(The latest complete version of the ETH Oberon-2 report is in \336le) 108 202 T
+(Oberon2.Report.ps.Z.) 108 176 T
+(A chronological list of all changes made to the report is in \336le) 108 150 T
+(Oberon2.ChangeList.ps.z) 108 124 T
+FMENDPAGE
+%%EndPage: "7" 8
+%%Page: "8" 8
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(8) 536 42.62 T
+1 14 Q
+(1.3  Use of the name Ober) 108 710.67 T
+(on) 262.03 710.67 T
+0 12 Q
+0.93 (The name Oberon has been trademarked by ETH in the context of the operating system) 108 684 P
+1.31 (and the language. In order to respect the ETH trademark any compiler that does not at) 108 670 P
+2.31 (least implement ETH Oberon or Oberon-2 should not be referred to or named as an) 108 656 P
+(Oberon or Oberon-2 compiler) 108 642 T
+(.) 250.89 642 T
+1.21 (When referring to features of ETH Oberon in documentation it is acceptable to use the) 108 616 P
+0.82 (terms Oberon or Oberon-2. However when referring to any compiler speci\336c extensions) 108 602 P
+(the term Oberon should be quali\336ed with an adjective.) 108 588 T
+(For example : \322XYZ Oberon-2 supports complex numbers\323) 108 562 T
+0.08 (In the interest of users, it is strongly recommended that whenever implementors provide a) 108 536 P
+0.02 (description of their product they specify the extensions that they do or do not support, and) 108 522 P
+(the additional libraries they provide.) 108 508 T
+1.74 (Implementors should state as part of the description of their compilers whether or not) 108 482 P
+(extensions are supported in accordance with these Oakwood Guidelines.) 108 468 T
+FMENDPAGE
+%%EndPage: "8" 9
+%%Page: "9" 9
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(9) 536 42.62 T
+1 16 Q
+(2.0  Language Clari\336cations) 108 709.33 T
+1 14 Q
+(2.1  Intr) 108 674.67 T
+(oduction) 156.33 674.67 T
+0 12 Q
+0.43 (This chapter consists of a list of language clari\336cations. Ideally there would be no neces-) 108 648 P
+0.59 (sity for clari\336cations and it is hoped that, where relevant, the ETH Oberon-2 Report will) 108 634 P
+0.33 (be modi\336ed at some time in the future. The clari\336cations listed here are a snapshot of the) 108 620 P
+(situation in September \32493.) 108 606 T
+1 14 Q
+(2.2  Status of NIL) 108 572.67 T
+0 12 Q
+0.35 (NIL is a reserved word denoting a prede\336ned value. In contrast to TRUE and F) 108 546 P
+0.35 (ALSE the) 492.02 546 P
+(type of NIL cannot be expressed in Oberon-2.) 108 532 T
+1 14 Q
+(2.3  Illegal Operations) 108 498.67 T
+0 12 Q
+(The following operations are illegal. Their ef) 108 472 T
+(fect is system dependent.) 323.95 472 T
+(1.) 108 452 T
+(De-referencing a NIL pointer) 121.75 452 T
+(.) 261.95 452 T
+(2.) 108 432 T
+(Calling procedure variables with a value NIL.) 121.75 432 T
+(3.) 108 412 T
+(T) 121.75 412 T
+(ype tests and type guards with NIL pointers.) 128.23 412 T
+(4.) 108 392 T
+(Indexing an array with an index that is out of range.) 121.75 392 T
+(5.) 108 372 T
+(Accessing a set element outside the range 0 .. MAX \050SET\051.) 121.75 372 T
+(6.) 108 352 T
+(Applying SHOR) 121.75 352 T
+(T \050...\051 to an ar) 201.32 352 T
+(gument with value not in the) 267.38 352 T
+(range of the result type.) 407.97 352 T
+(7.) 108 332 T
+(Operations on strings, or character arrays containing) 121.75 332 T
+(strings, that are not null termi-) 376.21 332 T
+(nated.) 121.75 318 T
+(8.) 108 298 T
+(Over\337ows.) 121.75 298 T
+1 14 Q
+(2.4  WITH and guarded variables) 108 264.67 T
+0 12 Q
+1.55 (It is possible to alter a guarded pointer variable within the scope of a guarding WITH) 108 238 P
+(statement, example:) 108 224 T
+2 F
+(TYPE) 108 204 T
+( T = RECORD END; P = POINTER TO T;) 108 188 T
+( T1 = RECORD \050T\051 END; P1 = POINTER TO T1;) 108 172 T
+( T2 = RECORD \050T\051 END; P2 = POINTER TO T2;) 108 156 T
+(PROCEDURE X;) 108 124 T
+( VAR p: P; p1: P1; p2: P2;) 108 108 T
+( PROCEDURE Y;) 108 92 T
+( BEGIN) 108 76 T
+FMENDPAGE
+%%EndPage: "9" 10
+%%Page: "10" 10
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(10) 532 42.62 T
+2 12 Q
+( p := p2) 108 712 T
+( END Y;) 108 696 T
+(BEGIN) 108 680 T
+( NEW \050p\051; NEW\050p1\051; NEW\050p2\051; p := p1;) 108 664 T
+( WITH p: P1 DO) 108 648 T
+( Y \050*p is now of type P2 and not P1*\051) 108 632 T
+( END) 108 616 T
+(END X;) 108 600 T
+0 F
+(A practical way to handle this is :) 108 574 T
+0.96 (If the compiler can be sure it is safe then give no warning message. If there can be any) 108 548 P
+2.21 (doubt then do give a warning message. A sophisticated compiler could automatically) 108 534 P
+(insert the additional relevant type guard checks.) 108 520 T
+1 14 Q
+(2.5  String Comparison) 108 486.67 T
+0 12 Q
+-0.07 (Strings are always null terminated. Character arrays that are to be compared or used as the) 108 460 P
+(source operand of the COPY procedure must contain 0X as a terminator) 108 446 T
+(.) 453.41 446 T
+-0.09 (The comparison a relop b, where a and b are \050open\051 character arrays or strings and relop is) 108 420 P
+(=, #, >, >=, <, <= is performed according to the following pseudocode) 108 406 T
+2 F
+(PROCEDURE Compare \050a, b: ARRAY OF CHAR;) 108 386 T
+( relop:RELATION\051:) 395.84 386 T
+(BOOLEAN;) 108 372 T
+( i := 0;) 108 356 T
+( WHILE \050a[i] 1 0X\051 & \050a[i]=b[i]\051) 108 340 T
+( DO) 108 324 T
+( INC \050i\051) 108 308 T
+( END;) 108 292 T
+( RETURN a[i] relop b[i]) 108 276 T
+(END Compare) 108 260 T
+1 14 Q
+(2.6  Recursive declarations and imports) 108 226.67 T
+1 12 Q
+(Declarations) 108 200 T
+0 F
+0.11 (The declaration of structured type cannot contain itself. For example a RECORD declara-) 108 174 P
+(tion cannot have itself as the type of one of its \336elds.) 108 160 T
+(A module must not import itself, for example) 108 134 T
+2 F
+(MODULE x;) 108 114 T
+( IMPORT x;) 108 98 T
+(END x.) 108 82 T
+FMENDPAGE
+%%EndPage: "10" 11
+%%Page: "11" 11
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(1) 532.3 42.62 T
+(1) 536 42.62 T
+0 12 Q
+(However the module name can be used for aliasing, for example) 108 712 T
+2 F
+(MODULE x;) 108 692 T
+( IMPORT x:=y;) 108 676 T
+( VAR i: x.INTEGER;) 108 660 T
+(END x.) 108 644 T
+0 F
+(This is, however) 108 618 T
+(, bad programming style.) 187.13 618 T
+1 14 Q
+(2.7  String and Character Compatibility) 108 584.67 T
+0 12 Q
+0.31 (A string of length 1 can be used in any context where a character constant is allowed and) 108 558 P
+(vice versa.) 108 544 T
+1 14 Q
+(2.8  Redeclaration of pr) 108 510.67 T
+(edeclar) 248.82 510.67 T
+(ed identi\336ers) 292.08 510.67 T
+0 12 Q
+(Any predeclared identi\336er can be redeclared. For example) 108 484 T
+2 F
+(TYPE INTEGER = LONGINT;) 108 464 T
+0 F
+(and) 108 438 T
+2 F
+(PROCEDURE ABS;) 108 418 T
+(BEGIN) 108 402 T
+( ...) 108 386 T
+(END ABS;) 108 370 T
+0 F
+(Obviously such practice should be discouraged and if used at all used with extreme care.) 108 344 T
+1 14 Q
+(2.9  T) 108 310.67 T
+(runcation of pr) 140.78 310.67 T
+(ecision) 231.48 310.67 T
+0 12 Q
+0.14 (The type inclusion hierarchy may infer an implicit truncation of precision between REAL) 108 284 P
+0.01 (and LONGINT) 108 270 P
+0.01 (. For example, if both types are represented in 32 bits then the REAL man-) 180.73 270 P
+0.79 (tissa precision is likely to be only 24 bits. An assignment from a LONGINT to a REAL) 108 256 P
+(will therefore involve a truncation of precision of value assigned.) 108 242 T
+FMENDPAGE
+%%EndPage: "11" 12
+%%Page: "12" 12
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(12) 532 42.62 T
+1 16 Q
+(3.0  Language Extensions) 108 709.33 T
+1 14 Q
+(3.1  Intr) 108 674.67 T
+(oduction) 156.33 674.67 T
+0 12 Q
+0.61 (Language extensions are features provided by compiler developers which are in addition) 108 648 P
+(to the language as speci\336ed in the ETH Oberon-2 Report.) 108 634 T
+0.57 (The purpose of this chapter is not to encourage extensions. The reason for de\336ning them) 108 608 P
+1.48 (here is to promote a uniform approach to the speci\336cation and provision of extensions) 108 594 P
+1.14 (across dif) 108 580 P
+1.14 (ferent compilers and endeavour to make sure that when the same extension is) 155.22 580 P
+0.87 (supported by more than one compiler it has the same syntax and semantics in each. If a) 108 566 P
+2.14 (particular compiler of) 108 552 P
+2.14 (fers a means to optionally support language extensions then the) 216.64 552 P
+(default compilation option is for no extensions to be enabled.) 108 538 T
+1 14 Q
+(3.2  Additional Datatypes) 108 504.67 T
+0 12 Q
+1.24 (Extending ETH Oberon-2 with new data types is a very contentious issue. At the Oak-) 108 478 P
+0.4 (wood meeting the general feeling was that only the complex number type should be con-) 108 464 P
+3.86 (sidered. Enumerations and unsigned types have been speci\336cally rejected by ETH) 108 450 P
+0.88 (although they are still found desirable by applications programmers. Unsigned types are) 108 436 P
+1.15 (particularly important when interfacing to existing external standard libraries such as X) 108 422 P
+0.38 (W) 108 408 P
+0.38 (indows, \324C\325 or W) 118.84 408 P
+0.38 (indows and had support from the applications programmers. Bit level) 203.45 408 P
+(types are considered to be unnecessary as the SET type can be used.) 108 394 T
+1 F
+(3.2.1  T) 108 362 T
+(ype inclusion Hierar) 145.1 362 T
+(chies) 249.5 362 T
+0 F
+0.15 (Adding data types which are additional to Oberon-2 should be done sympathetically \050if at) 108 336 P
+0.69 (all\051 and with due consideration to the implications on the whole language. Separate type) 108 322 P
+0.86 (inclusion hierarchies should be used to separate families of types which are intrinsically) 108 308 P
+-0 (incompatible. Explicit conversion procedures should be used to convert values that can be) 108 294 P
+1.91 (represented in dif) 108 280 P
+1.91 (ferent type inclusion hierarchies. The prede\336ned function procedures) 195.54 280 P
+(LONG and SHOR) 108 266 T
+(T should provide conversion within any extended type hierarchy) 195.89 266 T
+(.) 504.89 266 T
+(An example \050please note this is NOT a proposal for general implementation\051) 108 240 T
+2 F
+( LONGCOMPLEX) 108 220 T
+3 14 Q
+(\336) 201.55 220 T
+2 12 Q
+( REAL) 215.36 220 T
+3 14 Q
+(\336) 258.54 220 T
+2 12 Q
+( LONGINT) 272.35 220 T
+3 14 Q
+(\336) 337.11 220 T
+2 12 Q
+( INTEGER) 350.92 220 T
+3 14 Q
+(\336) 415.68 220 T
+2 12 Q
+( SHORTINT) 429.49 220 T
+( LONGCARD) 108 204 T
+3 14 Q
+(\336) 179.96 204 T
+2 12 Q
+( CARDINAL) 193.77 204 T
+3 14 Q
+(\336) 265.73 204 T
+2 12 Q
+( SHORTCARD) 279.54 204 T
+( LONGCHAR) 108 188 T
+3 14 Q
+(\336) 179.96 188 T
+2 12 Q
+( CHAR) 193.77 188 T
+0 F
+1.11 (The intention of this scheme is to retain the bene\336ts of type inclusion whilst separating) 108 162 P
+1.59 (explicitly the system dependent aspects of value conversion between types in dif) 108 148 P
+1.59 (ferent) 512.03 148 P
+0.08 (type inclusion hierarchies. Such procedures should be included as built in procedures. For) 108 134 P
+0.3 (any additional data type extension to the language it is the implementors responsibility to) 108 120 P
+0.92 (provide an updated version of the Oberon-2 Language Report indicating all the relevant) 108 106 P
+(changes required to it.) 108 92 T
+FMENDPAGE
+%%EndPage: "12" 13
+%%Page: "13" 13
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(13) 532 42.62 T
+0 12 Q
+-0.25 (There is a known problem with this proposal. It does not allow for type inclusion of COM-) 108 712 P
+0.71 (PLEX within LONGREAL. However it was felt to be a better solution than having only) 108 698 P
+0.95 (one complex type selectable as LONG by compiler switch, which could easily be set to) 108 684 P
+(select dif) 108 670 T
+(ferent options in dif) 151.42 670 T
+(ferent modules \050and library modules\051.) 246.14 670 T
+(<< BK: A proposal is needed for the conversion routine, see Section 3.3.1 >>) 108 644 T
+1 14 Q
+(3.3  T) 108 610.67 T
+(ype COMPLEX and LONGCOMPLEX) 140.78 610.67 T
+0 12 Q
+1.86 (Complex numbers are made up of two parts \050real, imaginary\051. The type LONGCOM-) 108 584 P
+0.78 (PLEX is de\336ned as \050LONGREAL, LONGREAL\051, and can be included at the top end of) 108 570 P
+0.22 (the type inclusion hierarchy) 108 556 P
+0.22 (. The type COMPLEX is de\336ned as \050REAL, REAL\051 and is an) 241.45 556 P
+-0.19 (extension of REAL within the hierarchy) 108 542 P
+-0.19 (. See Section 3.4.1. If a value of a type less than or) 299.13 542 P
+1.14 (equal to REAL is interpreted as a COMPLEX value then it is considered to be the real) 108 528 P
+0.69 (part; the corresponding imaginary part is 0. All expression and assignment compatibility) 108 514 P
+(rules can be applied to the complex types, for example) 108 500 T
+2 F
+(VAR) 108 480 T
+( c: COMPLEX;) 108 464 T
+( r: REAL;) 108 448 T
+( i: INTEGER;) 108 432 T
+( c:=i+r;) 108 416 T
+( c:=c*r;) 108 400 T
+1 F
+(3.3.1  New conversion functions) 108 368 T
+0 F
+(The following predeclared function procedures are de\336ned, \050z\051 stands for an expression) 108 342 T
+1 F
+(Name) 108 316 T
+(Argument T) 162 316 T
+(ype) 224.74 316 T
+(Result T) 288 316 T
+(ype) 330.76 316 T
+(Function) 372 316 T
+0 F
+(RE\050z\051) 108 296 T
+(COMPLEX) 162 296 T
+(REAL) 288 296 T
+(Real part) 372 296 T
+(RE\050z\051) 108 280 T
+(LONGCOMPLEX) 162 280 T
+(LONGREAL) 288 280 T
+( Real part) 369 280 T
+(IM\050z\051) 108 264 T
+(COMPLEX) 162 264 T
+(REAL) 288 264 T
+( Imaginary part) 369 264 T
+(IM\050z\051) 108 248 T
+(LONGCOMPLEX) 162 248 T
+(LONGREAL) 288 248 T
+( Imaginary part) 369 248 T
+0.22 (<< BK/HM/AF: Predeclared functions SHOR) 108 222 P
+0.22 (T) 328.25 222 P
+0.22 (, LONG, MIN, MAX and SIZE need to be) 334.69 222 P
+(de\336ned for COMPLEX and LONGCOMPLEX. >>) 108 208 T
+1 F
+(3.3.2  Complex literal number syntax) 108 176 T
+0 F
+(A common notation is used for complex number literals:) 108 150 T
+(number = integer | real | complex.) 108 124 T
+(complex = real \322i\323.) 108 98 T
+(Examples) 108 72 T
+FMENDPAGE
+%%EndPage: "13" 14
+%%Page: "14" 14
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(14) 532 42.62 T
+2 12 Q
+( Values) 108 712 T
+( RE) 108 696 T
+( IM) 129.59 696 T
+(1.i) 108 680 T
+( 0.) 129.59 680 T
+( 1.) 151.18 680 T
+(2.+3.i) 108 664 T
+( 2.) 151.18 664 T
+( 3.) 172.76 664 T
+(4.) 108 648 T
+( 4.) 122.39 648 T
+( 0.) 143.98 648 T
+(5.3-6.2i) 108 632 T
+( 5.3) 165.57 632 T
+(-6.2) 194.35 632 T
+1 F
+(3.3.3  Reasons against intr) 108 600 T
+(oducing COMPLEX) 241.71 600 T
+0 F
+0.72 (The omission of COMPLEX data types from Oberon was a deliberate ETH design deci-) 108 574 P
+(sion and not an oversight. The following reasons are cited by Josef T) 108 560 T
+(empl.) 437.93 560 T
+1 F
+(3.3.3.1 Internal Repr) 108 528 T
+(esentation) 214.72 528 T
+0 F
+(Cartesian or polar ? Both have advantages, cartesian is more common, though.) 108 502 T
+1 F
+(3.3.3.2 Ef\336ciency) 108 470 T
+0 F
+0.71 (Utmost ef) 108 444 P
+0.71 (\336ciency can only be gained by coding COMPLEX operations as REAL opera-) 156.13 444 P
+-0.25 (tions, because often the real or imaginary parts are zero, one, or a value which allows alge-) 108 430 P
+(braic simpli\336cations.) 108 416 T
+1 F
+(3.3.3.3 Accuracy) 108 384 T
+0 F
+(Not under full programmer control in case of COMPLEX.) 108 358 T
+1 F
+(3.3.3.4 Dif\336culties in the hierar) 108 326 T
+(chy of numeric types.) 266.02 326 T
+0 F
+-0.27 (The linear type inclusion would be changed to a directed acyclic graph \050DAG\051 if two types) 108 300 P
+1.4 (COMPLEX and LONGCOMPLEX are introduced with compatibility rules as naturally) 108 286 P
+(expected.) 108 272 T
+1.31 (A simpli\336cation would be to set COMPLEX = LONGCOMPLEX, but is it suf) 108 246 P
+1.31 (\336cient ?) 500.39 246 P
+1.27 (Another simpli\336cation would be to form a separate hierarchy consisting of COMPLEX) 108 232 P
+(and LONGCOMPLEX, but is this convenient ?) 108 218 T
+1.32 (One should also observe the ef) 108 192 P
+1.32 (fect on the rest of the language de\336nition. For example,) 261.95 192 P
+(what about the comparison operators for numeric types ?) 108 178 T
+1 F
+(3.3.3.5 Implementation) 108 146 T
+0 F
+1.41 (Not the most important point, but COMPLEX also makes the compiler more complex,) 108 120 P
+0.59 (especially when good code should be generated. The reason is that two separate operand) 108 106 P
+(descriptors must be maintained in the compiler to represent the two parts of one complex.) 108 92 T
+FMENDPAGE
+%%EndPage: "14" 15
+%%Page: "15" 15
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(15) 532 42.62 T
+1 12 Q
+(3.3.3.6 Hardwar) 108 712 T
+(e) 191.07 712 T
+0 F
+(Unlike INTEGER and REAL, no hardware support for COMPLEX is available.) 108 686 T
+1 F
+(3.3.3.7 Syntax) 108 654 T
+0 F
+1.36 (Additional syntax is necessary for denoting complex constants and/or additional prede-) 108 628 P
+(clared functions are necessary) 108 614 T
+(.) 251.42 614 T
+1 F
+(3.3.3.8 Structur) 108 582 T
+(ed function r) 187.73 582 T
+(eturns) 253.48 582 T
+0 F
+1.09 (A common misbelief is that introducing structured function returns would eliminate the) 108 556 P
+0.33 (discussion about COMPLEX, because then one could de\336ne complex operations as func-) 108 542 P
+0.41 (tions. It should be noted that this is only half the way since the mathematicians still want) 108 528 P
+0.05 (to have in\336x notation which would require the introduction of a more general overloading) 108 514 P
+0.54 (concept including in\336x operators. This in turn would break the idea of always qualifying) 108 500 P
+(imported objects by the module name.) 108 486 T
+1 F
+(3.3.3.9 Unused) 108 454 T
+0 F
+1.29 (For the reasons outlined above \050ef) 108 428 P
+1.29 (\336ciency) 277.77 428 P
+1.29 (, accuracy\051, many Fortran programmers don\325) 314.96 428 P
+1.29 (t) 536.66 428 P
+(use complex operations although they are supported by the language.) 108 414 T
+1 F
+(3.3.3.10 Not suf\336cient) 108 382 T
+0 F
+1.49 (For the purpose of scienti\336c computing, COMPLEX is only a small step. What is still) 108 356 P
+(missing are vector operations and subarrays.) 108 342 T
+1 14 Q
+(3.4  Interrupt and Code Pr) 108 308.67 T
+(ocedur) 267.88 308.67 T
+(es) 308.82 308.67 T
+0 12 Q
+0.91 (A consistent means of providing a clean Oberon-2 interface to highly system dependent) 108 282 P
+2.03 (features is de\336ned by encapsulating such features in procedures, which are inherently) 108 268 P
+(unsafe.) 108 254 T
+(Interrupts are implemented by marking the procedure with + as a pre\336x) 108 228 T
+2 F
+(PROCEDURE +Proc ... ; ... END Proc;) 108 208 T
+0 F
+0.26 (At run-time the procedure has to be associated with the required interrupt using an instal-) 108 182 P
+(lation mechanism such as) 108 168 T
+2 F
+(Install \050Proc, number\051;) 108 148 T
+0 F
+0.24 (Where number represents a position in a vector table or an actual vector address location,) 108 122 P
+(clearly this is implementation speci\336c.) 108 108 T
+(Code procedures are implemented by marking the procedure with a - as a pre\336x.) 108 82 T
+FMENDPAGE
+%%EndPage: "15" 16
+%%Page: "16" 16
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(16) 532 42.62 T
+2 12 Q
+(PROCEDURE -ProcHeading byte {\322,\323byte};) 108 712 T
+0 F
+(For example) 108 686 T
+2 F
+(PROCEDURE -Sigblock* \050mask: SET\051: SET;) 108 666 T
+(82H, 0, 20H, 109, 91H, 0D0H, 20H, 0;) 108 650 T
+0 F
+1.65 (<< BK: A more readable alternative proposed by Steve Metzeler follows, personally I) 108 624 P
+(much prefer it. A decision is needed. It would add two new keywords. >>) 108 610 T
+-0.14 (Interrupts are implemented by marking the procedure with the keyword INTERRUPT as a) 108 584 P
+(pre\336x) 108 570 T
+2 F
+(INTERRUPT PROCEDURE Proc ...; ... END Proc;) 108 550 T
+0 F
+0.85 (Similarly code procedures are implemented by marking the procedure with the keyword) 108 524 P
+(CODE and giving it a body containing hex byte codes or assembler level instructions.) 108 510 T
+2 F
+(CODE PROCEDURE Proc;) 108 490 T
+(BEGIN) 108 474 T
+( byte {\322,\323 byte} | {Assembler Instructions}) 108 458 T
+(END Proc;) 108 442 T
+1 14 Q
+(3.5  Interfacing to External Libraries) 108 408.67 T
+0 12 Q
+3.15 (When Oberon-2 programs are written for external operating systems other than the) 108 382 P
+0.2 (Oberon System then a mechanism is required to provide interface between them as seam-) 108 368 P
+1.26 (lessly as possible. T) 108 354 P
+1.26 (o avoid performance reduction a direct mapping between Oberon-2) 206.88 354 P
+1.2 (structures and conventions and the external ones is highly desirable. It is also desirable) 108 340 P
+0.18 (that the notation used should be practical both for lar) 108 326 P
+0.18 (ge libraries and for individual proce-) 362.9 326 P
+0.14 (dures within a module. It is recognised that use of an external interfacing mechanism ren-) 108 312 P
+(ders the module unsafe.) 108 298 T
+-0.2 (It is recommended that for the bene\336t of students and newcomers to the language, the doc-) 108 272 P
+0.53 (umentation of the mechanism bear a health warning in a standard form such as \050** NOT) 108 258 P
+(SAFE**\051) 108 244 T
+(The four elements that must be accommodated for interfacing to external libraries are) 108 218 T
+4 F
+(\245) 108 198 T
+0 F
+(the Oberon-2 name for the facility) 121.75 198 T
+4 F
+(\245) 108 178 T
+0 F
+(the Oberon-2 type and signature of the facility) 121.75 178 T
+4 F
+(\245) 108 158 T
+0 F
+(the external name of the facility) 121.75 158 T
+4 F
+(\245) 108 138 T
+0 F
+(the location name and calling convention style of the library or object.) 121.75 138 T
+-0.07 (The following proposal has not been fully tried out however it is of) 108 112 P
+-0.07 (fered as a basis for dis-) 429.43 112 P
+(cussion.) 108 98 T
+FMENDPAGE
+%%EndPage: "16" 17
+%%Page: "17" 17
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(17) 532 42.62 T
+0 12 Q
+0.3 (For modules containing many procedures all belonging to a single library then the syntax) 108 712 P
+(could be) 108 698 T
+2 F
+(MODULE OberonModuleName \322[\322 convention \322]\323 EXTERNAL) 108 678 T
+(\322[\322) 482.19 678 T
+(externalLibraryName \322]\323 ...) 108 664 T
+0 F
+0.12 (Where convention might be \322P) 108 638 P
+0.12 (ASCAL\323 or \322C\323 and externalLibraryName is also a quoted) 255.93 638 P
+(string.) 108 624 T
+(For example:) 108 598 T
+2 F
+(MODULE ISOStrings [ \322Modula-2\323 ] EXTERNAL) 108 578 T
+([ \322server_XP/lib\323 ] ...) 108 562 T
+0 F
+0.72 (Normal Oberon-2 identi\336ers within the module are optionally followed by an equivalent) 108 536 P
+(external name as a string, for example:) 108 522 T
+2 F
+(PROCEDURE CreateWindow [\322CREATE_WINDOW$BIG\323] \050... \051;) 108 502 T
+0 F
+2.24 (Note that the external non-Oberon-2 identi\336ers or strings may contain any characters) 108 476 P
+(which are valid for the external library) 108 462 T
+(.) 292.4 462 T
+0.33 (For an Oberon-2 module that contains just one or a few interface procedures, or is hiding) 108 436 P
+(the structure of a set of external modules, then the following form can be used.) 108 422 T
+2 F
+(PROCEDURE \322[\322<convention>\323,\323<external library name>\323]\323) 108 402 T
+(...) 503.78 402 T
+0 F
+(For example:) 108 376 T
+2 F
+(PROCEDURE [\322C\323,\323Motif.lib\323] CreateWindow) 108 356 T
+( [\322CREATE_WINDOW\323] \050... \051;) 108 340 T
+0 F
+0.88 (<< BK: Please note that Josef T) 108 314 P
+0.88 (empl and Prof M\232ssenb\232ck of ETH are strongly against) 265.18 314 P
+(sections 3.6 and 3.7 being suggested as language extensions. >>) 108 300 T
+1 14 Q
+(3.6  Underscor) 108 266.67 T
+(es in Identi\336ers) 195.19 266.67 T
+0 12 Q
+(Identi\336ers may contain the additional character \322_\323) 108 240 T
+(ident = \050letter | \322_\323\051 {letter | digit | \322_\323}.) 108 214 T
+(This syntax allows for identi\336ers to begin with the underscore character \322_\323.) 108 188 T
+1 14 Q
+(3.7  In-line Exponentiation) 108 154.67 T
+0 12 Q
+1.3 (The exponentiation operator \322**\323 provides a convenient notation for arithmetic expres-) 108 128 P
+0.26 (sions, rather than using function calls. It is an arithmetic operator which has a higher pre-) 108 114 P
+(cedence than the multiply and divide operators. In the expression) 108 100 T
+2 F
+(a := b**c ;) 108 80 T
+FMENDPAGE
+%%EndPage: "17" 18
+%%Page: "18" 18
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(18) 532 42.62 T
+0 12 Q
+(value of the result is the value of b raised to the power of the value of c.) 108 712 T
+0.24 (<< BK: This introduces a \336fth level of precedence into the language. If we include this at) 108 686 P
+1.29 (all then the full expression grammar needs to be de\336ned so that it can be implemented) 108 672 P
+(consistently) 108 658 T
+(. Any volunteers please ... >>) 164.52 658 T
+FMENDPAGE
+%%EndPage: "18" 19
+%%Page: "19" 19
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(19) 532 42.62 T
+1 16 Q
+(4.0  Compilation Contr) 108 709.33 T
+(ol) 265.85 709.33 T
+1 14 Q
+(4.1  Intr) 108 674.67 T
+(oduction) 156.33 674.67 T
+0 12 Q
+0.23 (There are two main issues regarding control of the compilation process, setting of compi-) 108 648 P
+1.23 (lation options for the compiler and selection of the speci\336c source text to be compiled.) 108 634 P
+1.14 (There are also two main schools of thought about how this control should be speci\336ed.) 108 620 P
+1.5 (Application programmers and project managers often like to have a single source text,) 108 606 P
+1.49 (especially when a program is designed to have many variants \050for example a compiler) 108 592 P
+0.14 (with very similar code generators for a family of processors\051. Others prefer to use prepro-) 108 578 P
+0.04 (cessors to extract the source text of a particular variant \336rst and then compile it. The trend) 108 564 P
+(in the market is to integrate preprocessors into compilers, the main reasons being) 108 550 T
+4 F
+(\245) 108 530 T
+0 F
+-0.01 (readability of the program for maintainers, being able to see the relations between vari-) 121.75 530 P
+(ants.) 121.75 516 T
+4 F
+(\245) 108 496 T
+0 F
+(direct correlation between compiler error messages and the original source text) 121.75 496 T
+4 F
+(\245) 108 476 T
+0 F
+(reading the source text only once during the overall compilation process \050for speed\051) 121.75 476 T
+4 F
+(\245) 108 456 T
+0 F
+(saving storage \050no intermediate versions\051) 121.75 456 T
+0.69 (This appears to be an emotive issue with dif) 108 430 P
+0.69 (ferent or) 324.54 430 P
+0.69 (ganisations having strong loyalty to) 365.98 430 P
+0.28 (their own particular approach. In this chapter some conventions are de\336ned for control of) 108 416 P
+1.26 (compilation with the intention that compiler producers of) 108 402 P
+1.26 (fer such features based on the) 391.47 402 P
+1.04 (same basic model. It is recognised that the choice of notation may be prescribed by the) 108 388 P
+0.28 (operating system in use or to fall in line with the conventions used on existing compilers.) 108 374 P
+-0.22 (Even so where there are opportunities to follow the guidelines and to reduce variation they) 108 360 P
+(should be taken.) 108 346 T
+0.77 (The additional language constructs de\336ned below should not be considered to be part of) 108 320 P
+-0.17 (the Oberon-2 language. Rather they de\336ne a separate compiler control language that coex-) 108 306 P
+(ists with and is distinct from the Oberon-2 language.) 108 292 T
+0.46 (All in-line commands to the compiler are contained in ISO style pseudo comments using) 108 266 P
+(angled brackets <* ... *>.) 108 252 T
+1 14 Q
+(4.2  Runtime checks) 108 218.67 T
+0 12 Q
+0.77 (Runtime checks are controlled by pragmas which are used to selectively enable and dis-) 108 192 P
+(able each option. All pragmas should default to provide maximum safety) 108 178 T
+(.) 457.32 178 T
+(Syntax : \322<*$\323 {modi\336er} \322*>\323) 108 152 T
+(where modi\336er is) 108 126 T
+4 F
+(\245) 108 106 T
+0 F
+(pragma -) 121.75 106 T
+(set pragma OFF) 164.71 106 T
+(, disable) 241.03 106 T
+4 F
+(\245) 108 86 T
+0 F
+(pragma +) 121.75 86 T
+(set pragma ON, enable) 167.48 86 T
+FMENDPAGE
+%%EndPage: "19" 20
+%%Page: "20" 20
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(20) 532 42.62 T
+4 12 Q
+(\245) 108 712 T
+0 F
+(<) 121.75 712 T
+(stack the current pragma state) 131.51 712 T
+4 F
+(\245) 108 692 T
+0 F
+(>) 121.75 692 T
+( unstack the current pragma state) 131.51 692 T
+4 F
+(\245) 108 672 T
+0 F
+(!) 121.75 672 T
+(revert to the pragma state de\336ned by the original command line.) 128.74 672 T
+0.62 (The following letters are from the ETH OP2 compiler and are only shown as a guide. In) 108 646 P
+0.25 (practice they are likely to be implementation speci\336c for other compatibility reasons \050e.g.) 108 632 P
+(other compilers, Unix ...\051) 108 618 T
+1 F
+(pragma) 108 592 T
+(default) 180 592 T
+(meaning) 243 592 T
+0 F
+(A) 108 572 T
+(+) 180 572 T
+(ASSER) 243 572 T
+(T generation) 279.6 572 T
+(K) 108 556 T
+(+) 180 556 T
+(Stack over\337ow check) 243 556 T
+(P) 108 540 T
+(+) 180 540 T
+(Pointer initialisation) 243 540 T
+(R) 108 524 T
+(+) 180 524 T
+(Range check \050e.g. SHOR) 243 524 T
+(T \050Int\051 is in the) 363.19 524 T
+(SHOR) 438.8 524 T
+(TINT range\051) 470.07 524 T
+(S) 108 508 T
+(-) 180 508 T
+(Allow symbol \336le to replace the previous) 243 508 T
+(version if it dif) 444.54 508 T
+(fers) 515.95 508 T
+(T) 108 492 T
+(+) 180 492 T
+(T) 243 492 T
+(ype check \050suppress type guards\051) 249.49 492 T
+(V) 108 476 T
+(+) 180 476 T
+(Over\337ow check) 243 476 T
+(X) 108 460 T
+(+) 180 460 T
+(Index check, both static and dynamic) 243 460 T
+(Source pragmas can be either upper or lower case.) 108 434 T
+(Note : The ETH compilers have a default of - for the R and V pragmas.) 108 408 T
+1 14 Q
+(4.3  Compiler option contr) 108 374.67 T
+(ol) 265.93 374.67 T
+0 12 Q
+0.18 (Compiler options can be turned on and of) 108 348 P
+0.18 (f using the statements. As they apply to a whole) 308.56 348 P
+(compilation unit it only makes sense to use them at the beginning of a module.) 108 334 T
+(<*OPTION+ *> to set OPTION on, enabling it) 108 314 T
+(<*OPTION- *> to set OPTION of) 108 298 T
+(f, disabling it) 272.87 298 T
+(For example <*ST) 108 272 T
+(ANDARD+ *>) 197.09 272 T
+(The options are) 108 246 T
+1 F
+(Option) 108 220 T
+(default) 216 220 T
+(meaning) 261 220 T
+0 F
+(ST) 108 200 T
+(ANDARD) 121.04 200 T
+( +) 216 200 T
+(Oberon-2 Report standard, no extensions allowed) 261 200 T
+(INITIALISE) 108 184 T
+( +) 216 184 T
+(All pointers are initialised) 261 184 T
+(MAIN) 108 168 T
+( +) 216 168 T
+(Generates a program entry point. Only one per system !) 261 168 T
+(W) 108 152 T
+(ARNINGS) 117.99 152 T
+( +) 216 152 T
+(Report questionable usage) 261 152 T
+-0.23 (Note: There is no option for controlling garbage collection, for example for systems which) 108 126 P
+0.55 (need deterministic timing. This can be achieved by explicitly calling the system memory) 108 112 P
+(manager to turn garbage collection of) 108 98 T
+(f and on. Also see 5.6.) 287.97 98 T
+FMENDPAGE
+%%EndPage: "20" 21
+%%Page: "21" 21
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(21) 532 42.62 T
+1 14 Q
+(4.4  Compiler sour) 108 710.67 T
+(ce contr) 218.9 710.67 T
+(ol) 266.43 710.67 T
+0 12 Q
+-0.11 (For lar) 108 684 P
+-0.11 (ge programs where a single source text must support many runtime variants there is) 139.99 684 P
+1.1 (a practical need for selective compilation of the source text. The selection can be made) 108 670 P
+-0.17 (either using a preprocessor or) 108 656 P
+-0.17 (, for reasons of optimising disk storage, speed and ef) 248.73 656 P
+-0.17 (\336ciency) 499.81 656 P
+-0.17 (,) 537 656 P
+(at compiler time.) 108 642 T
+(The syntax for expressing the source text selection is) 108 616 T
+2 F
+(<* IF condition THEN *>) 108 596 T
+(<* ELSIF condition THEN *>) 108 580 T
+(<* ELSE *>) 108 564 T
+(<* END *>) 108 548 T
+0 F
+1.12 (The conditional expression consists of programmer de\336ned SELECT) 108 522 P
+1.12 (ORS which can be) 447.05 522 P
+1.49 (combined as an Oberon-like boolean expression which can contain the operators ~, &,) 108 508 P
+0.2 (OR. Compiler options are in ef) 108 494 P
+0.2 (fect prede\336ned selectors and can be used within the condi-) 257.38 494 P
+(tion part) 108 480 T
+(T) 108 454 T
+(o de\336ne a new SELECT) 114.49 454 T
+(OR, which has a default value of F) 230.86 454 T
+(ALSE) 397.18 454 T
+2 F
+(<* NEW SelectorName *>) 108 434 T
+0 F
+(T) 108 408 T
+(o give a SELECT) 114.49 408 T
+(OR a value) 199.22 408 T
+2 F
+(<* SelectorName+ *> to set it TRUE) 108 388 T
+(<* SelectorName- *> to set it FALSE) 108 372 T
+0 F
+( Examples:) 108 346 T
+2 F
+(<*IF ~ MAIN THEN *> ...) 108 326 T
+(<*IF M68000 & WARNINGS THEN *>) 108 294 T
+( IMPORT CG68000;) 108 278 T
+(<*ELSE *>) 108 262 T
+( IMPORT CG80x86;) 108 246 T
+(<*END*>) 108 230 T
+FMENDPAGE
+%%EndPage: "21" 22
+%%Page: "22" 22
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(22) 532 42.62 T
+1 16 Q
+(5.0  Implementation Recommendations) 108 709.33 T
+1 14 Q
+(5.1  Intr) 108 674.67 T
+(oduction) 156.33 674.67 T
+0 12 Q
+0.44 (This chapter includes recommendations describing some speci\336c characteristics for com-) 108 648 P
+(pilers which confom to these guidelines.) 108 634 T
+1 14 Q
+(5.2  T) 108 600.67 T
+(ype ranges) 140.78 600.67 T
+0 12 Q
+0.4 (The minimum value that is returned by MAX \050type\051 and the maximum value returned by) 108 574 P
+(MIN \050type\051 should be at least \050at most\051 as follows) 108 560 T
+1 F
+(TYPE) 108 540 T
+(\324MAX\325) 189 540 T
+(\324MIN\325) 261 540 T
+(V) 189 524 T
+(ALUE) 196.11 524 T
+(V) 261 524 T
+(ALUE) 268.11 524 T
+0 F
+(SHOR) 108 508 T
+(TINT) 139.27 508 T
+(127) 189 508 T
+(-128) 261 508 T
+(INTEGER) 108 492 T
+(32767) 189 492 T
+(-32768) 261 492 T
+(LONGINT) 108 476 T
+(+2147483647) 189 476 T
+(-2147483648) 261 476 T
+(REAL) 108 460 T
+(IEEE 32 bit format if possible) 189 460 T
+(LONGREAL) 108 444 T
+(at least the precision of REAL IEEE format,) 189 444 T
+(higher resolution if possible) 404.51 444 T
+(SET) 108 428 T
+(32 elements minimum \0500..31\051) 189 428 T
+(CHAR) 108 412 T
+(0..0FFX where ...) 189 412 T
+(00..7FX ASCII code) 189 396 T
+(80 ..0FFX ISO LA) 189 380 T
+(TIN-1 CODE preferred, but code set not de\336ned) 277.95 380 T
+1 14 Q
+(5.3  T) 108 346.67 T
+(ype Extension Levels) 140.78 346.67 T
+0 12 Q
+0.57 (If an implementation imposes a limit on the number of levels of type extension it should) 108 320 P
+(not be less than 8 levels including the base type.) 108 306 T
+1 14 Q
+(5.4  The module SYSTEM) 108 272.67 T
+0 12 Q
+(The module SYSTEM should be based on the ETH model wherever reasonable.) 108 246 T
+1 14 Q
+(5.5  The pr) 108 212.67 T
+(ocedur) 173.05 212.67 T
+(e SYSTEM.MOVE) 213.99 212.67 T
+0 12 Q
+0.03 (For the procedure SYSTEM.MOVE the behaviour when the source extent and destination) 108 186 P
+1.61 (extent overlap should be made clear regarding overwriting, also the special case when) 108 172 P
+(length = 0.) 108 158 T
+1 14 Q
+(5.6  Garbage collection) 108 124.67 T
+0 12 Q
+0.2 (Automatic garbage collection is recommended wherever possible. If garbage collection is) 108 98 P
+1.21 (not available or a mechanism is available to activate and deactivate it then a procedure) 108 84 P
+FMENDPAGE
+%%EndPage: "22" 23
+%%Page: "23" 23
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(23) 532 42.62 T
+0 12 Q
+1 (DISPOSE can be provided in the module system. It takes a single parameter which is a) 108 712 P
+(pointer value parameter) 108 698 T
+(.) 221.24 698 T
+1 14 Q
+(5.7  Implementation characteristics) 108 664.67 T
+0 12 Q
+1.42 (Each compiler implementation inevitably has limits, for example to identi\336er length or) 108 638 P
+0.61 (runtime checks provided. A list of characteristics may be provided for each implementa-) 108 624 P
+1.25 (tion so that users can judge its suitability and any portability problems that might arise) 108 610 P
+(when moving between implementations.) 108 596 T
+(The following characteristics are de\336ned) 108 570 T
+(Length of identi\336er) 108 544 T
+(, at least 23 signi\336cant characters possible) 200.79 544 T
+(Record extension levels, 8 including base type) 108 518 T
+(Actual type sizes \050INTEGER, LONGINT) 108 492 T
+(, ...\051, see 5.2) 306.62 492 T
+1 14 Q
+(5.8  Initialisation of Pointers) 108 458.67 T
+0 12 Q
+0.25 (All pointers for procedure variables, variables, record \336elds and array elements should be) 108 432 P
+0.22 (initialised by the compiler to a safe value, the value NIL is recommended. This applies to) 108 418 P
+1.36 (pointers which are statically allocated, dynamically allocated or on stacks. Refer to the) 108 404 P
+(ETH change list. \050Section 1.2\051.) 108 390 T
+0.72 (The ETH Report does not de\336ne that variables are initialised however a practical imple-) 108 364 P
+(mentation might include the following approach ...) 108 350 T
+0.36 (The compiler should guarantee that level 0 variables of any pointer or procedure type are) 108 324 P
+0.1 (either statically or dynamically initialised to NIL before the initialisation part of a module) 108 310 P
+(\050module body\051 is executed.) 108 296 T
+0.47 (The compiler should provide code to dynamically initialise local variables of any pointer) 108 270 P
+(or procedure type to NIL before the procedure body is executed.) 108 256 T
+1.35 (When executing the predeclared procedure NEW) 108 230 P
+1.35 (, the storage/heap manager of the run-) 349.74 230 P
+1.2 (time system \050if any\051 should initialise the heap space to NIL. Alternatively the compiler) 108 216 P
+(should emit code to initialise dynamic variables of any pointer or procedure type to NIL.) 108 202 T
+0.66 (A compilation switch may be provided to inhibit the generation of initialisation code for) 108 176 P
+1.15 (variables of pointer or procedure types. In case of dynamic variables allocated with the) 108 162 P
+2.01 (procedure NEW) 108 148 P
+2.01 (, an alternative storage \050or run-time system\051 module may be provided) 187.16 148 P
+(which does no initialisation.) 108 134 T
+FMENDPAGE
+%%EndPage: "23" 24
+%%Page: "24" 24
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(24) 532 42.62 T
+1 14 Q
+(5.9  Handling unde\336ned semanics) 108 710.67 T
+0 12 Q
+-0.01 (When operations with unde\336ned semantics, as listed in Section 2.3, occur then their ef) 108 684 P
+-0.01 (fect) 522.02 684 P
+0.63 (is system-dependent and should be handled in consistent ways within a particular imple-) 108 670 P
+0.43 (mentation. It is expected that the program would terminate with a message indicating the) 108 656 P
+(cause and its program location.) 108 642 T
+1 14 Q
+(5.10  Monadic \324-\325) 108 608.67 T
+0 12 Q
+0.47 (It should be made clear in documentation supplied with compilers that monadic negation) 108 582 P
+1 (is an addition operator and has a lower precedence then the multiplication operator) 108 568 P
+1 (. For) 516.35 568 P
+(example the expression -5 MOD 3 is equivalent to -\0505 MOD 3\051.) 108 554 T
+1 14 Q
+(5.1) 108 520.67 T
+(1  Conversion fr) 124.72 520.67 T
+(om Integer to Real) 221.24 520.67 T
+0 12 Q
+0.35 (It should be made clear to compiler users that the function LONG cannot be used to con-) 108 494 P
+0.11 (vert an expression of LONGINT type to REAL type. There is no explicit function for that) 108 480 P
+(purpose. An assignment of the form) 108 466 T
+(real := integer;) 108 440 T
+(has to be used which automatically converts from any integer type to REAL type.) 108 414 T
+1 14 Q
+(5.12  Exported Comments) 108 380.67 T
+0 12 Q
+3.15 (An exported comment is denoted using two consecutive asterisks after the opening) 108 354 P
+(bracket, for example) 108 340 T
+(\050** this is an exported comment *\051) 108 314 T
+1.12 (It signals to a browser that the comment should be included in a DEFINITION module) 108 288 P
+0.38 (being derived from the module being processed. It is a convention rather than a language) 108 274 P
+(issue.) 108 260 T
+1 14 Q
+(5.13  Read only V) 108 226.67 T
+(AR Parameters) 211.53 226.67 T
+0 12 Q
+0.56 (There have been many requests to make ARRA) 108 200 P
+0.56 (Y and RECORD parameters read-only to) 339.66 200 P
+0.93 (achieve the ef) 108 186 P
+0.93 (\336ciency of passing by reference without the associated possibility for cor-) 176.25 186 P
+0.47 (ruption of the calling parameter) 108 172 P
+0.47 (. An attempt to make an assignment to any component of) 261.11 172 P
+-0.14 (such a read only parameter is a compile-time error) 108 158 P
+-0.14 (. Such parameters could be marked with) 348 158 P
+(the standard read only \322-\323 symbol. For example:) 108 144 T
+2 F
+(PROCEDURE Print \050theText-: ARRAY OF CHAR\051 ;) 108 124 T
+0 F
+-0.12 (Discussions with ETH suggest this is really a compiler code optimisation issue and on this) 108 98 P
+(basis it is recommended that this extension is not implemented.) 108 84 T
+FMENDPAGE
+%%EndPage: "24" 25
+%%Page: "25" 25
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(25) 532 42.62 T
+1 14 Q
+(5.14  T) 108 710.67 T
+(ype Guards with RECORD parameters) 147.78 710.67 T
+0 12 Q
+0.62 (If a record is assigned to a formal V) 108 684 P
+0.62 (AR parameter record, the compiler must generate an) 283.9 684 P
+0.27 (implicit type test to make sure that the static type and the dynamic type of the destination) 108 670 P
+(record are the same.) 108 656 T
+FMENDPAGE
+%%EndPage: "25" 26
+%%Page: "26" 26
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(26) 532 42.62 T
+1 16 Q
+(6.0  Library Modules) 108 709.33 T
+1 14 Q
+(6.1  Intr) 108 674.67 T
+(oduction) 156.33 674.67 T
+0 12 Q
+0.27 (It is very desirable for programmers that a basic set of library modules is available across) 108 648 P
+0.51 (a range of dif) 108 634 P
+0.51 (ferent compiler implementations. On the other hand it is also clear that it is) 173.59 634 P
+2.21 (impossible to design library modules that are useful for all purposes. T) 108 620 P
+2.21 (o be ef) 470.54 620 P
+2.21 (fective) 507.37 620 P
+(library modules must have a purpose which makes sense for the library user) 108 606 T
+(.) 471.74 606 T
+(This report de\336nes two groups of modules) 108 580 T
+4 F
+(\245) 108 560 T
+0 F
+(modules based on the ETH Oberon System designs which provide input-output facili-) 121.75 560 T
+(ties and support for published teaching material, in particular the series of Oberon) 121.75 546 T
+(books from ETH authors) 121.75 532 T
+4 F
+(\245) 108 512 T
+0 F
+(modules which extend the functionality of the language in a standardised way) 121.75 512 T
+(, for) 494.37 512 T
+(example maths libraries.) 121.75 498 T
+1.36 (The module de\336nitions provided in Appendix 1 are intended to encourage all compiler) 108 472 P
+(developers to of) 108 458 T
+(fer sets of library modules with the same interface and functionality) 185.06 458 T
+(.) 509.37 458 T
+0.85 (All implementations should support all the so called basic modules described in Section) 108 432 P
+0.21 (6.2. The additional modules should be provided if they are relevant to the particular com-) 108 418 P
+(piler implementation \050e.g. if COMPLEX is supported\051.) 108 404 T
+1 14 Q
+(6.2  Basic Modules) 108 370.67 T
+0 12 Q
+-0.1 (It is intended that the basic modules are provided with all Oberon-2 compiler implementa-) 108 344 P
+(tions. They are based on ETH Oberon System designs ...) 108 330 T
+4 F
+(\245) 108 310 T
+0 F
+(XY) 117 310 T
+(plane) 133.21 310 T
+(Elementary pixel plotting) 198 310 T
+4 F
+(\245) 108 290 T
+0 F
+(Input) 117 290 T
+(Keyboard and pointer device access) 198 290 T
+4 F
+(\245) 108 270 T
+0 F
+(In) 117 270 T
+(Inputting from a standard stream) 198 270 T
+4 F
+(\245) 108 250 T
+0 F
+(Out) 117 250 T
+(Outputting to a standard stream) 198 250 T
+4 F
+(\245) 108 230 T
+0 F
+(Files) 117 230 T
+(File input output, with riders) 198 230 T
+4 F
+(\245) 108 210 T
+0 F
+(Strings) 117 210 T
+(Simple manipulation for strings) 198 210 T
+4 F
+(\245) 108 190 T
+0 F
+(Math) 117 190 T
+(Math and trig functions for REAL) 198 190 T
+4 F
+(\245) 108 170 T
+0 F
+(MathL) 117 170 T
+(Math and trig functions for LONGREAL) 198 170 T
+1 14 Q
+(6.3  Additional Modules) 108 136.67 T
+0 12 Q
+1.39 (The additional modules are provided with compiler implementations on an \324as needed\325) 108 110 P
+(basis ...) 108 96 T
+FMENDPAGE
+%%EndPage: "26" 27
+%%Page: "27" 27
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(27) 532 42.62 T
+4 12 Q
+(\245) 108 712 T
+0 F
+(Coroutines) 121.75 712 T
+(Provides non-preemptive threads each with its) 198 712 T
+(own stack but all shar-) 423.18 712 T
+(ing a common address) 198 698 T
+(space.) 308.59 698 T
+4 F
+(\245) 108 678 T
+0 F
+(MathC) 121.75 678 T
+(Maths functions for COMPLEX) 198 678 T
+4 F
+(\245) 108 658 T
+0 F
+(MathLC) 121.75 658 T
+(Maths functions for LONGCOMPLEX) 198 658 T
+FMENDPAGE
+%%EndPage: "27" 28
+%%Page: "28" 28
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(28) 532 42.62 T
+1 16 Q
+(Appendix A: Library modules) 108 709.33 T
+1 14 Q
+(1.1  Basic Library Modules) 108 674.67 T
+0 12 Q
+-0.09 (It is expected that all Oberon-2 compiler implementations will include the following mod-) 108 648 P
+(ules ...) 108 634 T
+(XY) 108 608 T
+(plane) 124.21 608 T
+(Input) 162 608 T
+(In) 207 608 T
+(Out) 252 608 T
+(Files) 297 608 T
+(Strings) 342 608 T
+(Math and MathL) 387 608 T
+1 14 Q
+(1.2  Additional Modules) 108 574.67 T
+0 12 Q
+-0.24 (The following modules are optional. If they are provided then they should follow the spec-) 108 548 P
+(i\336cations ...) 108 534 T
+4 F
+(\245) 108 514 T
+0 F
+(Coroutines) 121.75 514 T
+4 F
+(\245) 108 494 T
+0 F
+(MathC and MathLC) 121.75 494 T
+1 F
+(1.2.1  Module XY) 108 462 T
+(plane) 196.51 462 T
+0 F
+0.19 (Module XY) 108 436 P
+0.19 (plane provides some basic facilities for graphics programming. Its interface is) 164.71 436 P
+-0.12 (kept as simple as possible and is therefore more suited for programming exercises than for) 108 422 P
+(serious graphics applications.) 108 408 T
+0.58 (XY) 108 382 P
+0.58 (plane provides a Cartesian plane of pixels that can be drawn and erased. The plane is) 124.21 382 P
+0.25 (mapped to some location on the screen. The variables X and Y indicate its lower left cor-) 108 368 P
+(ner) 108 354 T
+(, W its width and H its height. All variables are read-only) 122.84 354 T
+(.) 397.53 354 T
+2 F
+( DEFINITION XYplane;) 108 334 T
+( CONST draw = 1; erase = 0;) 108 318 T
+( VAR X, Y, W, H: INTEGER;) 108 302 T
+( PROCEDURE Open;) 108 286 T
+( PROCEDURE Clear;) 108 270 T
+( PROCEDURE Dot \050x, y, mode: INTEGER\051;) 108 254 T
+( PROCEDURE IsDot \050x, y: INTEGER\051: BOOLEAN;) 108 238 T
+( PROCEDURE Key \050\051: CHAR;) 108 222 T
+( END XYplane.) 108 206 T
+1 F
+(1.2.1.1 Operations) 108 174 T
+0 F
+(Open initializes the drawing plane.) 108 148 T
+(Clear erases all pixels in the drawing plane.) 108 122 T
+-0.29 (Dot\050x, y) 108 96 P
+-0.29 (, m\051 draws or erases the pixel at the coordinates \050x, y\051 relative to the lower left cor-) 146.9 96 P
+(ner of the plane. If m=draw the pixel is drawn, if m=erase the pixel is erased.) 108 82 T
+FMENDPAGE
+%%EndPage: "28" 29
+%%Page: "29" 29
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(29) 532 42.62 T
+0 12 Q
+-0.2 (IsDot\050x, y\051 returns TRUE if the pixel at the coordinates \050x, y\051 relative to the lower left cor-) 108 712 P
+(ner of the screen is drawn, otherwise it returns F) 108 698 T
+(ALSE.) 338.93 698 T
+0.71 (Key\050\051 reads the keyboard. If a key was pressed prior to invocation, its character value is) 108 672 P
+(returned, otherwise the result is 0X.) 108 658 T
+1 F
+(1.2.1.2 Remarks) 108 626 T
+0 F
+-0.04 (In the ETH Oberon System Open opens a viewer that takes the whole user track. The con-) 108 600 P
+(tents of this viewer is the drawing plane provided by XY) 108 586 T
+(plane.) 379.38 586 T
+1 F
+(1.2.1.3 Origin) 108 554 T
+0 F
+0.61 (Designed by Martin Reiser for the book \324Programming in Oberon\325. The above speci\336ca-) 108 528 P
+(tion was proposed by H M\232ssenb\232ck, ETH) 108 514 T
+1 F
+(1.2.2  Module Input) 108 482 T
+0 F
+(Module Input provides facilities to access the mouse, the keyboard, and the clock.) 108 456 T
+2 F
+( DEFINITION Input;) 108 436 T
+( VAR TimeUnit: LONGINT;) 115.2 420 T
+( PROCEDURE Available \050\051: INTEGER;) 108 404 T
+( PROCEDURE Read \050VAR ch: CHAR\051;) 108 388 T
+( PROCEDURE Mouse \050VAR keys: SET; VAR x, y: INTEGER\051;) 108 372 T
+( PROCEDURE SetMouseLimits \050w, h: INTEGER\051;) 108 356 T
+( PROCEDURE Time \050\051: LONGINT;) 108 340 T
+( END Input.) 115.2 324 T
+1 F
+(1.2.2.1 State) 108 292 T
+0 F
+(Keyboard buf) 108 266 T
+(fer) 174.06 266 T
+(. A queue of characters typed in from the keyboard.) 186.71 266 T
+(T) 108 240 T
+(ime. Elapsed time since system startup in units of size 1/T) 114.91 240 T
+(imeUnit seconds.) 393.32 240 T
+1 F
+(1.2.2.2 Operations) 108 208 T
+0 F
+(A) 108 182 T
+(vailable\050\051 returns the number of characters in the keyboard buf) 115.77 182 T
+(fer) 416.3 182 T
+(.) 428.96 182 T
+-0.16 (Read\050ch\051 returns \050and removes\051 the next character from the keyboad buf) 108 156 P
+-0.16 (fer) 453.25 156 P
+-0.16 (. If the buf) 465.9 156 P
+-0.16 (fer is) 515.84 156 P
+(empty) 108 142 T
+(, Read waits until a key is pressed.) 137.2 142 T
+0.42 (Mouse\050keys, x, y\051 returns the current mouse position \050x, y\051 in pixels relative to the lower) 108 116 P
+-0.02 (left corner of the screen. keys is the set of the currently pressed mouse keys \050left = 2, mid-) 108 102 P
+(dle = 1, right = 0\051.) 108 88 T
+FMENDPAGE
+%%EndPage: "29" 30
+%%Page: "30" 30
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(30) 532 42.62 T
+0 12 Q
+1.28 (SetMouseLimits\050w) 108 712 P
+1.28 (, h\051 de\336nes the rectangle where the mouse moves \050in pixels\051. Subse-) 199.17 712 P
+0.39 (quent calls to the operation Mouse will return coordinates for x in the range 0..w-1 and y) 108 698 P
+(in the range 0..h-1.) 108 684 T
+(T) 108 658 T
+(ime\050\051 returns the time elapsed since system startup in units of size 1/T) 114.91 658 T
+(imeUnit seconds.) 450.27 658 T
+1 F
+(1.2.2.3 Examples) 108 626 T
+2 F
+(IF Input.Available\050\051 > 0 THEN Input.Read\050ch\051 END;) 108 612 T
+(REPEAT) 115.2 596 T
+( Input.Mouse\050keys, x, y\051;) 108 580 T
+( ... draw mouse cursor at position \050x, y\051 ...) 108 564 T
+(UNTIL keys = {}) 108 548 T
+(seconds := Input.Time\050\051 DIV Input.TimeUnit) 108 532 T
+1 F
+(1.2.2.4 Origin) 108 500 T
+0 F
+-0.26 (Part of the ETH Oberon System. The above speci\336cation was proposed by H M\232ssenb\232ck,) 108 474 P
+(ETH.) 108 460 T
+1 F
+(1.2.3  Module In) 108 428 T
+0 F
+1.67 (Module In provides a set of basic routines for formatted input of characters, character) 108 402 P
+-0.23 (sequences, numbers, and names. It assumes a standard input stream with a current position) 108 388 P
+(that can be reset to the beginning of the stream.) 108 374 T
+2 F
+(DEFINITION In;) 108 354 T
+( VAR Done: BOOLEAN;) 115.2 338 T
+( PROCEDURE Open;) 108 322 T
+( PROCEDURE Char \050VAR ch: CHAR\051;) 115.2 306 T
+( PROCEDURE Int \050VAR i: INTEGER\051;) 115.2 290 T
+( PROCEDURE LongInt \050VAR i: LONGINT\051;) 115.2 274 T
+( PROCEDURE Real \050VAR x: REAL\051;) 115.2 258 T
+( PROCEDURE LongReal \050VAR y: LONGREAL\051;) 115.2 242 T
+( PROCEDURE String \050VAR str: ARRAY OF CHAR\051;) 115.2 226 T
+( PROCEDURE Name \050VAR name: ARRAY OF CHAR\051;) 115.2 210 T
+(END In.) 115.2 194 T
+1 F
+(1.2.3.1 State) 108 162 T
+0 F
+-0.1 (Current position. The character position in the input stream from where the next symbol is) 108 136 P
+0.02 (read. Open \050re\051sets it to the beginning of the input stream. After reading a symbol the cur-) 108 122 P
+1.04 (rent position is set to the position immediately after this symbol. Before the \336rst call to) 108 108 P
+(Open the current position is unde\336ned.) 108 94 T
+FMENDPAGE
+%%EndPage: "30" 31
+%%Page: "31" 31
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(31) 532 42.62 T
+0 12 Q
+0.53 (Done. Indicates the success of an input operation. If Done is TRUE after an input opera-) 108 712 P
+0.56 (tion, the operation was successful and its result is valid. An unsuccessful input operation) 108 698 P
+0.37 (sets Done to F) 108 684 P
+0.37 (ALSE; it remains F) 177.17 684 P
+0.37 (ALSE until the next call to Open. In particular) 271 684 P
+0.37 (, Done is) 496.3 684 P
+(set to F) 108 670 T
+(ALSE if an attempt is made to read beyond the end of the input stream.) 142.43 670 T
+1 F
+(1.2.3.2 Operations) 108 638 T
+0 F
+0.66 (Open \050re\051sets the current position to the beginning of the input stream. Done indicates if) 108 612 P
+(the operation was successful.) 108 598 T
+1.21 (The following operations require Done = TRUE and guarantee \050Done = TRUE and the) 108 572 P
+-0.26 (result is valid\051 or \050Done = F) 108 558 P
+-0.26 (ALSE\051. All operations except Char skip leading blanks, tabs or) 239.56 558 P
+(end-of-line characters.) 108 544 T
+(Char\050ch\051 returns the character ch at the current position.) 108 518 T
+0.05 (LongInt\050n\051 and Int\050n\051 return the \050long\051 integer constant n at the current position according) 108 492 P
+(to the format:) 108 478 T
+( IntConst = digit {digit} | digit {hexDigit} \322H\323.) 108 452 T
+(Real\050n\051 returns the real constant n at the current position according to the format:) 108 426 T
+( RealConst = digit {digit} [ {digit} [\322E\323 \050\322+\323 | \322-\323\051) 111 400 T
+( digit {digit}]].) 108 374 T
+0.74 (LongReal\050n\051 returns the long real constant n at the current position according to the for-) 108 348 P
+(mat:) 108 334 T
+( LongRealConst = digit {digit} [ {digit} [\050\322D\323 |\323E\323\051) 108 308 T
+( \050\322+\323 | \322-\323\051 digit {digit}]].) 108 282 T
+(String\050s\051 returns the string s at the current position according to the format:) 108 256 T
+( StringConst = \324\323\325 char {char} \324\323\325.) 108 230 T
+(The string must not contain characters less than blank such as EOL or T) 108 204 T
+(AB.) 452.46 204 T
+-0.06 (Name\050s\051 returns the name s at the current position according to the \336le name format of the) 108 178 P
+(underlying operating system \050e.g. \322lib/My) 108 164 T
+(.Mod\323 under Unix\051) 309.09 164 T
+(Example:) 108 138 T
+2 F
+( VAR i: INTEGER; ch: CHAR; r: REAL; s, n: ARRAY 32 OF CHAR;) 115.2 118 T
+( ...) 108 102 T
+( In.Open;) 108 86 T
+( In.Int\050i\051; In.Char\050ch\051; In.Real\050r\051; InString\050s\051;In.Name\050n\051) 108 70 T
+FMENDPAGE
+%%EndPage: "31" 32
+%%Page: "32" 32
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(32) 532 42.62 T
+0 12 Q
+(Input stream:) 108 712 T
+2 F
+( 123*1.5 \322abc\323 Mod.Proc) 115.2 692 T
+0 F
+(Results:) 108 666 T
+2 F
+( i = 123) 115.2 646 T
+( ch = \322*\323) 108 630 T
+( r = 1.5E0) 108 614 T
+( s = \322abc\323) 108 598 T
+( n = \322Mod.Proc\323) 108 582 T
+1 F
+(1.2.3.3 Remarks) 108 550 T
+0 F
+1.02 (In the ETH Oberon System the input stream is the text immediately following the most) 108 524 P
+0.17 (recently invoked command. If this text starts with the character \322^\323 the current position is) 108 510 P
+-0.06 (set to the beginning of the most recent selection \050if no selection exists, Done = F) 108 496 P
+-0.06 (ALSE\051. If) 492.1 496 P
+0.19 (the text starts with the character \322*\323 the current position is set to the beginning of the text) 108 482 P
+1.73 (in the marked viewer \050if no viewer is marked, Done = F) 108 468 P
+1.73 (ALSE\051. The end of the input) 394.09 468 P
+-0.21 (stream is the end of the text containing the current position. There is no provision for input) 108 454 P
+(of SHOR) 108 440 T
+(T integers.) 152.26 440 T
+1 F
+(1.2.3.4 Origin) 108 408 T
+0 F
+0.61 (Designed by Martin Reiser for the book \324Programming in Oberon\325. The above speci\336ca-) 108 382 P
+(tion was proposed by H M\232ssenb\232ck, ETH.) 108 368 T
+1 F
+(1.2.4  Module Out) 108 336 T
+0 F
+0.56 (Module Out provides a set of basic routines for formatted output of characters, numbers,) 108 310 P
+(and strings. It assumes a standard output stream to which the symbols are written.) 108 296 T
+2 F
+(DEFINITION Out;) 108 276 T
+(PROCEDURE Open;) 115.2 260 T
+( PROCEDURE Char \050ch: CHAR\051;) 108 244 T
+( PROCEDURE String \050str: ARRAY OF CHAR\051;) 108 228 T
+(PROCEDURE Int \050i, n: LONGINT\051;) 115.2 212 T
+(PROCEDURE Real \050x: REAL; n: INTEGER\051;) 115.2 196 T
+(PROCEDURE LongReal \050x: LONGREAL; n: INTEGER\051;) 115.2 180 T
+(PROCEDURE Ln;) 115.2 164 T
+(END Out.) 108 148 T
+1 F
+(1.2.4.1 Operations) 108 116 T
+0 F
+(Open initializes the output stream.) 108 90 T
+FMENDPAGE
+%%EndPage: "32" 33
+%%Page: "33" 33
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(33) 532 42.62 T
+0 12 Q
+(Char\050ch\051 writes the character ch to the end of the output stream) 108 712 T
+0.92 (String\050s\051 writes the null-terminated character sequence s to the end of the output stream) 108 686 P
+(\050without 0X\051.) 108 672 T
+-0.08 (Int\050i, n\051 writes the integer number i to the end of the output stream. If the textual represen-) 108 646 P
+0.16 (tation of i requires m characters, i is right adjusted in a \336eld of Max\050n, m\051 characters pad-) 108 632 P
+(ded with blanks at the left end. A plus sign is not written.) 108 618 T
+0.79 (Real\050x, n\051 writes the real number x to the end of the output stream using an exponential) 108 592 P
+0.08 (form. If the textual representation of x requires m characters \050including a two-digit signed) 108 578 P
+0.19 (exponent\051, x is right adjusted in a \336eld of Max\050n, m\051 characters padded with blanks at the) 108 564 P
+(left end. A plus sign of the mantissa is not written.) 108 550 T
+1.37 (LongReal\050x, n\051 writes the long real number x to the end of the output stream using an) 108 524 P
+1.94 (exponential form. If the textual representation of x requires m characters \050including a) 108 510 P
+0.26 (three-digit signed exponent\051, x is right adjusted in a \336eld of Max\050n, m\051 characters padded) 108 496 P
+(with blanks at the left end. A plus sign of the mantissa is not written.) 108 482 T
+(Ln writes an end-of-line symbol to the end of the output stream.) 108 456 T
+(Examples) 108 430 T
+( output \050asterisks denote blanks\051) 288 404 T
+2 F
+(Out.Open;) 288 384 T
+( Out.Int\050-3, 5\051;) 108 368 T
+(***3) 288 368 T
+( Out.Int\0503, 0\051;) 108 352 T
+(3) 288 352 T
+( Out.Real\0501.5, 10\051;) 108 336 T
+(**1.50E+00) 288 336 T
+( Out.Real\050-0.005, 0\051) 108 320 T
+(-5.0E-03) 288 320 T
+1 F
+(1.2.4.2 Remarks) 108 288 T
+0 F
+0.6 (In the ETH Oberon System the output is appended to an output text that is cleared when) 108 262 P
+0.77 (module Out is loaded. The output text can be displayed in a new viewer by a call to the) 108 248 P
+(procedure Open \050Open can also be called as a command\051.) 108 234 T
+1 F
+(1.2.4.3 Origin) 108 202 T
+0 F
+0.61 (Designed by Martin Reiser for the book \324Programming in Oberon\325. The above speci\336ca-) 108 176 P
+(tion was proposed by H M\232ssenb\232ck, ETH.) 108 162 T
+1 F
+(1.2.5  Module Files) 108 130 T
+0 F
+(Module Files provides operations on \336les and the \336le directory) 108 104 T
+(.) 408.7 104 T
+2 F
+(DEFINITION Files;) 108 84 T
+( IMPORT SYSTEM;) 115.2 68 T
+FMENDPAGE
+%%EndPage: "33" 34
+%%Page: "34" 34
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(34) 532 42.62 T
+2 12 Q
+( TYPE) 108 712 T
+( File = POINTER TO Handle;) 108 696 T
+( Rider = RECORD) 108 680 T
+(eof: BOOLEAN;) 126 664 T
+(res: LONGINT;) 126 648 T
+( END;) 108 632 T
+( PROCEDURE Old \050name: ARRAY OF CHAR\051: File;) 108 616 T
+( PROCEDURE New \050name: ARRAY OF CHAR\051: File;) 108 600 T
+( PROCEDURE Register \050f: File\051;) 108 584 T
+( PROCEDURE Close \050f: File\051;) 108 568 T
+( PROCEDURE Purge \050f: File\051;) 108 552 T
+( PROCEDURE Delete \050name: ARRAY OF CHAR; VAR res: INTEGER\051;) 108 536 T
+( PROCEDURE Rename \050old, new: ARRAY OF CHAR;) 108 520 T
+( VAR res: INTEGER\051;) 234 504 T
+( PROCEDURE Length \050f: File\051: LONGINT;) 108 488 T
+( PROCEDURE GetDate \050f: File; VAR t, d: LONGINT\051;) 108 472 T
+( PROCEDURE Set \050VAR r: Rider; f: File; pos: LONGINT\051;) 108 456 T
+( PROCEDURE Pos \050VAR r: Rider\051: LONGINT;) 108 440 T
+( PROCEDURE Base \050VAR r: Rider\051: File;) 108 424 T
+( PROCEDURE Read \050VAR r: Rider; VAR x: SYSTEM.BYTE\051;) 108 408 T
+( PROCEDURE ReadInt \050VAR R: Rider; VAR x: INTEGER\051;) 108 392 T
+( PROCEDURE ReadLInt \050VAR R: Rider; VAR x: LONGINT\051;) 108 376 T
+( PROCEDURE ReadReal \050VAR R: Rider; VAR x: REAL\051;) 108 360 T
+( PROCEDURE ReadLReal \050VAR R: Rider; VAR x: LONGREAL\051;) 108 344 T
+( PROCEDURE ReadNum \050VAR R: Rider; VAR x: LONGINT\051;) 108 328 T
+( PROCEDURE ReadString \050VAR R: Rider; VAR x: ARRAY OF CHAR\051;) 108 312 T
+( PROCEDURE ReadSet \050VAR R: Rider; VAR x: SET\051;) 108 296 T
+( PROCEDURE ReadBool \050VAR R: Rider; VAR x: BOOLEAN;) 108 280 T
+( PROCEDURE ReadBytes \050VAR r: Rider;) 108 264 T
+( VAR x: ARRAY OF SYSTEM.BYTE;) 261 248 T
+(n: LONGINT\051;) 268.2 232 T
+( PROCEDURE Write \050VAR r: Rider; x: SYSTEM.BYTE\051;) 108 216 T
+( PROCEDURE WriteInt \050VAR R: Rider; x: INTEGER\051;) 108 200 T
+( PROCEDURE WriteLInt \050VAR R: Rider; x: LONGINT\051;) 108 184 T
+( PROCEDURE WriteReal \050VAR R: Rider; x: REAL\051;) 108 168 T
+( PROCEDURE WriteLReal \050VAR R: Rider; x: LONGREAL\051;) 108 152 T
+( PROCEDURE WriteNum \050VAR R: Rider; x: LONGINT\051;) 108 136 T
+( PROCEDURE WriteString \050VAR R: Rider; x: ARRAY OF CHAR\051;) 108 120 T
+( PROCEDURE WriteSet \050VAR R: Rider; x: SET\051;) 108 104 T
+( PROCEDURE WriteBool \050VAR R: Rider; x: BOOLEAN\051;) 108 88 T
+FMENDPAGE
+%%EndPage: "34" 35
+%%Page: "35" 35
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(35) 532 42.62 T
+2 12 Q
+(PROCEDURE WriteBytes \050VAR r: Rider;) 108 712 T
+(VAR x: ARRAY OF SYSTEM.BYTE;) 261 696 T
+(n: LONGINT\051) 261 680 T
+(END Files.) 108 664 T
+1 F
+(1.2.5.1 T) 108 632 T
+(ypes) 151.09 632 T
+0 F
+0.37 (A File represents a stream of bytes usually stored on an external medium. It has a certain) 108 606 P
+(length as well as the date and time of its last modi\336cation.) 108 592 T
+0.96 (A \336le directory is a mapping from \336le names to \336les. A \336le that is not registered in the) 108 566 P
+(directory is considered temporary) 108 552 T
+(.) 268.76 552 T
+-0.26 (A Rider is a read/write position in a \336le \050positions start with 0\051. There may be multiple rid-) 108 526 P
+-0.2 (ers set to the same \336le. The \336eld eof is set to TRUE if an attempt was made to read beyond) 108 512 P
+0.68 (the end of the \336le. The \336eld res reports the success of ReadBytes and W) 108 498 P
+0.68 (riteBytes opera-) 462.39 498 P
+0.53 (tions. W) 108 484 P
+0.53 (riting data overwrites old data at the rider position. When data is written beyond) 148.7 484 P
+(the end of the \336le, the \336le length increases.) 108 470 T
+1 F
+(1.2.5.2 Operations on \336les and the \336le dir) 108 438 T
+(ectory) 317.69 438 T
+0 F
+1.48 (Old\050fn\051 searches the name fn in the directory and returns the corresponding \336le. If the) 108 412 P
+(name is not found, it returns NIL.) 108 398 T
+-0.02 (New\050fn\051 creates and returns a new \336le. The name fn is remembered for the later use of the) 108 372 P
+(operation Register) 108 358 T
+(. The \336le is only entered into the directory when Register is called.) 195.61 358 T
+0.18 (Register\050f\051 enters the \336le f into the directory together with the name provided in the oper-) 108 332 P
+0.72 (ation New that created f. The \336le buf) 108 318 P
+0.72 (fers are written back. Any existing mapping of this) 290.04 318 P
+(name to another \336le is overwritten.) 108 304 T
+0.34 (Close\050f\051 writes back the \336le buf) 108 278 P
+0.34 (fers of f. The \336le is still accessible by its handle f and the) 261.72 278 P
+(riders positioned on it. If a \336le is not modi\336ed it is not necessary to close it.) 108 264 T
+(Pur) 108 238 T
+(ge\050f\051 resets the length of \336le f to 0.) 124.44 238 T
+0.04 (Delete\050fn, res\051 removes the directory entry for the \336le fn without deleting the \336le. If res=0) 108 212 P
+1.95 (the \336le has been successfully deleted. If there are variables referring to the \336le while) 108 198 P
+(Delete is called, they can still be used.) 108 184 T
+-0.24 (Rename\050oldfn, newfn, res\051 renames the directory entry oldfn to newfn. If res=0 the \336le has) 108 158 P
+1.72 (been successfully renamed. If there are variables referring to the \336le while Rename is) 108 144 P
+(called, they can still be used.) 108 130 T
+(Length\050f\051 returns the number of bytes in \336le f.) 108 104 T
+FMENDPAGE
+%%EndPage: "35" 36
+%%Page: "36" 36
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(36) 532 42.62 T
+0 12 Q
+-0.11 (GetDate\050f, t, d\051 returns the time t and date d of the last modi\336cation of \336le f. The encoding) 108 712 P
+0.74 (is: hour = t DIV 4096; minute = t DIV 64 MOD 64; second = t MOD 64; year = d DIV) 108 698 P
+(512; month = d DIV 32 MOD 16; day = d MOD 32.) 108 684 T
+1 F
+(1.2.5.3 Operations on riders) 108 652 T
+0 F
+0.66 (Set\050r) 108 626 P
+0.66 (, f, pos\051 sets the rider r to position pos in \336le f. The \336eld r) 130.84 626 P
+0.66 (.eof is set to F) 415.3 626 P
+0.66 (ALSE. The) 484.7 626 P
+(operation requires that 0 <= pos < Length\050f\051.) 108 612 T
+(Pos\050r\051 returns the position of the rider r) 108 586 T
+(.) 295.54 586 T
+(Base\050r\051 returns the \336le to which the rider r has been set.) 108 560 T
+1 F
+(1.2.5.4 Operations for unformatted input and output) 108 528 T
+0 F
+(In general, all operations must use the following format for external representation:) 108 502 T
+0.55 (\324Little endian\325 representation \050i.e., the least signi\336cant byte of a word is the one with the) 108 476 P
+(lowest address on the \336le\051.) 108 462 T
+(Numbers: SHOR) 108 442 T
+(TINT 1 byte, INTEGER 2 bytes, LONGINT 4 bytes) 189.57 442 T
+(Sets: 4 bytes, element 0 is the least signi\336cant bit) 108 426 T
+(Booleans: single byte with F) 108 410 T
+(ALSE = 0, TRUE = 1) 244.38 410 T
+(Reals: IEEE standard; REAL 4 bytes, LONGREAL 8 bytes) 108 394 T
+(Strings: with terminating 0X) 108 378 T
+1 F
+(1.2.5.5 Reading) 108 346 T
+0 F
+(Read\050r) 108 320 T
+(, x\051 reads the next byte x from rider r and advances r accordingly) 140.15 320 T
+(.) 450.45 320 T
+0.54 (ReadInt\050r) 108 294 P
+0.54 (, i\051 and ReadLInt\050r) 153.48 294 P
+0.54 (, i\051 read a \050long\051 integer number i from rider r and advance r) 244.55 294 P
+(accordingly) 108 280 T
+(.) 163.84 280 T
+-0.08 (ReadReal\050r) 108 254 P
+-0.08 (, x\051 and ReadLReal\050r) 162.14 254 P
+-0.08 (, x\051 read a \050long\051 real number x from rider r and advance r) 262.66 254 P
+(accordingly) 108 240 T
+(.) 163.84 240 T
+1.5 (ReadNum\050r) 108 214 P
+1.5 (, i\051 reads an integer number i from rider r and advances r accordingly) 164.14 214 P
+1.5 (. The) 513.86 214 P
+(number i is compactly encoded \050see remarks below\051.) 108 200 T
+-0.09 (ReadString\050r) 108 174 P
+-0.09 (, s\051 reads a sequence of characters \050including the terminating 0X\051 from rider r) 169.48 174 P
+0.11 (and returns it in s. The rider is advanced accordingly) 108 160 P
+0.11 (. The actual parameter corresponding) 360.7 160 P
+(to s must be long enough to hold the character sequence plus the terminating 0X.) 108 146 T
+(ReadSet\050r) 108 120 T
+(, s\051 reads a set s from rider r and advances r accordingly) 155.48 120 T
+(.) 422.8 120 T
+(ReadBool\050r) 108 94 T
+(, b\051 reads a Boolean value b from rider r and advances r accordingly) 163.48 94 T
+(.) 489.09 94 T
+FMENDPAGE
+%%EndPage: "36" 37
+%%Page: "37" 37
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(37) 532 42.62 T
+0 12 Q
+0.25 (ReadBytes\050r) 108 712 P
+0.25 (, buf, n\051 reads n bytes into buf) 167.48 712 P
+0.25 (fer buf starting at the rider position r) 313.24 712 P
+0.25 (. The rider) 489.21 712 P
+0.92 (is advanced accordingly) 108 698 P
+0.92 (. If less than n bytes could be read, r) 224.96 698 P
+0.92 (.res contains the number of) 406.09 698 P
+(requested but unread bytes.) 108 684 T
+1 F
+(1.2.5.6 W) 108 652 T
+(riting) 155.76 652 T
+0 F
+(W) 108 626 T
+(rite\050r) 118.84 626 T
+(, x\051 writes the byte x to rider r and advances r accordingly) 142.34 626 T
+(.) 419 626 T
+0.31 (W) 108 600 P
+0.31 (riteInt\050r) 118.84 600 P
+0.31 (, i\051 and W) 155.66 600 P
+0.31 (riteLInt\050r) 204.07 600 P
+0.31 (, i\051 write the \050long\051 integer number i to rider r and advance r) 248.22 600 P
+(accordingly) 108 586 T
+(.) 163.84 586 T
+0.13 (W) 108 560 P
+0.13 (riteReal\050r) 118.84 560 P
+0.13 (, x\051 and W) 164.32 560 P
+0.13 (riteLReal\050r) 214.86 560 P
+0.13 (, x\051 write the \050long\051 real number x to rider r and advance) 267.66 560 P
+(r accordingly) 108 546 T
+(.) 170.83 546 T
+-0.26 (W) 108 520 P
+-0.26 (riteString\050r) 118.84 520 P
+-0.26 (, s\051 writes the sequence of characters s \050including the terminating 0X\051 to rider) 171.66 520 P
+(r and advances r accordingly) 108 506 T
+(.) 245.1 506 T
+-0.19 (W) 108 480 P
+-0.19 (riteNum\050r) 118.84 480 P
+-0.19 (, i\051 writes the integer number i to rider r and advances r accordingly) 166.32 480 P
+-0.19 (. The num-) 487.43 480 P
+(ber i is compactly encoded \050see remarks below\051.) 108 466 T
+(W) 108 440 T
+(riteSet\050r) 118.84 440 T
+(, s\051 writes the set s to rider r and advances r accordingly) 157.66 440 T
+(.) 424.34 440 T
+(W) 108 414 T
+(riteBool\050r) 118.84 414 T
+(, b\051 writes the Boolean value b to rider r and advances r accordingly) 165.66 414 T
+(.) 490.63 414 T
+-0.18 (W) 108 388 P
+-0.18 (riteBytes\050r) 118.84 388 P
+-0.18 (, buf, n\051 writes the \336rst n bytes from buf to rider r and advances r accordingly) 169.66 388 P
+-0.18 (.) 537 388 P
+(r) 108 374 T
+(.res contains the number of bytes that could not be written \050e.g., due to a disk full error\051.) 111.33 374 T
+1 F
+(1.2.5.7 Examples) 108 342 T
+2 F
+(VAR f: Files.File; r: Files.Rider; ch: CHAR;) 108 312 T
+0 F
+(Reading from an existing \336le xxx:) 108 286 T
+2 F
+(f := Files.Old\050\322xxx\323\051;) 108 266 T
+(IF f # NIL THEN) 108 250 T
+( Files.Set\050r, f, 0\051;) 108 234 T
+( Files.Read\050r, ch\051;) 108 218 T
+( WHILE ~ r.eof DO ... Files.Read\050r, ch\051 END) 108 202 T
+(END) 108 186 T
+0 F
+(W) 108 160 T
+(riting to a new \336le yyy:) 118.84 160 T
+2 F
+(f := Files.New\050\322yyy\323\051;) 108 140 T
+(Files.Set\050r, f, 0\051;) 108 124 T
+(Files.WriteInt\050r, 8\051; Files.WriteString\050r, \322 bytes\323\051;) 108 108 T
+(Files.Register\050f\051) 108 92 T
+FMENDPAGE
+%%EndPage: "37" 38
+%%Page: "38" 38
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(38) 532 42.62 T
+1 12 Q
+(1.2.5.8 Remarks) 108 712 T
+0 F
+-0.11 (W) 108 686 P
+-0.11 (riteNum and ReadNum, should use the following encoding algorithms for conversion to) 118.84 686 P
+(and from external format.) 108 672 T
+2 F
+(PROCEDURE WriteNum \050VAR r: Rider; x: LONGINT\051;) 108 652 T
+(BEGIN) 108 636 T
+( WHILE \050x < - 64\051 OR \050x > 63\051 DO) 108 620 T
+( Write\050r, CHR\050x MOD 128 + 128\051\051; x := x DIV 128) 108 604 T
+( END;) 108 588 T
+( Write\050r, CHR\050x MOD 128\051\051) 108 572 T
+(END WriteNum;) 108 556 T
+(PROCEDURE ReadNum \050VAR r: Rider; VAR x: LONGINT\051;) 108 524 T
+( VAR s: SHORTINT; ch: CHAR; n: LONGINT;) 108 508 T
+(BEGIN) 108 492 T
+( s := 0; n := 0;) 108 476 T
+( Read\050r, ch\051;) 108 460 T
+( WHILE ORD\050ch\051 >= 128 DO) 108 444 T
+( INC\050n, ASH\050ORD\050ch\051 - 128, s\051 \051;) 108 428 T
+( INC\050s, 7\051;) 108 412 T
+( Read\050r, ch\051) 108 396 T
+( END;) 108 380 T
+( x := n + ASH\050ORD\050ch\051 MOD 64 - ORD\050ch\051 DIV 64 * 64, s\051) 108 364 T
+(END ReadNum;) 108 348 T
+0 F
+-0.27 (The reason for the speci\336cation of the \336le name in the operation New is to allow allocation) 108 322 P
+1.4 (of the \336le on the correct medium from the beginning \050if the operating system supports) 108 308 P
+(multiple media\051.) 108 294 T
+1.44 (The operations Read, W) 108 268 P
+1.44 (rite, ReadBytes and W) 228.42 268 P
+1.44 (riteBytes require the existence of a type) 340.85 268 P
+(SYSTEM.BYTE with the following characteristics:) 108 254 T
+0.17 (If a formal parameter is of type SYSTEM.BYTE the corresponding actual parameter may) 108 228 P
+(be of type CHAR, SHOR) 108 214 T
+(TINT) 229.54 214 T
+(, or SYSTEM.BYTE.) 255.96 214 T
+0.37 (If a formal variable parameter is of type ARRA) 108 188 P
+0.37 (Y OF SYSTEM.BYTE the corresponding) 337.65 188 P
+1.1 (actual parameter may be of any type. Note that this feature is dangerous and inherently) 108 174 P
+(unportable. Its use should therefore be restricted to system-level modules.) 108 160 T
+1 F
+(1.2.5.9 Origin) 108 128 T
+0 F
+0.09 (This module is part of the ETH Oberon System. The above speci\336cation was proposed by) 108 102 P
+(H M\232ssenb\232ck, ETH.) 108 88 T
+FMENDPAGE
+%%EndPage: "38" 39
+%%Page: "39" 39
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(39) 532 42.62 T
+1 12 Q
+(1.2.6  Module Strings) 108 712 T
+0 F
+-0.24 (Module Strings provides a set of operations on strings \050i.e., on string constants and charac-) 108 686 P
+0.04 (ter arrays, both of which contain the character 0X as a terminator\051. All positions in strings) 108 672 P
+(start at 0.) 108 658 T
+2 F
+(DEFINITION Strings;) 108 638 T
+(PROCEDURE Length \050s: ARRAY OF CHAR\051: INTEGER;) 135 622 T
+(PROCEDURE Insert \050source: ARRAY OF CHAR;) 135 606 T
+( pos: INTEGER;) 252 590 T
+( VAR dest: ARRAY OF CHAR\051;) 252 574 T
+(PROCEDURE Append \050extra: ARRAY OF CHAR;) 135 558 T
+( VAR dest: ARRAY OF CHAR\051;) 252 542 T
+(PROCEDURE Delete \050VAR s: ARRAY OF CHAR;) 135 526 T
+( pos, n: INTEGER\051;) 252 510 T
+(PROCEDURE Replace \050source: ARRAY OF CHAR;) 135 494 T
+( pos: INTEGER;) 252 478 T
+( VAR dest: ARRAY OF CHAR\051;) 252 462 T
+(PROCEDURE Extract \050source: ARRAY OF CHAR;) 135 446 T
+( pos, n: INTEGER;) 252 430 T
+( VAR dest: ARRAY OF CHAR\051;) 252 414 T
+(PROCEDURE Pos) 135 398 T
+(\050pattern, s: ARRAY OF CHAR;) 252 398 T
+( pos: INTEGER\051: INTEGER;) 252 382 T
+(PROCEDURE Cap) 135 366 T
+(\050) 252 366 T
+(VAR s: ARRAY OF CHAR\051;) 259.2 366 T
+(END Strings) 108 350 T
+1 F
+(1.2.6.1 Operations) 108 318 T
+0 F
+(Length\050s\051 returns the number of characters in s up to and excluding the \336rst 0X.) 108 292 T
+-0.08 (Insert\050src, pos, dst\051 inserts the string src into the string dst at position pos \0500 <=pos<=Len-) 108 266 P
+0.26 (gth\050dst\051\051. If pos = Length\050dst\051,src is appended to dst. If the size of dst is not lar) 108 252 P
+0.26 (ge enough) 490.11 252 P
+0.62 (to hold the result of the operation, the result is truncated so that dst is always terminated) 108 238 P
+(with a 0X.) 108 224 T
+(Append\050s,dst\051 has the same ef) 108 198 T
+(fect as Insert\050s,Length\050dst\051,dst\051.) 252.01 198 T
+0.32 (Delete\050s, pos, n\051 deletes n characters from s starting at position pos \0500 <= pos Length\050s\051\051.) 108 172 P
+(If n > Length\050s\051 - pos, the new length of s is pos.) 108 158 T
+0.43 (Replace\050src, pos, dst\051 has the same ef) 108 132 P
+0.43 (fect as Delete\050dst, pos, Length\050src\051\051 followed by an) 290.2 132 P
+(Insert\050src, pos, dst\051.) 108 118 T
+0.41 (Extract\050src, pos, n, dst\051 extracts a substring dst with n characters from position pos \0500 <=) 108 92 P
+0.21 (pos Length\050src\051\051 in src. If n > Length\050src\051 - pos, dst is only the part of src from pos to the) 108 78 P
+FMENDPAGE
+%%EndPage: "39" 40
+%%Page: "40" 40
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(40) 532 42.62 T
+0 12 Q
+-0.01 (end of src, i.e. Length\050src\051 -1. If the size of dst is not lar) 108 712 P
+-0.01 (ge enough to hold the result of the) 375.82 712 P
+(operation, the result is truncated so that dst is always terminated with a 0X.) 108 698 T
+0.66 (Pos\050pat, s, pos\051 returns the position of the \336rst occurrence of pat in s. Searching starts at) 108 672 P
+(position pos. If pat is not found, -1 is returned.) 108 658 T
+(Cap\050s\051 replaces each lower case letter within s by its upper case equivalent.) 108 632 T
+1 F
+(1.2.6.2 Remarks) 108 600 T
+0 F
+-0.12 (String assignments and string comparisons are already supported by the language Oberon-) 108 574 P
+(2.) 108 560 T
+1 F
+(1.2.6.3 Origin) 108 528 T
+0 F
+0.18 (This module is loosely based on the ISO Modula-2 Strings library but is much simpli\336ed.) 108 502 P
+(It was edited by Brian Kirk, Nick W) 108 488 T
+(alsh, Josef T) 281.58 488 T
+(empl and Hanspeter M\232ssenb\232ck.) 341.03 488 T
+1 F
+(1.2.7  Module Math and MathL) 108 456 T
+0 F
+1.33 (The module Math provides a basic set of general purpose functions using REAL arith-) 108 430 P
+(metic. The module MathL provides the same functions for LONGREAL arithmetic.) 108 416 T
+2 F
+(DEFINITION Math;) 108 396 T
+( CONST) 108 380 T
+( pi = 3.14159265358979323846;) 108 364 T
+( e = 2.71828182845904523536;) 108 348 T
+(PROCEDURE sqrt \050x : REAL\051 : REAL;) 115.2 332 T
+( PROCEDURE power \050x,base : REAL\051 : REAL;) 108 316 T
+(PROCEDURE exp \050x : REAL\051: REAL;) 117 300 T
+( PROCEDURE ln \050x : REAL\051 : REAL;) 108 284 T
+( PROCEDURE log \050x,base : REAL\051 : REAL;) 108 268 T
+(PROCEDURE round \050x : REAL\051 : REAL;) 117 252 T
+( PROCEDURE sin \050x : REAL\051 : REAL;) 108 236 T
+( PROCEDURE cos \050x : REAL\051 : REAL) 108 220 T
+( PROCEDURE tan \050x : REAL\051 : REAL;) 108 204 T
+( PROCEDURE arcsin \050x : REAL\051 : REAL;) 108 188 T
+( PROCEDURE arccos \050x : REAL\051 : REAL;) 108 172 T
+( PROCEDURE arctan \050x : REAL\051 : REAL;) 108 156 T
+( PROCEDURE arctan2\050x,y : REAL\051: REAL) 108 140 T
+(PROCEDURE sinh \050x:REAL\051:REAL;) 115.2 124 T
+( PROCEDURE cosh \050x:REAL\051:REAL;) 108 108 T
+( PROCEDURE tanh \050x:REAL\051:REAL;) 108 92 T
+( PROCEDURE arcsinh\050x:REAL\051:REAL;) 108 76 T
+FMENDPAGE
+%%EndPage: "40" 41
+%%Page: "41" 41
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(41) 532 42.62 T
+2 12 Q
+( PROCEDURE arccosh\050x:REAL\051:REAL;) 108 712 T
+( PROCEDURE arctanh\050x:REAL\051:REAL;) 108 696 T
+(END Math.) 108 680 T
+1 F
+(1.2.7.1 Operations) 108 648 T
+0 F
+(sqrt \050x\051) 108 622 T
+(returns the square root of x, where x must be) 142.97 622 T
+(positive) 360.47 622 T
+(sin, cos, tan \050x\051) 108 596 T
+(returns the sine, cosine or tangent value of x,) 181.62 596 T
+(where x is in radians) 399.79 596 T
+0.38 (arcsin, arcos, arctan \050x\051 returns the arcsine, arcos, arctan value in) 108 570 P
+0.38 (radians of x, where x is) 426.2 570 P
+(in the sine, cosine or) 108 556 T
+(tangent value) 209.93 556 T
+(power\050x, base\051) 108 530 T
+(returns the x to the power base) 179.26 530 T
+0.29 (round\050x\051) 108 504 P
+0.29 (if fraction part of x is in range 0.0 to 0.5 then) 153.25 504 P
+0.29 (the result is the lar) 375.92 504 P
+0.29 (gest integer not) 465.47 504 P
+-0.19 (greater than) 108 490 P
+-0.19 (x, otherwise the result is x rounded up to the) 167.56 490 P
+-0.19 (next highest whole number) 381.86 490 P
+-0.19 (. Note) 510.88 490 P
+-0.22 (that integer) 108 476 P
+-0.22 (values cannot always be exactly represented) 164.85 476 P
+-0.22 (in REAL or LONGREAL format.) 378.67 476 P
+(ln\050x\051) 108 450 T
+(returns the natural logarithm \050base e\051 of x) 134.31 450 T
+0.83 (exp\050x\051) 108 424 P
+0.83 (is the exponential of x base e. x must not be) 139.3 424 P
+0.83 (so small that) 361.62 424 P
+0.83 (this exponential under-) 427.75 424 P
+(\337ows nor) 108 410 T
+(so lar) 155.97 410 T
+(ge that it over\337ows.) 182.07 410 T
+1.15 (log\050x,base\051) 108 384 P
+1.15 (is the logarithm of x base b. All positive) 161.62 384 P
+1.15 (ar) 367.91 384 P
+1.15 (guments are allowed. The base b) 377.01 384 P
+(must be) 108 370 T
+(positive.) 148.65 370 T
+1.83 (arctan2\050xn,xd\051) 108 344 P
+1.83 (is the quadrant-correct arc tangent) 178.27 344 P
+1.83 (atan\050xn/xd\051. If the denominator xd is) 354.29 344 P
+(zero,) 108 330 T
+(then the numerator xn must not be zero. All) 134.64 330 T
+(ar) 347.16 330 T
+(guments are legal except xn = xd = 0.) 356.26 330 T
+0.08 (sinh\050x\051) 108 304 P
+0.08 (is the hyperbolic sine of x. The ar) 145.05 304 P
+0.08 (gument x) 306.57 304 P
+0.08 (must not be so lar) 354.7 304 P
+0.08 (ge that exp\050|x|\051 over-) 440.06 304 P
+(\337ows.) 108 290 T
+1.02 (cosh\050x\051) 108 264 P
+1.02 (is the hyperbolic cosine of x. The ar) 147.98 264 P
+1.02 (gument x) 327.42 264 P
+1.02 (must not be so lar) 377.42 264 P
+1.02 (ge that exp\050|x|\051) 466.56 264 P
+(over\337ows.) 108 250 T
+(tanh\050x\051) 108 224 T
+(is the hyperbolic tangent of x. All ar) 145.63 224 T
+(guments) 319.3 224 T
+(are legal.) 362.94 224 T
+(arcsinh\050x\051) 108 198 T
+(is the arc hyperbolic sine of x. All ar) 159.62 198 T
+(guments) 334.94 198 T
+(are legal.) 378.58 198 T
+0.64 (arccosh\050x\051) 108 172 P
+0.64 (is the arc hyperbolic cosine of x. All) 162.25 172 P
+0.64 (ar) 344.9 172 P
+0.64 (guments greater than or equal to 1 are) 354.01 172 P
+(legal.) 108 158 T
+(arctanh\050x\051) 108 132 T
+(is the arc hyperbolic tangent of x.) 160.28 132 T
+(|x| < 1 - sqrt\050em\051, where em is machine) 108 106 T
+(epsilon.) 298.76 106 T
+(Note that |x| must not be so close to 1 that the result is less accurate than half precision.) 108 80 T
+FMENDPAGE
+%%EndPage: "41" 42
+%%Page: "42" 42
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(42) 532 42.62 T
+1 12 Q
+(1.2.7.2 Sour) 108 712 T
+(ce:) 168.42 712 T
+0 F
+(Based on the original ETH Math module, with additions from BK and Al Freed, NASA.) 108 686 T
+(<< BK should the result of round be LONGINT or LONGREAL ? >>) 108 660 T
+(<< AF round \050LONGREAL\051 will have a precision problem anyway) 108 634 T
+(. >>) 431.52 634 T
+1 F
+(1.2.8  Module Cor) 108 602 T
+(outines) 200.06 602 T
+0 F
+1.21 (Module Coroutines provides non-preemptive threads each with its own stack but other-) 108 576 P
+0.55 (wise sharing a common address space. Coroutines can explicitly transfer control to other) 108 562 P
+-0.18 (coroutines which are then resumed from the point where they did their last transfer of con-) 108 548 P
+(trol.) 108 534 T
+2 F
+(DEFINITION Coroutines;) 108 514 T
+( TYPE) 108 498 T
+( Coroutine = RECORD END;) 108 482 T
+( Body = PROCEDURE;) 108 466 T
+( PROCEDURE Init \050body: Body; stackSize: LONGINT;) 108 450 T
+( VAR cor: Coroutine\051;) 216 434 T
+( PROCEDURE Transfer \050VAR from, to: Coroutine\051;) 108 418 T
+(END Coroutines.) 108 402 T
+1 F
+(1.2.8.1 Operations) 108 370 T
+0 F
+-0.11 ( Init\050p, s, c\051) 108 344 P
+-0.11 (creates and initialises a new coroutine c with a stack of s) 163.31 344 P
+-0.11 (bytes and a body pro-) 436.5 344 P
+0.1 (vided as the procedure p. An) 108 330 P
+0.1 (initialised coroutine can be started by a T) 249.5 330 P
+0.1 (ransfer to it. In) 447.98 330 P
+0.1 (this) 522.67 330 P
+(case its execution will start at the \336rst instruction of p.) 108 316 T
+(Procedure p must never return.) 371.17 316 T
+0.8 ( T) 108 290 P
+0.8 (ransfer\050f, t\051 transfers control from the currently executing coroutine to) 118.71 290 P
+0.8 (the coroutine t.) 466.11 290 P
+1.1 (The state of the currently executing) 108 276 P
+1.1 (coroutine is saved in f. When control is transferred) 287.77 276 P
+(back to f) 108 262 T
+(later) 152.96 262 T
+(, f will be restarted in the saved state.) 173.8 262 T
+1 F
+(1.2.8.2 Sour) 108 230 T
+(ce) 168.42 230 T
+0 F
+(Proposed by Prof Hanspeter M\232ssenb\232ck, ETH.) 108 204 T
+1 F
+(1.2.9  Modules MathC and MathLC) 108 172 T
+0 F
+0.99 (The module MathC provides functions for COMPLEX arithmetic. The module MathLC) 108 146 P
+(provides the same functions for LONGCOMPLEX.) 108 132 T
+2 F
+(DEFINITION MathC;) 108 112 T
+( PROCEDURE abs \050z:COMPLEX\051:REAL;) 108 96 T
+( PROCEDURE power\050z:COMPLEX;base:REAL\051:COMPLEX;) 108 80 T
+FMENDPAGE
+%%EndPage: "42" 43
+%%Page: "43" 43
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(43) 532 42.62 T
+2 12 Q
+( PROCEDURE conj\050z:COMPLEX\051:COMPLEX;) 108 712 T
+( PROCEDURE sqrt\050z:COMPLEX\051:COMPLEX;) 108 696 T
+( PROCEDURE exp \050z:COMPLEX\051:COMPLEX;) 108 680 T
+( PROCEDURE ln \050z:COMPLEX\051:COMPLEX;) 108 664 T
+( PROCEDURE log \050z:COMPLEX, b:REAL\051:COMPLEX;) 108 648 T
+( PROCEDURE sin \050z:COMPLEX\051:COMPLEX;) 108 632 T
+( PROCEDURE cos \050z:COMPLEX\051:COMPLEX;) 108 616 T
+( PROCEDURE tan \050z:COMPLEX\051:COMPLEX;) 108 600 T
+( PROCEDURE arcsin \050z:COMPLEX\051:COMPLEX;) 108 584 T
+( PROCEDURE arccos \050z:COMPLEX\051:COMPLEX;) 108 568 T
+( PROCEDURE arctan \050z:COMPLEX\051:COMPLEX;) 108 552 T
+( PROCEDURE arctan2 \050zn,zd:COMPLEX\051:COMPLEX;) 108 536 T
+( PROCEDURE sinh \050z:COMPLEX\051:COMPLEX;) 108 520 T
+( PROCEDURE cosh \050z:COMPLEX\051:COMPLEX;) 108 504 T
+( PROCEDURE tanh \050z:COMPLEX\051:COMPLEX;) 108 488 T
+( PROCEDURE arcsinh \050z:COMPLEX\051:COMPLEX;) 108 472 T
+( PROCEDURE arccosh \050z:COMPLEX\051:COMPLEX;) 108 456 T
+( PROCEDURE arctanh \050z:COMPLEX\051:COMPLEX;) 108 440 T
+(END MathC.) 108 424 T
+1 F
+(1.2.9.1 Operations) 108 392 T
+0 F
+(z) 108 366 T
+(= x + iy) 116.32 366 T
+(bn) 108 346 T
+(is the biggest \337oating point number of a given machine.) 153 346 T
+(em) 108 330 T
+(is machine epsilon.) 153 330 T
+(es) 108 314 T
+(is em divided by the machine arithmetic base.) 153 314 T
+(sn) 108 298 T
+(is the smallest \337oating point number of a given machine.) 153 298 T
+-0.2 ( abs\050z\051) 108 272 P
+-0.2 (is the absolute value or magnitude of the complex number) 140.1 272 P
+-0.2 (z. The ar) 419.95 272 P
+-0.2 (guments x and y) 461.64 272 P
+(must not be so lar) 108 258 T
+(ge that x*x +) 193.07 258 T
+(y*y over\337ows. The returned value is a real number) 259.13 258 T
+(.) 503.28 258 T
+( power \050Z,base\051 returns Z to the power base, see comments for exp.) 108 232 T
+( conj\050z\051) 108 206 T
+(is the complex conjugate of z. All ar) 147.96 206 T
+(guments are legal.) 322.29 206 T
+( sqrt\050z\051) 108 180 T
+(is the complex square root of z. The absolute value of z) 145.3 180 T
+(must not over\337ow) 414.1 180 T
+(.) 500.6 180 T
+0.4 ( exp\050z\051) 108 154 P
+0.4 (is the complex exponential of z to the base e. The real part) 145.43 154 P
+0.4 (of z, i.e. x, should not) 433.73 154 P
+0.48 (be so small that the result under\337ows) 108 140 P
+0.48 (nor so lar) 292.89 140 P
+0.48 (ge that it over\337ows. If |y| is too lar) 338.92 140 P
+0.48 (ge, the) 507.55 140 P
+-0.18 (result) 108 126 P
+-0.18 (may be less accurate than half precision. If |y| is extremely) 137.46 126 P
+-0.18 (lar) 419.37 126 P
+-0.18 (ge, the result will have) 431.8 126 P
+(no precision.) 108 112 T
+0.4 ( ln\050z\051) 108 86 P
+0.4 (is the complex natural logarithm \050base e\051 of z. The) 137.45 86 P
+0.4 (ar) 386.97 86 P
+0.4 (gument must not be zero, and) 396.07 86 P
+(the absolute value of z) 108 72 T
+(must not over\337ow) 218.91 72 T
+(.) 305.42 72 T
+FMENDPAGE
+%%EndPage: "43" 44
+%%Page: "44" 44
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(44) 532 42.62 T
+0 12 Q
+0.95 ( log\050z,b\051) 108 712 P
+0.95 (is the complex natural logarithm of z to the base b. The) 153.53 712 P
+0.95 (ar) 433.09 712 P
+0.95 (gument must not be) 442.2 712 P
+(zero, and the absolute value of z) 108 698 T
+(must not over\337ow) 265.87 698 T
+(. Base b must be positive.) 352.38 698 T
+( sin\050z\051) 108 672 T
+(is the complex sine of z.) 141.31 672 T
+(|Re\050z\051| = |x| <= 1/sqrt\050em\051 = x\050warn\051) 111 646 T
+(|Re\050z\051| = |x| <= 1/em = x\050max\051) 108 620 T
+(|Im\050z\051| = |y| <= ln\050bn\051 = y\050max\051) 108 594 T
+-0.17 (If |x| is lar) 110.83 568 P
+-0.17 (ger than x\050warn\051, then the result will have less than) 158.54 568 P
+-0.17 (half precision. If |x| is lar) 405.69 568 P
+-0.17 (ger) 524.68 568 P
+-0.23 (than x\050max\051, then the result has) 108 554 P
+-0.23 (no precision. Finally) 260.86 554 P
+-0.23 (, if |y| is too lar) 358.58 554 P
+-0.23 (ge, the result will) 429.32 554 P
+-0.23 (over-) 514.69 554 P
+(\337ow) 108 540 T
+(.) 128.54 540 T
+( cos\050z\051) 108 514 T
+(is the complex cosine of z.) 143.3 514 T
+(|Re\050z\051| = |x| <= 1/sqrt\050em\051 = x\050warn\051) 111 488 T
+(|Re\050z\051| = |x| <= 1/em = x\050max\051) 108 462 T
+(|Im\050z\051| = |y| <= ln\050bn\051 = y\050max\051) 108 436 T
+-0.17 (If |x| is lar) 110.83 410 P
+-0.17 (ger than x\050warn\051, then the result will have less than) 158.54 410 P
+-0.17 (half precision. If |x| is lar) 405.69 410 P
+-0.17 (ger) 524.68 410 P
+-0.23 (than x\050max\051, then the result has) 108 396 P
+-0.23 (no precision. Finally) 260.86 396 P
+-0.23 (, if |y| is too lar) 358.58 396 P
+-0.23 (ge, the result will) 429.32 396 P
+-0.23 (over-) 514.69 396 P
+(\337ow) 108 382 T
+(.) 128.54 382 T
+0.12 ( tan\050z\051) 108 356 P
+0.12 (is the complex tangent of z. If |cos\050z\051|**2 is very small, that) 142.22 356 P
+0.12 (is, if x is very close to) 433.65 356 P
+0.8 (pi/2 or 3*pi/2 and if y is small, then) 108 342 P
+0.8 (tan\050z\051 is nearly singular) 289.78 342 P
+0.8 (. If |cos\050z\051|**2 is somewhat) 405.1 342 P
+-0.26 (lar) 108 328 P
+-0.26 (ger) 120.44 328 P
+-0.26 (but still small, then the result will be less accurate than half) 138.49 328 P
+-0.26 (precision. When 2x is so) 422.8 328 P
+0.12 (lar) 108 314 P
+0.12 (ge that sin\0502x\051 cannot be) 120.44 314 P
+0.12 (evaluated to any nonzero) 242.6 314 P
+0.12 (precision, a special situation) 366.31 314 P
+0.12 (results.) 505.69 314 P
+(If |y| < 3/2, then tan cannot be evaluated) 108 300 T
+0.51 (accurately to better than one signi\336cant \336gure. If 3/2 <= |y|) 111.51 274 P
+0.51 (< -0.5*ln\050es/2\051, then tan can) 402.62 274 P
+0.82 (be evaluated by ignoring the) 108 260 P
+0.82 (real part of the ar) 251.68 260 P
+0.82 (gument; however) 337.35 260 P
+0.82 (, the answer will be less) 421.3 260 P
+(accurate than half precision.) 108 246 T
+( arcsin\050z\051) 108 220 T
+(is the complex arc sine of z. |x| must be less than or equal) 155.95 220 T
+(1.) 434.22 220 T
+( arccos\050z\051) 108 194 T
+(is the complex arc cosine of z. |x| must be less than or) 157.94 194 T
+(equal to 1.) 418.56 194 T
+2.19 ( arctan\050z\051) 108 168 P
+2.19 (is the complex arc tangent of z. The ar) 161 168 P
+2.19 (gument z must not) 362.51 168 P
+2.19 (be exactly +/-i,) 463.23 168 P
+0.43 (because atan\050+/-i\051 is unde\336ned. In addition,) 108 154 P
+0.43 (z must not be so close to +/-i that substantial) 322.51 154 P
+(signi\336cance is) 108 140 T
+(lost.) 179.29 140 T
+0.05 ( arctan2\050zn,zd\051 is the quadrant-correct, complex, arc tangent) 108 114 P
+0.05 (atan\050zn/zd\051. The ratio z = zn/) 400.45 114 P
+0.15 (zd must not be +/-i, because) 108 100 P
+0.15 (atan\050+/-i\051 is unde\336ned. Likewise, zn and zd must not be) 246.58 100 P
+0.15 (both) 518.68 100 P
+(zero. Finally) 108 86 T
+(, z must not be so close to +/-i that) 167.85 86 T
+(substantial signi\336cance is lost.) 336.19 86 T
+FMENDPAGE
+%%EndPage: "44" 45
+%%Page: "45" 45
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(45) 532 42.62 T
+0 12 Q
+( sinh\050z\051) 108 712 T
+(is the hyperbolic sine of z.) 147.3 712 T
+(|Im\050z\051| = |y| <= 1/sqrt\050em\051 = y\050warn\051) 108 686 T
+(|Im\050z\051| = |y| <= 1/em = y\050max\051) 108 660 T
+(|Re\050z\051| = |x| <= ln\050bn\051 = x\050max\051) 108 634 T
+-0.21 (If |y| is lar) 110.79 608 P
+-0.21 (ger than y\050warn\051, then the result will) 158.36 608 P
+-0.21 (be less accurate than half precision. If |y| is) 335.4 608 P
+(lar) 108 594 T
+(ger than y\050max\051, the result has no precision.) 120.44 594 T
+(Finally) 108 568 T
+(, if |x| is too lar) 141.21 568 T
+(ge, the result over\337ows.) 213.09 568 T
+( cosh\050z\051) 108 542 T
+(is the hyperbolic cosine of z.) 149.29 542 T
+(|Im\050z\051| = |y| <= 1/sqrt\050em\051 = y\050warn\051) 108 516 T
+(|Im\050z\051| = |y| <= 1/em = y\050max\051) 283.2 516 T
+(|Re\050z\051| = |x| <= ln\050bn\051 = x\050max\051) 108 490 T
+-0.21 (If |y| is lar) 110.79 464 P
+-0.21 (ger than y\050warn\051, then the result will be less) 158.36 464 P
+-0.21 (accurate than half precision. If |y| is) 370.29 464 P
+0.67 (lar) 108 450 P
+0.67 (ger than y\050max\051, the) 120.44 450 P
+0.67 (result has no precision. Finally) 223.37 450 P
+0.67 (, if |x| is too lar) 372.84 450 P
+0.67 (ge, the result) 448.07 450 P
+0.67 (over-) 514.69 450 P
+(\337ows.) 108 436 T
+-0.2 ( tanh\050z\051) 108 410 P
+-0.2 (is the hyperbolic tangent of z. If |cosh\050z\051|**2 is very small,) 147.56 410 P
+-0.2 (that is, if y mod 2*pi is) 430.26 410 P
+-0.05 (very close to pi/2 or 3*pi/2 and if x is) 108 396 P
+-0.05 (small, than tanh\050z\051 is nearly singular) 290.73 396 P
+-0.05 (. If |cosh\050z\051|**2) 465.03 396 P
+(is) 108 382 T
+(somewhat lar) 119 382 T
+(ger but still small, then the result will be less) 183.07 382 T
+0.97 (accurate than half precision. When 2y is so lar) 108 356 P
+0.97 (ge that) 337.69 356 P
+0.97 (sin\0502y\051 cannot be evaluated accu-) 374.93 356 P
+0.9 (rately to even zero) 108 342 P
+0.9 (precision, a special situation results. If |x| < 3/2, then tanh) 203.52 342 P
+0.9 (cannot be) 492.8 342 P
+(evaluated accurately to better than one) 108 328 T
+0.09 (signi\336cant \336gure. If 3/2 <=|y| < - 0.5*ln\050es/2\051, then tanh) 111.09 302 P
+0.09 (can be evaluated by ignoring the) 383.31 302 P
+0.13 (imaginary part of the) 108 288 P
+0.13 (agrument; however) 212.45 288 P
+0.13 (, the answer will be less accurate than) 305.02 288 P
+0.13 (half preci-) 490.25 288 P
+(sion.) 108 274 T
+0.12 ( arcsinh\050z\051) 108 248 P
+0.12 (is the arc hyperbolic sine of z. Almost all ar) 162.18 248 P
+0.12 (guments are) 372.86 248 P
+0.12 (legal. Only when |z| >) 434.38 248 P
+(bn/2 can an over\337ow occur) 108 234 T
+(.) 237.9 234 T
+0.09 ( arccosh\050z\051) 108 208 P
+0.09 (is the arc hyperbolic cosine of z. Almost all ar) 161.03 208 P
+0.09 (guments are) 382.84 208 P
+0.09 (legal. Only when |z|) 444.32 208 P
+(> bn/2 can an over\337ow occur) 108 194 T
+(.) 247.66 194 T
+1.65 ( arctanh\050z\051) 108 168 P
+1.65 (is the arc hyperbolic tangent of z. The) 165.91 168 P
+1.65 (ar) 363.97 168 P
+1.65 (gument must not) 373.07 168 P
+1.65 (be exactly +/-1,) 461.65 168 P
+0.89 (because) 108 154 P
+0.89 (the arc hyperbolic tangent of z is) 149.85 154 P
+0.89 (unde\336ned there. In addition, z must not be so) 316.32 154 P
+(close to +/-1) 108 140 T
+(that substantial signi\336cance is lost.) 171.06 140 T
+1 F
+(1.2.9.2 Sour) 108 108 T
+(ce) 168.42 108 T
+0 F
+(Proposed by Al Freed, NASA. Based on the IMSL package.) 108 82 T
+FMENDPAGE
+%%EndPage: "45" 46
+%%Page: "46" 46
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(46) 532 42.62 T
+1 16 Q
+(Appendix B: List of Contributors) 108 709.33 T
+1 12 Q
+(Compiler Developers) 108 686 T
+(Email Addr) 261 686 T
+(ess) 321.76 686 T
+0 F
+(Andrew Cadach) 108 670 T
+(71333.2346@compuserv) 261 670 T
+(.com) 380.86 670 T
+(Paul Curtis) 108 654 T
+(---) 261 654 T
+(Gunter Dotzel) 108 638 T
+(100023.2527@compuserv) 261 638 T
+(.com) 386.86 638 T
+(John Gough) 108 622 T
+(gough@\336tmail.\336t.qut.edu.au) 261 622 T
+(T) 108 606 T
+(aylor Hutt) 114.49 606 T
+(thutt@access.digex.com) 261 606 T
+(Brian Kirk) 108 590 T
+(robinsons@cix.compulink.co.uk) 261 590 T
+(Hanspeter M\232ssenb\232ck) 108 574 T
+(Moessenboeck@cs.inf.ethz.ch) 261 574 T
+(Alex Nedorya) 108 558 T
+(ned@isi.itfs.nsk.su) 261 558 T
+(Cuno P\336ster) 108 542 T
+(p\336ster@inf.ethz.ch) 261 542 T
+(Josef T) 108 526 T
+(empl) 142.13 526 T
+(templ@inf.ethz.ch) 261 526 T
+(Rick W) 108 510 T
+(atson) 144.02 510 T
+(watson@futurs.enet.dec.com) 261 510 T
+1 F
+(Applications Reviewers) 108 478 T
+0 F
+(Steve Collins) 108 462 T
+(71333.2346@compuserve.com) 261 462 T
+(Al Freed) 108 446 T
+(al@sarah.lerc.nasa.gov) 261 446 T
+(Euan Hill) 108 430 T
+(100143.1660@compuserve.com) 261 430 T
+(Steve Metzeler) 108 414 T
+(----) 261 414 T
+(Anja Schumacher) 108 398 T
+(---) 261 398 T
+(Steve T) 108 382 T
+(errapin) 144.14 382 T
+(100023.1307@compuserve.com) 261 382 T
+(Nick W) 108 366 T
+(alsh \050deceased\051) 144.68 366 T
+(---) 261 366 T
+FMENDPAGE
+%%EndPage: "46" 47
+%%Page: "47" 47
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(47) 532 42.62 T
+1 16 Q
+(Appendix C: Oakwood Confer) 108 709.33 T
+(ence) 316.94 709.33 T
+0 12 Q
+(Croydon 21 .. 23 June 1993) 108 682 T
+1 14 Q
+(3.1  List of Contributors and Participants) 108 648.67 T
+1 12 Q
+(Name \050Initials\051) 108 618 T
+( Country) 261 618 T
+(Organisation) 351 618 T
+0 F
+(Christof Brass \050CB\051) 108 602 T
+( Switzerland) 261 602 T
+(Analytic AG) 351 602 T
+(Oliver Breuninger \050OB\051) 108 586 T
+( Germany) 261 586 T
+(Individual) 351 586 T
+(Andrew Cadach \050AC\051) 108 570 T
+( Russia) 261 570 T
+(ISI SD RAS) 351 570 T
+(Steve Collins \050SC\051) 108 554 T
+( UK) 261 554 T
+(Real T) 351 554 T
+(ime Assoc.) 382.89 554 T
+(Andreas Distely \050AD\051) 108 538 T
+( Switzerland) 261 538 T
+(ETH) 351 538 T
+(Gunter Dotzel \050GD\051) 108 522 T
+( Germany) 261 522 T
+(ModulaW) 351 522 T
+(are GmbH) 398.67 522 T
+(Dave Fox \050DF\051) 108 506 T
+( UK) 261 506 T
+(Real T) 351 506 T
+(ime Assoc.) 382.89 506 T
+(John Gough \050JG\051) 108 490 T
+( Australia) 261 490 T
+(QUT Carden Point) 351 490 T
+(Jim Hawkins \050JH\051) 108 474 T
+( UK) 261 474 T
+(Amiga) 351 474 T
+(Euan Hill \050EH\051) 108 458 T
+( UK) 261 458 T
+(BSC SIG) 351 458 T
+(Stig Holmber) 108 442 T
+(g \050SH\051) 172.75 442 T
+( Sweden) 261 442 T
+(Ostersund Univ) 351 442 T
+(.) 425.84 442 T
+(W) 108 426 T
+(olfgang Hugentober\050WH\051) 118.36 426 T
+( Switzerland) 261 426 T
+(L Kissling & Co. AG) 351 426 T
+(T) 108 410 T
+(aylor Hutt \050TH\051) 114.49 410 T
+( USA) 261 410 T
+(Individual) 351 410 T
+(Brian Kirk \050BK\051) 108 394 T
+( UK) 261 394 T
+(Robinson Assoc.) 351 394 T
+(Hans Klaver \050HK\051) 108 378 T
+( Netherlands) 261 378 T
+(Individual) 351 378 T
+(Bernhard Leisch \050BL\051) 108 362 T
+( Austria) 261 362 T
+(Johannes Kepler) 351 362 T
+(Steve Metzeler \050SM\051) 108 346 T
+( Switzerland) 261 346 T
+(Alchemia Software) 351 346 T
+(Alex Nedorya \050AN\051) 108 330 T
+( Russia) 261 330 T
+(ISI SD RAS) 351 330 T
+(Cuno P\336ster \050CP\051) 108 314 T
+( Switzerland) 261 314 T
+(Oberon Microsys.) 351 314 T
+(Markus Rauber \050MR\051) 108 298 T
+( Switzerland) 261 298 T
+(CA) 351 298 T
+(TS AG) 366.33 298 T
+(Steve Rumsby \050SR\051) 108 282 T
+( UK) 261 282 T
+(De Montford) 351 282 T
+(Peter Schulthess \050PS\051) 108 266 T
+( Germany) 261 266 T
+(Ulm University) 351 266 T
+(Anja Schumacher \050AS\051) 108 250 T
+( Germany) 261 250 T
+(Siemens AG) 351 250 T
+(Fridtjof Siebert \050FS\051) 108 234 T
+( Germany) 261 234 T
+(Amiga Software) 351 234 T
+(Josef T) 108 218 T
+(empl \050JT\051) 142.13 218 T
+( Switzerland) 261 218 T
+(ETH) 351 218 T
+(Steve T) 108 202 T
+(erepin \050ST\051) 144.14 202 T
+( UK) 261 202 T
+(Opus 1 Software) 351 202 T
+(Nick W) 108 186 T
+(alsh \050NJW\051) 144.68 186 T
+( UK) 261 186 T
+(City University) 351 186 T
+(Rick W) 108 170 T
+(atson \050R) 144.02 170 T
+(W\051) 183.67 170 T
+( UK) 261 170 T
+(DEC) 351 170 T
+2.59 (Pre-conference contributions and/or apologies received from the following who were) 108 144 P
+(unable to attend ...) 108 130 T
+(Whitney de V) 108 110 T
+(ries \050WV\051) 174.56 110 T
+( Canada) 261 110 T
+(McGill University) 351 110 T
+(J Gutknecht \050JG\051) 108 94 T
+( Switzerland) 261 94 T
+(ETH) 351 94 T
+(Cheryl Lins \050CL\051) 108 78 T
+( USA) 261 78 T
+(Apple Corp.) 351 78 T
+FMENDPAGE
+%%EndPage: "47" 48
+%%Page: "48" 48
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(48) 532 42.62 T
+0 12 Q
+(Ian Marshall \050IM\051) 108 712 T
+( UK) 261 712 T
+(Real T) 351 712 T
+(ime Assoc.) 382.89 712 T
+(Michael McGaw \050MM\051) 108 696 T
+( USA) 261 696 T
+(NASA) 351 696 T
+(Hanspeter M\232ssenb\232ck \050HM\051) 108 680 T
+( Switzerland) 261 680 T
+(ETH) 351 680 T
+(Alan Freed \050AF\051) 108 664 T
+( USA) 261 664 T
+(NASA) 351 664 T
+(Chris Johnson \050CJ\051) 108 648 T
+( USA) 261 648 T
+(NASA) 351 648 T
+(Niklaus W) 108 632 T
+(irth \050NW\051) 159.15 632 T
+( Switzerland) 261 632 T
+(ETH) 351 632 T
+(Dick Pountain \050DP\051) 108 616 T
+( UK) 261 616 T
+(BYTE magazine) 351 616 T
+(Mark W) 108 600 T
+(oodman \050MW\051) 147.34 600 T
+( UK) 261 600 T
+(Open University) 351 600 T
+1 14 Q
+(3.2  Document Modi\336cation Record) 108 566.67 T
+1 12 Q
+(Revision) 108 536 T
+(Description) 198 536 T
+(Date) 396 536 T
+(Name) 459 536 T
+0 F
+(0A) 108 520 T
+(Initial version Emailed for comment) 198 520 T
+(June 93) 396 520 T
+(BK) 459 520 T
+(0B) 108 504 T
+(Heavily revised version based on) 198 504 T
+(Oct. 93) 396 504 T
+(BK et al) 459 504 T
+(feedback from contributors listed in) 198 488 T
+(Appendix B) 198 472 T
+(0C) 108 456 T
+(Draft reviewed by J T) 198 456 T
+(empl, H M\232ssenb\232ck,) 302.4 456 T
+(Oct. 93) 407.67 456 T
+(BK/ETH) 459 456 T
+(B Kirk) 198 440 T
+(0D) 108 424 T
+(Corrections and clari\336cations from JT) 198 424 T
+(,) 379.65 424 T
+(Nov) 396 424 T
+(. 93) 415.87 424 T
+(BK et al) 459 424 T
+(HM and NASA Group edited in) 198 408 T
+(Proposed First Issue prior to ETH) 198 392 T
+(preface) 198 376 T
+(1A) 108 360 T
+(Final edits and Preface added) 198 360 T
+(Dec. 93) 396 360 T
+(BK/HM) 459 360 T
+FMENDPAGE
+%%EndPage: "48" 49
+%%Page: "49" 49
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(49) 532 42.62 T
+1 14 Q
+(3.3) 108 710.67 T
+(Document Feedback) 132.49 710.67 T
+0 12 Q
+1 (W) 108 684 P
+1 (e would like to hear from you if you have any comments about this document or any) 118.36 684 P
+(suggestions for improving it. Please send your comments to) 108 670 T
+(Oakwood Guidelines) 108 650 T
+(Robinson Associates) 108 634 T
+(Red Lion House) 108 618 T
+(St Mary\325) 108 602 T
+(s Street Painswick) 150.31 602 T
+(GLOS GL6 6QR) 108 586 T
+(V) 108 570 T
+(oice \050+ 44\051 \0500\051452 813 699) 115.11 570 T
+(Fax \050+ 44\051 \0500\051452 812 912) 108 554 T
+(e-Mail : robinsons@cix.compulink.co.uk) 108 538 T
+0.38 (It would be very helpful if you could give speci\336c text references where appropriate, and) 108 512 P
+-0.05 (of course, your own name and address will make it possible to respond to your comments.) 108 498 P
+(Name:) 108 472 T
+(Address:) 108 446 T
+(Country:) 108 368 T
+(Email:) 150.65 368 T
+(Phone:) 108 342 T
+(Fax:) 141.32 342 T
+(T) 108 316 T
+(itle:) 114.91 316 T
+(Issue:) 108 238 T
+(Comments and suggestions \050append additional pages if necessary\051 :) 108 212 T
+FMENDPAGE
+%%EndPage: "49" 50
+%%Page: "50" 50
+612 792 0 FMBEGINPAGE
+108 54 540 54 2 L
+0.25 H
+2 Z
+0 X
+0 K
+N
+0 8 Q
+(The Oakwood Guidelines for Oberon-2 Compiler Developers) 108 42.62 T
+(October 20, 1995) 304.74 42.62 T
+(50) 532 42.62 T
+0 12 Q
+(Date received:) 108 634 T
+(Date actioned:) 180.6 634 T
+(Actioned by:) 253.2 634 T
+(DO NOT DISTRIBUTE THIS WITH THE DOCUMENT) 108 556 T
+1 14 Q
+(3.4  Document Distribution Record) 108 496.67 T
+1 12 Q
+(Revision) 108 466 T
+(Organisation/name, title or location) 171 466 T
+(Date & Initials) 414 466 T
+0 F
+(0A) 108 450 T
+(T) 171 450 T
+(o compiler developers listed in Appendix B) 177.49 450 T
+(June 93 BK) 414 450 T
+(0B) 108 434 T
+(T) 171 434 T
+(o ETH and Steve Collins) 177.49 434 T
+(Oct. 93 BK) 414 434 T
+(0C) 108 418 T
+(T) 171 418 T
+(o compiler developers listed in Appendix B) 177.49 418 T
+(Oct. 93 BK) 414 418 T
+(0D) 108 402 T
+(For review by ETH prior to preface) 171 402 T
+(Nov) 414 402 T
+(. 93 BK) 433.87 402 T
+(1A) 108 386 T
+(First public release via FTP & BCS) 171 386 T
+(Dec. 93 BK) 414 386 T
+FMENDPAGE
+%%EndPage: "50" 51
+%%Trailer
+%%BoundingBox: 0 0 612 792
+%%Pages: 50 1
+%%DocumentFonts: Times-Roman
+%%+ Times-Bold
+%%+ Courier
+%%+ Symbol
+%%+ Courier-Bold

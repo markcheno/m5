@@ -1,0 +1,225 @@
+MediumC. Virtual Machine (VM) implementation.
+
+The code generation module assumes that it operates on a semi virtual
+processor consisting of general purpose "primary", "secondary" and "temp"
+registers as well as stack and stack pointer "stackptr". All registers and 
+instructions can be implemented either in hardware or in software.
+In particular PIC does not have a general purpose stack and related
+instructions (push, pop, etc) therefore those are software implemented.
+
+In order to port the compiler to the other processor the user must
+supply both the VM code (vm.c), startup code (c0.s) and assembler
+support functions (code.c). To aid the user all VM function names
+are prefixed with vm. Functions operating on unsigned data have additional
+"u" prefix added, floating point functions should have "f" prefix.
+For example signed addition function is named "vmadd" its unsigned version 
+should be called "vmuadd", while floating point addition should be called 
+"vmfadd". The VM code has some provisions for size/speed optimisation. 
+Most functions should be either expanded as macros or can call assembler 
+library functions. However, the optimisation mechanism has to be rewritten.
+Assembler support functions are prefixed with "as".
+All of the assembler code found in the "include" directory is from unmodified
+John Favata's source. I have not reviewed how John handled underscoring
+of variables and function names. I also do not have Parallax assembler..
+
+All VM registers occupy the top of available user memory.
+The stack is placed right below registers and grows downwards.
+Static variables fill the memory from DSEG (data) upwards:
+The user program starts from CSEG (text).
+
+	low user memory
+	^
+	|  DSEG -----------> static variables (upwards)
+	|  ....
+	|  stack-----------> automatic variables (downwards)
+	|
+	| _stackptr--------> registers
+	| _temp
+	| _secondary
+	| _primary
+	|
+	high user memory
+
+In PIC implementation the low memory starts right above SFRs.
+
+The registers must be able to hold the biggest available data element.
+For the time being all are one byte long.
+
+The following is a description of all functions the Virtual Machine
+now implements (see comments and suggestions in vm.c).
+
+1. Register and memory specific functions.
+
+void vmgetmem(entry *sym);
+move the contents of a static memory location into the primary register
+P=[memory].
+
+extern void vmgetloc(entry *sym);
+move the address of the symbol into the primary register
+P=address(symbol).
+
+extern void vmputmem(entry *sym);
+move primary register into the memory
+[memory]=P.
+
+extern void vmputstk(entry *item);
+store the primary register at the address held on the stack. 
+
+extern void vmindirect(entry *item);
+fetch object type through the primary register into primary register. 
+
+extern void vmswap(void);
+swap the primary and secondary registers.
+
+
+2. Arithmetic and logical functions.
+
+void vmadd(entry *itemp, entry *items);
+add the primary and secondary registers. P=P+S.
+
+void vmsub(entry *itemp, entry *items);
+subtract the primary register from the secondary. P=S-P.
+
+void vmmult(entry *itemp, entry *items);
+multiply the primary register and secondary. P=P*S.
+
+void vmdiv(entry *itemp, entry *items);
+divide the secondary register by the primary. Quotient in primary,
+remainder in secondary.
+
+void vmmod(entry *itemp, entry *items);
+compute the remainder (mod) of the secondary register divided
+by the primary register. Remainder in primary, quotient in secondary.
+
+void vmor(entry *itemp, entry *items);
+compute the binary or. P=P or S.
+
+void vmxor(entry *itemp, entry *items);
+compute the binary xor. P=P xor S.
+
+void vmand(entry *itemp, entry *items);
+compute the binary and. P=P and S.
+
+void vmasr(entry *itemp, entry *items);
+arithmetic shift right the secondary register the number of times
+in the primary register. Result in primary. P=S>>P.
+
+void vmasl(entry *itemp, entry *items);
+arithmetic shift left the secondary register the number of times
+in the primary register. Result in primary. P=S<<P.
+
+void vmneg(entry *item);
+two's component of the primary register. P=neg P.
+
+void vmlneg(entry *item);
+logical complement of primary register. P=P xor 1.
+
+void vmcom(entry *item);
+one's complement of primary register. P=not P.
+
+void vmbool(void);
+convert primary value into logical value. if(P=0) P=0 else P=1.
+
+void vminc(entry *item);
+increment the primary register. P=P+1.
+
+void vmdec(entry *item);
+decrement the primary register. P=P-1.
+
+void vmeq(entry *itemp, entry *items);
+if signed(P==S) P=1 else P=0
+
+void vmne(entry *itemp, entry *items);
+if signed(P!=S) P=1 else P=0
+
+void vmlt(entry *itemp, entry *items);
+if signed(P<S) P=1 else P=0
+
+void vmle(entry *itemp, entry *items);
+if signed(P<=S) P=1 else P=0
+
+void vmgt(entry *itemp, entry *items);
+if signed(P>S) P=1 else P=0
+
+void vmge(entry *itemp, entry *items);
+if signed(P>=S) P=1 else P=0
+
+void vmult(entry *itemp, entry *items);
+if unsigned(P<S) P=1 else P=0
+
+void vmule(entry *itemp, entry *items);
+if unsigned(P<=S) P=1 else P=0
+
+void vmugt(entry *itemp, entry *items);
+if unsigned(P>S) P=1 else P=0
+
+void vmuge(entry *itemp, entry *items);
+if unsigned(P>=S) P=1 else P=0
+
+void gnargs(int d);
+??
+
+3. Call and jump functions.
+extern void vmcall(char *sname);
+call specific function (PIC hardware implemented).
+
+extern void vmcallstk(void);
+perform a call to a location on top of the stack.
+
+extern void vmret(void);
+return from subroutine (PIC hardware implemented).
+
+extern void vmjump(int label);
+jump to a label (PIC hardware implemented).
+
+extern void vmtestjump(int label,int ft);
+jump on non zero (ft!=0)
+jump on zero (ft==0).
+
+
+4. Stack specific functions.
+extern void vmpush(entry *item);
+push the primary register onto the stack
+stackptr-=sizeof(item->size)
+[stackptr]=P
+
+extern void vmpop(void);
+pop the stack into the secondary register.
+S=[stackptr]
+stackptr+=sizeof(item->size)
+
+extern void vmswapstk(void);
+swap via temp the primary register and stack
+p<->[stackptr]
+
+extern int vmmodstk(int newstkp);
+modify the stack pointer to the new value indicated
+stackptr+=newstkp
+
+Assembler source text specific functions.
+ 
+extern void asheader(void);
+put all initial text comment.
+
+extern void astrailer(void);
+put all assembler trailing stuff.
+
+extern void astext(void);
+signal the begining of code segment (text).
+
+extern void asdata(void);
+signal the beginning of data segment (data).
+
+extern void asprologue(char *str);
+put function prologue comment
+
+extern void gaslint(void);
+???
+
+extern void gasrint(void);
+???
+
+extern void gjcase(int label);
+case jump instruction.
+
+extern void outcase(int typ,int value,int label);

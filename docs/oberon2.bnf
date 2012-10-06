@@ -1,0 +1,233 @@
+TITLE("Mark's Oberon Compiler V0.00 (c) Mark Chenoweth 2001")
+SUFFIX("m")
+TREE
+PARSER(module)
+CASE_INSENSITIVE
+
+(*********************)
+(* Program Structure *)
+(*********************)
+
+module ::=
+	'module' ID ';'
+	[import_list]
+	decl_seq 
+	['begin' statement_seq]
+	'end' ID '.'.
+
+import_list ::=
+	'import' import_spec {',' import_spec} ';'.
+
+import_spec ::=
+	ID [':=' ID].
+
+(****************)
+(* Declarations *)
+(****************)
+
+decl_seq ::=
+	{var_type_decl}
+	{procedure_decl}.
+	
+var_type_decl ::=
+	  'const' {const_decl ';'}
+	| 'type'  {type_decl  ';'}
+	| 'var'   {var_decl   ';'}.
+
+const_decl ::=
+	ident_def '=' const_expr.
+	
+type_decl ::=
+	ident_def '=' type.
+	
+var_decl ::=
+	ident_list ':' type.
+
+(**************)
+(* Procedures *)
+(**************)
+
+procedure_decl ::=
+	'procedure' (forward_decl | proc_decl) ';'.
+
+proc_decl ::=
+	[receiver] ident_def [formal_pars] ';'
+	decl_seq ['begin' statement_seq] 'end' ID.
+
+forward_decl ::=
+	'^' [receiver] ident_def [formal_pars].
+  
+formal_pars ::=
+	'(' [fp_section {';' fp_section}] ')' [':' qual_ident].
+
+fp_section ::=
+	['var'] ID {',' ID} ':' type.
+
+receiver ::=
+	'(' ['var'] ID ':' ID ')'.
+
+(*********)
+(* Types *)
+(*********)
+
+type ::=
+	  qual_ident
+	| 'array' [const_expr {',' const_expr}] 'of' type
+	| 'record' ['(' qual_ident')'] field_list {';' field_list} 'end'
+	| 'pointer' 'to' type
+	| 'procedure' [formal_pars].
+
+field_list ::=
+	[ident_list ':' type].
+
+(**************)
+(* Statements *)
+(**************)
+
+statement_seq ::=
+	opt_statement {';' opt_statement}.
+	
+opt_statement ::=
+	[statement].
+	
+statement ::=
+	  designator ( (':=' expr) | arguments )
+	| if_statement
+	| case_statement
+	| while_statement
+	| repeat_statement
+	| for_statement
+	| loop_statement
+	| with_statement
+	| 'exit'
+	| 'return' [expr]
+	.
+
+if_statement ::=
+	'if' expr 'then' statement_seq 
+	{'elsif' expr 'then' statement_seq} 
+	['else' statement_seq] 
+	'end'.
+
+case_statement ::=
+	'case' expr 'of' case_stmt {'|' case_stmt} 
+	['else' statement_seq] 
+	'end'.
+
+case_stmt ::=
+	[case_labels {',' case_labels} ':' statement_seq].
+	
+case_labels ::=
+	const_expr ['..' const_expr].
+
+while_statement ::=
+	'while' expr 'do' 
+	  statement_seq 
+	'end'.
+
+repeat_statement ::=
+	'repeat' 
+	  statement_seq 
+	'until' expr.
+
+for_statement ::=
+	'for' ID ':=' expr 'to' expr ['by' const_expr] 'do' 
+	  statement_seq 
+	'end'.
+
+loop_statement ::=
+	'loop' 
+	  statement_seq 
+	'end'.
+	
+with_statement ::=
+	'with' guard 'do' statement_seq 
+	{'|' guard 'do' statement_seq}
+	['else' statement_seq]
+	'end'.
+	
+guard ::=
+	qual_ident ':' qual_ident.
+	
+	
+(***************)
+(* Expressions *)
+(***************)
+
+const_expr ::=
+	expr.
+	
+expr ::=
+	simple_expr 
+	[ '='  simple_expr
+	| '#'  simple_expr
+	| '<'  simple_expr
+	| '<=' simple_expr
+	| '>'  simple_expr
+	| '>=' simple_expr
+	| 'in' simple_expr
+	| 'is' simple_expr
+	].
+	
+simple_expr ::=
+	['+'|'-'] term 
+	{ '+'  term
+	| '-'  term
+	| 'or' term
+	}.
+
+term ::=
+	factor 
+	{ '*'   factor
+	| '/'   factor
+	| 'div' factor
+	| 'mod' factor
+	| '&'   factor	
+	}.
+	
+factor ::=
+	( designator arguments
+	| INTEGER
+	| REAL
+	| STRING('"')
+	| STRING('\'')
+	| set
+	| 'nil'
+	| '~' factor
+	| '(' expr ')'
+	).
+
+set ::=
+	'{' [element {',' element}] '}'.
+	
+element ::=
+	expr ['..' expr].
+
+arguments ::=
+	['(' [expr_list] ')'].
+	
+designator ::= 
+	ID 
+	{ '.' ID 
+	|  '[' expr_list ']' 
+	|  '^' 
+	}.
+
+expr_list ::=
+	expr {',' expr}.
+
+ident_list ::=
+	ID {',' ID}.
+
+qual_ident ::=
+	ID ['.' ID].
+
+ident_def ::=
+	ID ['*' | '-'].
+
+(************)
+(* Comments *)
+(************)
+
+comment ::= 
+	COMMENT( '(*' '*)' ).
